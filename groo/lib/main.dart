@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import './screens/home_screen.dart';
+import './screens/profile_screen.dart';
+import './screens/search_screen.dart';
+import './screens/campaign_screen.dart';
+import './screens/counseling_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,6 +34,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 2;
+  List<Widget> _screen = [
+    ProfileScreen(),
+    SearchScreen(),
+    HomeScreen(),
+    CampaignScreen(),
+    CounselingScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(icon: Icon(Icons.settings), onPressed: null),
         ],
       ),
+      body: _screen[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xFF2DB400),

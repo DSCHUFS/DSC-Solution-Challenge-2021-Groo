@@ -34,6 +34,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 2;
+  PageController _pageController;
   List<Widget> _screen = [
     ProfileScreen(),
     SearchScreen(),
@@ -43,17 +44,27 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: 2);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: false,
-        actions: [
-          IconButton(icon: Icon(Icons.favorite_border), onPressed: null),
-          IconButton(icon: Icon(Icons.settings), onPressed: null),
-        ],
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() => _currentIndex = index);
+        },
+        children: _screen,
       ),
-      body: _screen[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xFF2DB400),
@@ -62,6 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
         onTap: (index) => {
           setState(() {
             _currentIndex = index;
+            _pageController.animateToPage(index,
+                duration: Duration(milliseconds: 200), curve: Curves.easeOut);
           })
         },
         items: [

@@ -33,12 +33,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 2;
+  int _currentIndex = 0;
   PageController _pageController;
   List<Widget> _screen = [
-    ProfileScreen(),
-    SearchScreen(),
     HomeScreen(),
+    SearchScreen(),
     CampaignScreen(),
     CounselingScreen(),
   ];
@@ -46,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: 2);
+    _pageController = PageController(initialPage: 0);
   }
 
   @override
@@ -79,16 +78,12 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         items: [
           BottomNavigationBarItem(
-            label: "More",
-            icon: Icon(Icons.menu),
+            label: "Home",
+            icon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
             label: "Search",
             icon: Icon(Icons.search),
-          ),
-          BottomNavigationBarItem(
-            label: "Home",
-            icon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
             label: "Campaign",

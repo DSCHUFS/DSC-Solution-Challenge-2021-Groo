@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import './screens/home_screen.dart';
-import './screens/profile_screen.dart';
 import './screens/search_screen.dart';
 import './screens/campaign_screen.dart';
 import './screens/counseling_screen.dart';

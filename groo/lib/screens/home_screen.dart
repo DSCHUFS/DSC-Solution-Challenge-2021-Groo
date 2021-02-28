@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import './profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -18,7 +19,15 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(icon: FaIcon(FontAwesomeIcons.tree), onPressed: null),
           IconButton(icon: Icon(Icons.settings), onPressed: null),
-          IconButton(icon: Icon(Icons.person), onPressed: null),
+          IconButton(
+              icon: FaIcon(
+                FontAwesomeIcons.user,
+                color: Colors.blueAccent,
+              ),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (ctx) => ProfileScreen()));
+              }),
         ],
       ),
     );

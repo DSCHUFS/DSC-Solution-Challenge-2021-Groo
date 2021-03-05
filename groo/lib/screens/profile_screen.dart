@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import '../widgets/campaign_list.dart';
+import './settings_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -11,9 +13,11 @@ class ProfileScreen extends StatelessWidget {
         elevation: 0,
         actions: [
           IconButton(
-            icon: FaIcon(FontAwesomeIcons.cog),
-            onPressed: () {},
-          )
+              icon: FaIcon(FontAwesomeIcons.cog),
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (ctx) => SettingsScreen()));
+              }),
         ],
       ),
       body: SingleChildScrollView(
@@ -35,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: [
-                    RaisedButton(
+                    ElevatedButton(
                       onPressed: () {},
                       child: Text('Badges'),
                     ),
@@ -43,34 +47,7 @@ class ProfileScreen extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text('Campaigns Participating'),
                     ),
-                    Container(
-                      height: 200,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          Container(
-                            width: 160.0,
-                            color: Colors.red,
-                          ),
-                          Container(
-                            width: 160.0,
-                            color: Colors.blue,
-                          ),
-                          Container(
-                            width: 160.0,
-                            color: Colors.green,
-                          ),
-                          Container(
-                            width: 160.0,
-                            color: Colors.yellow,
-                          ),
-                          Container(
-                            width: 160.0,
-                            color: Colors.orange,
-                          ),
-                        ],
-                      ),
-                    ),
+                    CampaignList(),
                     SizedBox(
                       height: 20,
                     ),
@@ -78,37 +55,10 @@ class ProfileScreen extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text('Campaigns Participated'),
                     ),
-                    Container(
-                      height: 200,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          Container(
-                            width: 160.0,
-                            color: Colors.red,
-                          ),
-                          Container(
-                            width: 160.0,
-                            color: Colors.blue,
-                          ),
-                          Container(
-                            width: 160.0,
-                            color: Colors.green,
-                          ),
-                          Container(
-                            width: 160.0,
-                            color: Colors.yellow,
-                          ),
-                          Container(
-                            width: 160.0,
-                            color: Colors.orange,
-                          ),
-                        ],
-                      ),
-                    ),
+                    CampaignList(),
                     SizedBox(
                       height: 100,
-                    ),
+                    )
                   ],
                 ),
               ),

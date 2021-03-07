@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groo/widgets/IconBox.dart';
+import 'package:groo/widgets/challengeImage.dart';
+import 'campainDetail_screen.dart';
 
 class CampaignScreen extends StatelessWidget {
   @override
@@ -18,13 +20,7 @@ class CampaignScreen extends StatelessWidget {
                     fontWeight: FontWeight.w800),
               ),
             ),
-            Container(
-              margin: EdgeInsets.all(8.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15.0),
-                child: Image.asset('assets/Dancing.jpg'),
-              ),
-            ),
+            ChallengeImage(imagePath: 'assets/Dancing.jpg',),
             Container(
               child: Column(children: [
                 Padding(
@@ -56,7 +52,9 @@ class CampaignScreen extends StatelessWidget {
                   padding: EdgeInsets.all(15.0),
                   color: Color(0x6F2DB400),
                   onPressed: (){
-                    print('pressed');
+                    Navigator.push(
+                      context, 
+                      MaterialPageRoute(builder: (context) => campaignDetailScreen()),);
                   },
                   child: Text(
                     'JOIN',

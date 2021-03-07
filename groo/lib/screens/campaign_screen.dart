@@ -52,9 +52,9 @@ class CampaignScreen extends StatelessWidget {
                   padding: EdgeInsets.all(15.0),
                   color: Color(0x6F2DB400),
                   onPressed: (){
-                    Navigator.push(
-                      context, 
-                      MaterialPageRoute(builder: (context) => campaignDetailScreen()),);
+                    setState: (){
+
+                    };
                   },
                   child: Text(
                     'JOIN',

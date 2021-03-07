@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:groo/services/auth.dart';
 import 'package:groo/widgets/show_alert_dialog.dart';
+import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({Key key, @required this.auth}) : super(key: key);
-  final AuthBase auth;
-
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
@@ -13,7 +11,8 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   Future<void> _signOut() async {
     try {
-      await widget.auth.signOut();
+      final auth = Provider.of<AuthBase>(context, listen: false);
+      await auth.signOut();
     } catch (e) {
       print(e.toString());
     }

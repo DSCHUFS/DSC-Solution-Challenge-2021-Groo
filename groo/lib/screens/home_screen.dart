@@ -9,20 +9,20 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(
-          "Groo",
-          style: TextStyle(
-            color: Color(0xFF2DB400),
-          ),
+        title: Image.asset(
+          'assets/text_logo.png',
+          width: 50,
         ),
         centerTitle: false,
         actions: [
-          IconButton(icon: FaIcon(FontAwesomeIcons.tree), onPressed: null),
-          IconButton(icon: Icon(Icons.settings), onPressed: null),
+          IconButton(
+              icon: FaIcon(FontAwesomeIcons.tree),
+              color: Colors.green,
+              onPressed: () {}),
           IconButton(
               icon: FaIcon(
                 FontAwesomeIcons.user,
-                color: Colors.blueAccent,
+                color: Colors.green,
               ),
               onPressed: () {
                 Navigator.of(context)

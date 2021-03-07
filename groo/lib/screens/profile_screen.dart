@@ -1,8 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:groo/services/auth.dart';
 import '../widgets/campaign_list.dart';
 import './settings_screen.dart';
 
@@ -24,9 +22,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (ctx) => SettingsScreen(
-                      auth: Auth(),
-                    ),
+                    builder: (ctx) => SettingsScreen(),
                   ),
                 );
               }),

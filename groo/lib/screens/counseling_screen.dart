@@ -1,98 +1,120 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:groo/models/counseling.dart';
+import 'package:groo/widget/box_slider.dart';
+import 'package:groo/widget/box_sliver_delegate.dart';
 
-class Counseling {
-  final String name;
-  final String keyword;
-  final String profile;
-  final bool like;
-
-  Counseling.fromMap(Map<String, dynamic> map)
-      : name = map['name'],
-        keyword = map['keyword'],
-        profile = map['profile'],
-        like = map['like'];
-
+class CounselingScreen extends StatefulWidget {
   @override
-  String toString() => "Counseling<$name:$keyword>";
+  Counseling createState() => Counseling();
 }
 
-class BoxSlider extends StatelessWidget {
-  final List<Counseling> counselings;
-  BoxSlider({this.counselings});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(7),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("불면증에 도움이 됐어요!"),
-          Container(
-            height: 120,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: makeBoxImages(counselings),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class CounselingScreen extends StatelessWidget {
-  List<Counseling> counselings = [
-    Counseling.fromMap({
+class Counseling extends State<CounselingScreen> {
+  List<CounselingInfo> counselings = [
+    CounselingInfo.fromMap({
       'name': '안동현',
       'keyword': '불면증',
-      'poster': 'professional-doctor-office.jpg',
-      'like': false
-    })
+      'profile': 'doctor.png',
+      'like': false,
+      'list': false
+    }),
+    CounselingInfo.fromMap({
+      'name': '안동현',
+      'keyword': '불면증',
+      'profile': 'doctor.png',
+      'like': false,
+      'list': false
+    }),
+    CounselingInfo.fromMap({
+      'name': '안동현',
+      'keyword': '불면증',
+      'profile': 'doctor.png',
+      'like': false,
+      'list': false
+    }),
+    CounselingInfo.fromMap({
+      'name': '안동현',
+      'keyword': '불면증',
+      'profile': 'doctor.png',
+      'like': false,
+      'list': false
+    }),
   ];
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: Text(
-            "Groo",
-            style: TextStyle(
-              color: Color(0xFF2DB400),
-            ),
-          ),
-          centerTitle: false,
-          actions: [
-            IconButton(icon: FaIcon(FontAwesomeIcons.tree), onPressed: null),
-            IconButton(icon: Icon(Icons.settings), onPressed: null),
-            IconButton(icon: Icon(Icons.person), onPressed: null),
-          ],
+      home: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [Color(0xFFd4fc79), Color(0xFFCCF2F4)]),
         ),
-        body: Column(
-          children: [
-            Container(height: 50),
-            BoxSlider(counselings: counselings),
-          ],
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            title: Text(
+              "Groo",
+              style: TextStyle(
+                color: Color(0xFF2DB400),
+              ),
+            ),
+            centerTitle: false,
+            actions: [
+              IconButton(icon: FaIcon(FontAwesomeIcons.tree), onPressed: null),
+              IconButton(icon: Icon(Icons.settings), onPressed: null),
+              IconButton(icon: Icon(Icons.person), onPressed: null),
+            ],
+          ),
+          backgroundColor: Colors.transparent,
+          body: CustomScrollView(
+            slivers: <Widget>[
+              SliverPersistentHeader(
+                pinned: true,
+                floating: true,
+                delegate: CustomBoxSliverDelegate(
+                  expandedHeight: 120,
+                ),
+              ),
+              SliverFillRemaining(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 30.0),
+                    child: ListView(
+                      children: [
+                        BoxSlider(
+                          counselings: counselings,
+                        ),
+                        BoxSlider(
+                          counselings: counselings,
+                        ),
+                        BoxSlider(
+                          counselings: counselings,
+                        ),
+                        BoxSlider(
+                          counselings: counselings,
+                        ),
+                        BoxSlider(
+                          counselings: counselings,
+                        ),
+                        BoxSlider(
+                          counselings: counselings,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
-}
-
-List<Widget> makeBoxImages(List<Counseling> counselings) {
-  List<Widget> results = [];
-  for (var i = 0; i < counselings.length; i++) {
-    results.add(InkWell(
-        onTap: () {},
-        child: Container(
-            padding: EdgeInsets.only(right: 10),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Image.asset('images/' + counselings[i].profile),
-            ))));
-  }
-  return results;
 }

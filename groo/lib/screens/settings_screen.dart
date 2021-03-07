@@ -1,11 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:groo/services/auth.dart';
+import 'package:groo/widgets/show_alert_dialog.dart';
 
 class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({Key key, @required this.auth}) : super(key: key);
+  final AuthBase auth;
+
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  Future<void> _signOut() async {
+    try {
+      await widget.auth.signOut();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> _confirmSignOut(BuildContext context) async {
+    final didRequestSignOut = await showAlertDialog(
+      context,
+      title: 'Logout',
+      content: 'Are you sure that you wnat to logout?',
+      cancelActionText: 'Cancel',
+      defaultActionText: 'Logout',
+    );
+    if (didRequestSignOut == true) {
+      _signOut();
+      Navigator.of(context).popUntil((route) => route.isFirst);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,10 +118,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20))),
                 ),
-                onPressed: () {},
-                child: Text("SIGN OUT",
-                    style: TextStyle(
-                        fontSize: 16, letterSpacing: 2.2, color: Colors.black)),
+                onPressed: () => _confirmSignOut(context),
+                child: Text(
+                  "SIGN OUT",
+                  style: TextStyle(
+                    fontSize: 16,
+                    letterSpacing: 2.2,
+                    color: Colors.black,
+                  ),
+                ),
               ),
             )
           ],

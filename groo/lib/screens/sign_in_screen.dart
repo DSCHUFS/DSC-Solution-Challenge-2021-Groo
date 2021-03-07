@@ -1,8 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:groo/services/auth.dart';
 import 'package:groo/widgets/custom_elavated_button.dart';
 
 class SignInScreen extends StatelessWidget {
+  const SignInScreen({Key key, @required this.auth}) : super(key: key);
+  final AuthBase auth;
+
+  Future<void> _signInAnonymously() async {
+    try {
+      await auth.signInAnonymously();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> _signInWithGoogle() async {
+    try {
+      await auth.signInWithGoogle();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> _signInWithFacebook() async {
+    try {
+      await auth.signInWithFacebook();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +80,7 @@ class SignInScreen extends StatelessWidget {
               height: 50,
               color: Colors.white,
               borderRadius: 10,
-              onPressed: () {},
+              onPressed: _signInWithGoogle,
             ),
             SizedBox(
               height: 10,
@@ -85,7 +112,7 @@ class SignInScreen extends StatelessWidget {
               height: 50,
               color: Color(0xFF334D92),
               borderRadius: 10,
-              onPressed: () {},
+              onPressed: _signInWithFacebook,
             ),
             SizedBox(
               height: 10,
@@ -117,15 +144,11 @@ class SignInScreen extends StatelessWidget {
               height: 50,
               color: Color(0xFF00ACEE),
               borderRadius: 10,
-              onPressed: () {},
+              onPressed: _signInAnonymously,
             ),
           ],
         ),
       ),
     );
-  }
-
-  void _signInWithGoogle() {
-    // TODO: Auth with Google
   }
 }

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1064227200093",
+    "project_id": "dsc-solution-hufs-project-groo",
+    "storage_bucket": "dsc-solution-hufs-project-groo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064227200093:android:6cbdf56ccced3607afc1b4",
+        "android_client_info": {
+          "package_name": "com.dschufs.groo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064227200093-kpqqh1lerf77uig99gd9eeq2j1mcob19.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dschufs.groo",
+            "certificate_hash": "7c88964a3d4bc195d26ac824a40dc35bd498e525"
+          }
+        },
+        {
+          "client_id": "1064227200093-2s1dq4fko2i3oe5tnnj5rrefol3q4egt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCuB-dO2Kk5myDmdus73zotpk-L9EEKD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064227200093-2s1dq4fko2i3oe5tnnj5rrefol3q4egt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1064227200093-knu152hmib3fm70gmlej891qga2tajlg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dschufs.groo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

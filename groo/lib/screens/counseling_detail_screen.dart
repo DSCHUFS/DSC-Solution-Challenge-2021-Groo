@@ -322,7 +322,7 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
             ),
             floatingActionButton: SpeedDial(
               marginEnd: 32,
-              marginBottom: 15,
+              marginBottom: 8,
               icon: Icons.play_arrow,
               activeIcon: Icons.stop,
               buttonSize: 56.0,

@@ -26,10 +26,6 @@ class CustomBoxSliverDelegate extends SliverPersistentHeaderDelegate {
             child: AppBar(
               backgroundColor: Color(0xFF2DB400),
               elevation: 0.0,
-              leading: IconButton(
-                icon: FaIcon(FontAwesomeIcons.question),
-                onPressed: () {},
-              ),
               title: Opacity(
                 opacity: hideTitleWhenExpanded ? 1.0 - percent : 1.0,
                 child: Text("진행 중인 상담이 있나요?"),

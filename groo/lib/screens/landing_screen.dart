@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:groo/services/database.dart';
 import 'package:groo/screens/main_screen.dart';
 import 'package:groo/screens/sign_in_screen.dart';
 import 'package:groo/services/auth.dart';
@@ -17,7 +18,10 @@ class LandingScreen extends StatelessWidget {
           if (user == null) {
             return SignInScreen();
           }
-          return MainScreen();
+          return Provider<Database>(
+            create: (_) => FirestoreDatabase(uid: user.uid),
+            child: MainScreen(),
+          );
         }
         return Scaffold(
           body: Center(

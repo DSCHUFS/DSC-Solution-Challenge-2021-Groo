@@ -5,6 +5,14 @@ import '../widgets/campaign_list.dart';
 import './settings_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
+  static Future<void> show(BuildContext context) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ProfileScreen(),
+      ),
+    );
+  }
+
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }

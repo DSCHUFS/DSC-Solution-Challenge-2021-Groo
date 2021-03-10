@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import './profile_screen.dart';
+import 'package:groo/screens/profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -20,14 +20,12 @@ class HomeScreen extends StatelessWidget {
               color: Colors.green,
               onPressed: () {}),
           IconButton(
-              icon: FaIcon(
-                FontAwesomeIcons.user,
-                color: Colors.green,
-              ),
-              onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (ctx) => ProfileScreen()));
-              }),
+            icon: FaIcon(
+              FontAwesomeIcons.user,
+              color: Colors.green,
+            ),
+            onPressed: () => ProfileScreen.show(context),
+          ),
         ],
       ),
     );

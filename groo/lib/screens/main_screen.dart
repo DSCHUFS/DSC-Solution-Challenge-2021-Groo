@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:groo/screens/campaign_screen.dart';
 import 'package:groo/screens/counseling_screen.dart';
 import 'package:groo/screens/home_screen.dart';
-import 'package:groo/screens/search_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -14,7 +13,6 @@ class _MainScreenState extends State<MainScreen> {
   PageController _pageController;
   List<Widget> _screen = [
     HomeScreen(),
-    SearchScreen(),
     CampaignScreen(),
     CounselingScreen(),
   ];
@@ -59,10 +57,6 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(
             label: "Home",
             icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(
-            label: "Search",
-            icon: Icon(Icons.search),
           ),
           BottomNavigationBarItem(
             label: "Campaign",

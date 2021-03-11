@@ -2,13 +2,13 @@
 ![Flutter](https://img.shields.io/badge/Dart-Flutter-blue?logo=Flutter)
 ![Firebase](https://img.shields.io/badge/with-Firebase-FFCC00?logo=Firebase)
 
-//TODO
+//TODO 선택
 1. A Service App that provides campaigns and counseling services to relieve depression caused by Corona Blue.
 2. A campaign mobile app for everyone with corona blue and depression
 1. 코로나 블루 극복을 위한 캠페인 참여 및 우울증 완화를 위한 상담 매칭을 해주는 어플
 2. 코로나 블루 및 우울증을 가진 모두를 위한 캠페인 모바일 어플리케이션
 
-
+//TODO
 ## Screenshots
 <img src="https://github.com/DSCHUFS/DSC-Solution-Challenge-2020/blob/master/img/login.png" width="30%"> <img src="https://github.com/DSCHUFS/DSC-Solution-Challenge-2020/blob/master/img/main.png" width="30%"> <img src="https://github.com/DSCHUFS/DSC-Solution-Challenge-2020/blob/master/img/register.png" width="30%">
 

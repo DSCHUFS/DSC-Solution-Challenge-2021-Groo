@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../widgets/campaign_list.dart';
 import './settings_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
+  static Future<void> show(BuildContext context) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ProfileScreen(),
+      ),
+    );
+  }
+
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -28,67 +37,279 @@ class _ProfileScreenState extends State<ProfileScreen> {
               }),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 30,
-              ),
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/IMG_5604.PNG'),
-                radius: MediaQuery.of(context).size.width / 4,
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 20),
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                color: Color(0xffCCF2F4),
-                width: MediaQuery.of(context).size.width,
+      body: LayoutBuilder(
+        builder: (context, constraints) => Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              color: Colors.transparent,
+              height: 40 * constraints.maxHeight / 100,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: 30,
+                  right: 30,
+                  top: 5 * constraints.maxHeight / 100,
+                ),
                 child: Column(
                   children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Badges'),
+                    Row(
+                      children: [
+                        Container(
+                          height: 11 * constraints.maxHeight / 100,
+                          width: 22 * constraints.maxWidth / 100,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.fitHeight,
+                              image: AssetImage("assets/IMG_5604.PNG"),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5 * constraints.maxWidth / 100,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Neil Sullivan Paul",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 3 * constraints.maxHeight / 100,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: constraints.maxHeight / 100,
+                            ),
+                            Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      "assets/facebook-logo.png",
+                                      height: 3 * constraints.maxHeight / 100,
+                                      width: 3 * constraints.maxWidth / 100,
+                                    ),
+                                    SizedBox(
+                                      width: 2 * constraints.maxWidth / 100,
+                                    ),
+                                    Text(
+                                      "Protorix",
+                                      style: TextStyle(
+                                        color: Colors.white60,
+                                        fontSize:
+                                            1.5 * constraints.maxHeight / 100,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: 7 * constraints.maxWidth / 100,
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    Image.asset(
+                                      "assets/google-logo.png",
+                                      height: 3 * constraints.maxHeight / 100,
+                                      width: 3 * constraints.maxWidth / 100,
+                                    ),
+                                    SizedBox(
+                                      width: 2 * constraints.maxWidth / 100,
+                                    ),
+                                    Text(
+                                      "Protorix",
+                                      style: TextStyle(
+                                        color: Colors.white60,
+                                        fontSize:
+                                            1.5 * constraints.maxHeight / 100,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text('Campaigns Participating'),
-                    ),
-                    CampaignList(),
                     SizedBox(
-                      height: 20,
+                      height: 3 * constraints.maxHeight / 100,
                     ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text('Campaigns Participated'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: <Widget>[
+                            Text(
+                              "10.2K",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 3 * constraints.maxHeight / 100,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Protorix",
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 1.9 * constraints.maxHeight / 100,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: <Widget>[
+                            Text(
+                              "543",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 3 * constraints.maxHeight / 100,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Following",
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 1.9 * constraints.maxHeight / 100,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white60),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "EDIT PROFILE",
+                              style: TextStyle(
+                                color: Colors.white60,
+                                fontSize: 1.8 * constraints.maxHeight / 100,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    CampaignList(),
-                    SizedBox(
-                      height: 100,
-                    )
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 30 * constraints.maxHeight / 100),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Color(0xFFCCF2F4),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(30.0),
+                    topLeft: Radius.circular(30.0),
+                  ),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 40.0, top: 3 * constraints.maxHeight / 100),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Badges",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 3 * constraints.maxHeight / 100),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 2 * constraints.maxHeight / 100),
+                      Container(
+                        height: 20 * constraints.maxHeight / 100,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: <Widget>[
+                            _campaignCard(
+                                imagePath: 'assets/Dancing.jpg',
+                                constraints: constraints),
+                            _campaignCard(
+                                imagePath: 'assets/Dancing.jpg',
+                                constraints: constraints),
+                            _campaignCard(
+                                imagePath: 'assets/Dancing.jpg',
+                                constraints: constraints),
+                            _campaignCard(
+                                imagePath: 'assets/Dancing.jpg',
+                                constraints: constraints),
+                            SizedBox(
+                              width: 10 * constraints.maxWidth / 100,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 3 * constraints.maxHeight / 100),
+                      Padding(
+                        padding: EdgeInsets.only(left: 40.0, right: 30.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Participated Campains",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 3 * constraints.maxHeight / 100),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 2 * constraints.maxHeight / 100),
+                      Container(
+                        height: 30 * constraints.maxHeight / 100,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: <Widget>[
+                            _campaignCard(
+                                imagePath: 'assets/Dancing.jpg',
+                                constraints: constraints),
+                            _campaignCard(
+                                imagePath: 'assets/Dancing.jpg',
+                                constraints: constraints),
+                            _campaignCard(
+                                imagePath: 'assets/Dancing.jpg',
+                                constraints: constraints),
+                            _campaignCard(
+                                imagePath: 'assets/Dancing.jpg',
+                                constraints: constraints),
+                            SizedBox(width: 10 * constraints.maxWidth / 100)
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10 * constraints.maxWidth / 100),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
-      floatingActionButton: SpeedDial(
-        icon: FontAwesomeIcons.plus,
-        activeIcon: FontAwesomeIcons.times,
-        children: [
-          SpeedDialChild(
-            child: Icon(Icons.accessibility),
-            label: 'First',
-            onTap: null,
-          ),
-          SpeedDialChild(
-            child: Icon(Icons.accessibility),
-            label: 'Second',
-            onTap: null,
-          ),
-        ],
+    );
+  }
+
+  // _badge(){}
+
+  _campaignCard(
+      {@required String imagePath, @required BoxConstraints constraints}) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 40.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15.0),
+        child: Image.asset(
+          imagePath,
+          height: 20 * constraints.maxHeight / 100,
+          width: 70 * constraints.maxWidth / 100,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

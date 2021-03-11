@@ -4,8 +4,9 @@
 
 
 //TODO: A Smart App with an wearable device that supports Social workers or Care givers who supports or helps Seniors. 
-
+A Service App that provides campaigns and counseling services to relieve depression caused by Corona Blue.
 //TODO: 노인분들을 위한 생활관리사를 돕는 어플
+코로나 블루 극복을 위한 캠페인 참여 및 우울증 완화를 위한 상담 매칭을 해주는 어플
 
 ## Screenshots
 <img src="https://github.com/DSCHUFS/DSC-Solution-Challenge-2020/blob/master/img/login.png" width="30%"> <img src="https://github.com/DSCHUFS/DSC-Solution-Challenge-2020/blob/master/img/main.png" width="30%"> <img src="https://github.com/DSCHUFS/DSC-Solution-Challenge-2020/blob/master/img/register.png" width="30%">

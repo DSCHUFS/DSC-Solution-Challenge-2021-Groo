@@ -53,7 +53,7 @@ flutter run
 
 ## Contributors
 - [Donghyun Ahn]()
-- [Yoongyo Lee]()
+- [Yoongyo Lee](https://github.com/lykee2000)
 - [Chaewon Lee]()
 - [WonHyuk Choi](https://github.com/devluce)
 

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groo/models/counseling.dart';
@@ -12,43 +13,28 @@ class CounselingScreen extends StatefulWidget {
 }
 
 class Counseling extends State<CounselingScreen> {
-  List<CounselingInfo> counselings = [
-    CounselingInfo.fromMap({
-      'name': '안동현',
-      'keyword': '불면증',
-      'profile': 'doctor.png',
-      'like': false,
-      'list': false
-    }),
-    CounselingInfo.fromMap({
-      'name': '안동현',
-      'keyword': '불면증',
-      'profile': 'doctor.png',
-      'like': false,
-      'list': false
-    }),
-    CounselingInfo.fromMap({
-      'name': '안동현',
-      'keyword': '불면증',
-      'profile': 'doctor.png',
-      'like': false,
-      'list': false
-    }),
-    CounselingInfo.fromMap({
-      'name': '안동현',
-      'keyword': '불면증',
-      'profile': 'doctor.png',
-      'like': false,
-      'list': false
-    }),
-  ];
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  Stream<QuerySnapshot> streamData;
+
   @override
   void initState() {
     super.initState();
+    streamData = firestore.collection('counselors').snapshots();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _fetchData(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: streamData,
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) return LinearProgressIndicator();
+        return _buildBody(context, snapshot.data.docs);
+      },
+    );
+  }
+
+  Widget _buildBody(BuildContext context, List<DocumentSnapshot> snapshot) {
+    List<CounselingInfo> counselings =
+        snapshot.map((d) => CounselingInfo.fromSnapshot(d)).toList();
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -82,10 +68,18 @@ class Counseling extends State<CounselingScreen> {
                           ),
                           FaIcon(FontAwesomeIcons.infoCircle),
                           SizedBox(
-                            width: 15,
+                            width: 20,
                           ),
-                          Text('상담이 처음이신가요?',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          Column(
+                            children: [
+                              Text('Is this your',
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
+                              Text('First Counseling?',
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
+                            ],
+                          ),
                           TextButton(
                             child: Text(
                               'ⓧ',
@@ -190,15 +184,27 @@ class Counseling extends State<CounselingScreen> {
                     children: [
                       BoxSlider(
                         counselings: counselings,
+                        keyword: "Counselors for Corona Blue",
+                        start: 0,
+                        end: 4,
                       ),
                       BoxSlider(
                         counselings: counselings,
+                        keyword: "Counselors for Career Counseling",
+                        start: 0,
+                        end: 4,
                       ),
                       BoxSlider(
                         counselings: counselings,
+                        keyword: "Counselors for Anxiety and Depression",
+                        start: 0,
+                        end: 4,
                       ),
                       BoxSlider(
                         counselings: counselings,
+                        keyword: "Counselors for Stress Management",
+                        start: 0,
+                        end: 4,
                       ),
                     ],
                   ),
@@ -209,5 +215,10 @@ class Counseling extends State<CounselingScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _fetchData(context);
   }
 }

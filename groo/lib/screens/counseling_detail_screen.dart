@@ -61,8 +61,7 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                   child: Column(children: [
                     CircleAvatar(
                       radius: 90,
-                      backgroundImage:
-                          AssetImage('images/' + widget.counseling.profile),
+                      backgroundImage: NetworkImage(widget.counseling.profile),
                     ),
                     Container(
                       child: Row(
@@ -89,6 +88,8 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                                           onPressed: () {
                                             setState(() {
                                               like = !like;
+                                              widget.counseling.reference
+                                                  .update({'like': like});
                                             });
                                           },
                                         ),
@@ -110,6 +111,8 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                                           onPressed: () {
                                             setState(() {
                                               like = !like;
+                                              widget.counseling.reference
+                                                  .update({'like': like});
                                             });
                                           },
                                         ),
@@ -117,16 +120,27 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                                 SizedBox(
                                   height: 15,
                                 ),
-                                Text("평가")
+                                Text("Like\n")
                               ],
                             ),
                           ),
                           Container(
                             padding: EdgeInsets.only(top: 20),
-                            child: Text(
-                              widget.counseling.name + ' 상담사',
-                              style: TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.bold),
+                            child: Column(
+                              children: [
+                                Text(
+                                  widget.counseling.name,
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  'Counselor',
+                                  style: TextStyle(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           Container(
@@ -150,6 +164,8 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                                           onPressed: () {
                                             setState(() {
                                               list = !list;
+                                              widget.counseling.reference
+                                                  .update({'list': list});
                                             });
                                           },
                                         ),
@@ -171,6 +187,8 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                                           onPressed: () {
                                             setState(() {
                                               list = !list;
+                                              widget.counseling.reference
+                                                  .update({'list': list});
                                             });
                                           },
                                         ),
@@ -178,7 +196,7 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                                 SizedBox(
                                   height: 15,
                                 ),
-                                Text("찜하기")
+                                Text("Add to\nMy List")
                               ],
                             ),
                           )
@@ -202,115 +220,127 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
-                          child: Container(
-                            height: 100,
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    FaIcon(FontAwesomeIcons.seedling),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      '상담사 한 마디',
-                                      style: TextStyle(
+                            padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
+                            child: Expanded(
+                              child: Container(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          // SizedBox(
+                                          //   width: 20,
+                                          // ),
+                                          FaIcon(FontAwesomeIcons.handsHelping),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            'Cheer UP!',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Text(
+                                        widget.counseling.oneLine,
+                                        style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
-                            ),
-                            decoration: BoxDecoration(
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
+                                    color: Colors.white,
+                                    border: Border.all(
+                                        width: 1.0, color: Colors.white70)),
+                              ),
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                          child: Expanded(
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      FaIcon(FontAwesomeIcons.trophy),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        'Education / Certification',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(20)),
                                 color: Colors.white,
                                 border: Border.all(
-                                    width: 1.0, color: Colors.white70)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                          child: Container(
-                            height: 155,
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    FaIcon(FontAwesomeIcons.trophy),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      '상담 경력 및 자격',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                              color: Colors.white,
-                              border:
-                                  Border.all(width: 1.0, color: Colors.white70),
+                                    width: 1.0, color: Colors.white70),
+                              ),
                             ),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
-                          child: Container(
-                            height: 155,
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    FaIcon(FontAwesomeIcons.tree),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      '상담사 설명',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                              color: Colors.white,
-                              border:
-                                  Border.all(width: 1.0, color: Colors.white70),
+                          child: Expanded(
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      FaIcon(FontAwesomeIcons.tree),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        'Specialties',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                color: Colors.white,
+                                border: Border.all(
+                                    width: 1.0, color: Colors.white70),
+                              ),
                             ),
                           ),
                         ),
@@ -342,7 +372,7 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                     FontAwesomeIcons.comments,
                   ),
                   backgroundColor: Colors.white,
-                  label: '채팅 상담',
+                  label: 'Text-Chat Counseling',
                   labelStyle: TextStyle(fontSize: 18.0),
                   onTap: () {
                     return showDialog(
@@ -359,9 +389,25 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                               SizedBox(
                                 width: 15,
                               ),
-                              Text('채팅 상담 시 안내 사항',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Text-Chat',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'Counseling',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'Information',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
                               TextButton(
                                 child: Text(
                                   'ⓧ',
@@ -439,7 +485,7 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                                     ),
                                   ),
                                   label: Text(
-                                    '상담 시작하기',
+                                    'Start Counseling',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 25,
@@ -460,7 +506,7 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                     FontAwesomeIcons.chalkboardTeacher,
                   ),
                   backgroundColor: Colors.white,
-                  label: '화상 상담',
+                  label: 'Video Counseling',
                   labelStyle: TextStyle(fontSize: 18.0),
                   onTap: () {
                     return showDialog(
@@ -477,9 +523,20 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                               SizedBox(
                                 width: 13,
                               ),
-                              Text('화상 상담 시 안내 사항',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Video Counseling',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'Information',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
                               TextButton(
                                 child: Text(
                                   'ⓧ',
@@ -557,7 +614,7 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                                     ),
                                   ),
                                   label: Text(
-                                    '상담 시작하기',
+                                    'Start Counseling',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 25,
@@ -578,7 +635,7 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                     FontAwesomeIcons.headset,
                   ),
                   backgroundColor: Colors.white,
-                  label: '음성 상담',
+                  label: 'Voice Counseling',
                   labelStyle: TextStyle(fontSize: 18.0),
                   onTap: () {
                     return showDialog(
@@ -595,9 +652,20 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                               SizedBox(
                                 width: 15,
                               ),
-                              Text('음성 상담 시 안내 사항',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Voice Counseling',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'Information',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
                               TextButton(
                                 child: Text(
                                   'ⓧ',
@@ -675,7 +743,7 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                                     ),
                                   ),
                                   label: Text(
-                                    '상담 시작하기',
+                                    'Start Counseling',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 25,

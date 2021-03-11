@@ -5,6 +5,7 @@ class CounselingInfo {
   final String keyword;
   final String profile;
   final String oneLine;
+  final String meetLink;
   final bool like;
   final bool list;
   final DocumentReference reference;
@@ -15,7 +16,8 @@ class CounselingInfo {
         profile = map['profile'],
         like = map['like'],
         list = map['list'],
-        oneLine = map['oneLine'];
+        oneLine = map['oneLine'],
+        meetLink = map['meetLink'];
 
   CounselingInfo.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data(), reference: snapshot.reference);

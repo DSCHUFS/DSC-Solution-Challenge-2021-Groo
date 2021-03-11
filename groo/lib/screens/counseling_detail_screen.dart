@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groo/models/counseling.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:groo/widgets/info_dialog.dart';
+import 'package:groo/widgets/text_box.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CounselingDetailScreen extends StatefulWidget {
@@ -22,10 +24,6 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const _url = 'https://meet.google.com/ixt-mgin-nbc';
-    void _launchURL() async => await canLaunch(_url)
-        ? await launch(_url)
-        : throw 'Could not launch $_url';
     return MaterialApp(
       home: Container(
         decoration: BoxDecoration(
@@ -196,7 +194,12 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                                 SizedBox(
                                   height: 15,
                                 ),
-                                Text("Add to\nMy List")
+                                Column(
+                                  children: [
+                                    Text('Add to'),
+                                    Text('My List'),
+                                  ],
+                                )
                               ],
                             ),
                           )
@@ -220,129 +223,25 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                     child: Column(
                       children: [
                         Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
-                            child: Expanded(
-                              child: Container(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          // SizedBox(
-                                          //   width: 20,
-                                          // ),
-                                          FaIcon(FontAwesomeIcons.handsHelping),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            'Cheer UP!',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Text(
-                                        widget.counseling.oneLine,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                    color: Colors.white,
-                                    border: Border.all(
-                                        width: 1.0, color: Colors.white70)),
-                              ),
-                            )),
+                          padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
+                          child: TextBox(
+                              icon: FaIcon(FontAwesomeIcons.handsHelping),
+                              subTitle: 'Cheer UP!',
+                              fillOutText: widget.counseling.oneLine),
+                        ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                          child: Expanded(
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-                                      FaIcon(FontAwesomeIcons.trophy),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        'Education / Certification',
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                color: Colors.white,
-                                border: Border.all(
-                                    width: 1.0, color: Colors.white70),
-                              ),
-                            ),
-                          ),
+                          child: TextBox(
+                              icon: FaIcon(FontAwesomeIcons.trophy),
+                              subTitle: 'Education / Certification',
+                              fillOutText: widget.counseling.oneLine),
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
-                          child: Expanded(
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-                                      FaIcon(FontAwesomeIcons.tree),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        'Specialties',
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                color: Colors.white,
-                                border: Border.all(
-                                    width: 1.0, color: Colors.white70),
-                              ),
-                            ),
-                          ),
+                          child: TextBox(
+                              icon: FaIcon(FontAwesomeIcons.solidStar),
+                              subTitle: 'Specialties',
+                              fillOutText: widget.counseling.oneLine),
                         ),
                       ],
                     ),
@@ -378,124 +277,12 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                     return showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SizedBox(
-                                width: 15,
-                              ),
-                              FaIcon(FontAwesomeIcons.comments),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'Text-Chat',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Counseling',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Information',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              TextButton(
-                                child: Text(
-                                  'ⓧ',
-                                  style: TextStyle(
-                                      color: Colors.red[300], fontSize: 35.0),
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
+                        return InfoDialog(
+                          icon: FaIcon(
+                            FontAwesomeIcons.comments,
                           ),
-                          content: Container(
-                            height: 400.0,
-                            width: 350.0,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Row(
-                                  children: [
-                                    FaIcon(FontAwesomeIcons.tree),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 8.0),
-                                      child: Text(' '),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
-                                Row(
-                                  children: [
-                                    FaIcon(FontAwesomeIcons.tree),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 8.0),
-                                      child: Text(' '),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
-                                Row(
-                                  children: [
-                                    FaIcon(FontAwesomeIcons.tree),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 8.0),
-                                      child: Text(''),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
-                                Row(
-                                  children: [
-                                    FaIcon(FontAwesomeIcons.tree),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: new Text(''),
-                                    ),
-                                  ],
-                                ),
-                                ElevatedButton.icon(
-                                  onPressed: () {
-                                    _launchURL();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.green,
-                                    onPrimary: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10.0),
-                                      ),
-                                    ),
-                                  ),
-                                  label: Text(
-                                    'Start Counseling',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  icon: FaIcon(FontAwesomeIcons.seedling),
-                                ),
-                              ],
-                            ),
-                          ),
+                          type: 'Text-Chat',
+                          meetLink: widget.counseling.meetLink,
                         );
                       },
                     );
@@ -512,119 +299,12 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                     return showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SizedBox(
-                                width: 13,
-                              ),
-                              FaIcon(FontAwesomeIcons.chalkboardTeacher),
-                              SizedBox(
-                                width: 13,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'Video Counseling',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Information',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              TextButton(
-                                child: Text(
-                                  'ⓧ',
-                                  style: TextStyle(
-                                      color: Colors.red[300], fontSize: 35.0),
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
+                        return InfoDialog(
+                          icon: FaIcon(
+                            FontAwesomeIcons.chalkboardTeacher,
                           ),
-                          content: Container(
-                            height: 400.0,
-                            width: 350.0,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Row(
-                                  children: [
-                                    FaIcon(FontAwesomeIcons.tree),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 8.0),
-                                      child: Text(' '),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
-                                Row(
-                                  children: [
-                                    FaIcon(FontAwesomeIcons.tree),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 8.0),
-                                      child: Text(' '),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
-                                Row(
-                                  children: [
-                                    FaIcon(FontAwesomeIcons.tree),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 8.0),
-                                      child: Text(''),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
-                                Row(
-                                  children: [
-                                    FaIcon(FontAwesomeIcons.tree),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: new Text(''),
-                                    ),
-                                  ],
-                                ),
-                                ElevatedButton.icon(
-                                  onPressed: () {
-                                    _launchURL();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.green,
-                                    onPrimary: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10.0),
-                                      ),
-                                    ),
-                                  ),
-                                  label: Text(
-                                    'Start Counseling',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  icon: FaIcon(FontAwesomeIcons.seedling),
-                                ),
-                              ],
-                            ),
-                          ),
+                          type: 'Video',
+                          meetLink: widget.counseling.meetLink,
                         );
                       },
                     );
@@ -641,119 +321,12 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                     return showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SizedBox(
-                                width: 15,
-                              ),
-                              FaIcon(FontAwesomeIcons.headset),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'Voice Counseling',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Information',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              TextButton(
-                                child: Text(
-                                  'ⓧ',
-                                  style: TextStyle(
-                                      color: Colors.red[300], fontSize: 35.0),
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
+                        return InfoDialog(
+                          icon: FaIcon(
+                            FontAwesomeIcons.headset,
                           ),
-                          content: Container(
-                            height: 400.0,
-                            width: 350.0,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Row(
-                                  children: [
-                                    FaIcon(FontAwesomeIcons.tree),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 8.0),
-                                      child: Text(' '),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
-                                Row(
-                                  children: [
-                                    FaIcon(FontAwesomeIcons.tree),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 8.0),
-                                      child: Text(' '),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
-                                Row(
-                                  children: [
-                                    FaIcon(FontAwesomeIcons.tree),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 8.0),
-                                      child: Text(''),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
-                                Row(
-                                  children: [
-                                    FaIcon(FontAwesomeIcons.tree),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: new Text(''),
-                                    ),
-                                  ],
-                                ),
-                                ElevatedButton.icon(
-                                  onPressed: () {
-                                    _launchURL();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.green,
-                                    onPrimary: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10.0),
-                                      ),
-                                    ),
-                                  ),
-                                  label: Text(
-                                    'Start Counseling',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  icon: FaIcon(FontAwesomeIcons.seedling),
-                                ),
-                              ],
-                            ),
-                          ),
+                          type: 'Voice',
+                          meetLink: widget.counseling.meetLink,
                         );
                       },
                     );

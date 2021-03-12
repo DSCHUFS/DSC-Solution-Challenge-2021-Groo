@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import '../widgets/campaign_list.dart';
+import 'package:groo/models/account_info.dart';
+import 'package:groo/services/auth.dart';
+import 'package:groo/services/database.dart';
+import 'package:provider/provider.dart';
 import './settings_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
-  static Future<void> show(BuildContext context) async {
+  const ProfileScreen({Key key, @required this.database}) : super(key: key);
+  final Database database;
+
+  static Future<void> show(BuildContext context, {Database database}) async {
     await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => ProfileScreen(),
+        builder: (context) => ProfileScreen(
+          database: database,
+        ),
       ),
     );
   }
@@ -21,20 +28,20 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthBase>(context, listen: false);
+    final user = auth.currentUser;
     return Scaffold(
       backgroundColor: Color(0xFF2DB400),
       appBar: AppBar(
         elevation: 0,
         actions: [
           IconButton(
-              icon: FaIcon(FontAwesomeIcons.cog),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (ctx) => SettingsScreen(),
-                  ),
-                );
-              }),
+            icon: FaIcon(FontAwesomeIcons.cog),
+            onPressed: () => SettingsScreen.show(
+              context,
+              database: widget.database,
+            ),
+          ),
         ],
       ),
       body: LayoutBuilder(
@@ -50,150 +57,138 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   right: 30,
                   top: 5 * constraints.maxHeight / 100,
                 ),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          height: 11 * constraints.maxHeight / 100,
-                          width: 22 * constraints.maxWidth / 100,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              fit: BoxFit.fitHeight,
-                              image: AssetImage("assets/IMG_5604.PNG"),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5 * constraints.maxWidth / 100,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Neil Sullivan Paul",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 3 * constraints.maxHeight / 100,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: constraints.maxHeight / 100,
-                            ),
-                            Row(
-                              children: [
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/facebook-logo.png",
-                                      height: 3 * constraints.maxHeight / 100,
-                                      width: 3 * constraints.maxWidth / 100,
-                                    ),
-                                    SizedBox(
-                                      width: 2 * constraints.maxWidth / 100,
-                                    ),
-                                    Text(
-                                      "Protorix",
-                                      style: TextStyle(
-                                        color: Colors.white60,
+                child: StreamBuilder<AccountInfo>(
+                    stream: widget.database.accountStream(),
+                    builder: (context, snapshot) {
+                      final accountInfo = snapshot.data;
+                      if (!snapshot.hasData)
+                        return Center(child: CircularProgressIndicator());
+                      return Column(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                height: 11 * constraints.maxHeight / 100,
+                                width: 22 * constraints.maxWidth / 100,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    fit: BoxFit.fitHeight,
+                                    image: NetworkImage(user.photoURL),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5 * constraints.maxWidth / 100,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    user.displayName,
+                                    style: TextStyle(
+                                        color: Colors.white,
                                         fontSize:
-                                            1.5 * constraints.maxHeight / 100,
+                                            3 * constraints.maxHeight / 100,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: constraints.maxHeight / 100,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.email,
+                                        color: Colors.white,
+                                        size: 3 * constraints.maxHeight / 100,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  width: 7 * constraints.maxWidth / 100,
-                                ),
-                                Row(
-                                  children: <Widget>[
-                                    Image.asset(
-                                      "assets/google-logo.png",
-                                      height: 3 * constraints.maxHeight / 100,
-                                      width: 3 * constraints.maxWidth / 100,
-                                    ),
-                                    SizedBox(
-                                      width: 2 * constraints.maxWidth / 100,
-                                    ),
-                                    Text(
-                                      "Protorix",
-                                      style: TextStyle(
-                                        color: Colors.white60,
+                                      SizedBox(
+                                        width: 2 * constraints.maxWidth / 100,
+                                      ),
+                                      Text(
+                                        accountInfo.showEmail ?? false
+                                            ? user.email
+                                            : 'private',
+                                        style: TextStyle(
+                                          color: Colors.white70,
+                                          fontSize:
+                                              2 * constraints.maxHeight / 100,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 3 * constraints.maxHeight / 100,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: <Widget>[
+                                  Text(
+                                    "10.2K",
+                                    style: TextStyle(
+                                        color: Colors.white,
                                         fontSize:
-                                            1.5 * constraints.maxHeight / 100,
-                                      ),
+                                            3 * constraints.maxHeight / 100,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    "Follower",
+                                    style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize:
+                                          1.9 * constraints.maxHeight / 100,
                                     ),
-                                  ],
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Text(
+                                    "543",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize:
+                                            3 * constraints.maxHeight / 100,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    "Following",
+                                    style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize:
+                                          1.9 * constraints.maxHeight / 100,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.white60),
+                                  borderRadius: BorderRadius.circular(5.0),
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 3 * constraints.maxHeight / 100,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          children: <Widget>[
-                            Text(
-                              "10.2K",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 3 * constraints.maxHeight / 100,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "Protorix",
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 1.9 * constraints.maxHeight / 100,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "EDIT PROFILE",
+                                    style: TextStyle(
+                                      color: Colors.white60,
+                                      fontSize:
+                                          1.8 * constraints.maxHeight / 100,
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: <Widget>[
-                            Text(
-                              "543",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 3 * constraints.maxHeight / 100,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "Following",
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 1.9 * constraints.maxHeight / 100,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white60),
-                            borderRadius: BorderRadius.circular(5.0),
+                            ],
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "EDIT PROFILE",
-                              style: TextStyle(
-                                color: Colors.white60,
-                                fontSize: 1.8 * constraints.maxHeight / 100,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                        ],
+                      );
+                    }),
               ),
             ),
             Padding(

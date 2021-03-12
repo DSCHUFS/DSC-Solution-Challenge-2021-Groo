@@ -155,15 +155,6 @@ class Counseling extends State<CounselingScreen> {
                 icon: FaIcon(FontAwesomeIcons.tree),
                 color: Colors.green,
                 onPressed: () {}),
-            IconButton(
-                icon: FaIcon(
-                  FontAwesomeIcons.user,
-                  color: Colors.green,
-                ),
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) => ProfileScreen()));
-                }),
           ],
         ),
         backgroundColor: Colors.transparent,

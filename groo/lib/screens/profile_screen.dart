@@ -61,8 +61,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     stream: widget.database.accountStream(),
                     builder: (context, snapshot) {
                       final accountInfo = snapshot.data;
-                      if (!snapshot.hasData)
+                      if (!snapshot.hasData) {
+                        if (snapshot.hasError) {
+                          var newInfo = AccountInfo(id: user.uid);
+                          widget.database.setAccountInfo(newInfo);
+                        }
                         return Center(child: CircularProgressIndicator());
+                      }
                       return Column(
                         children: [
                           Row(

@@ -59,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 padding: EdgeInsets.only(
                   left: 30,
                   right: 30,
-                  top: 5 * constraints.maxHeight / 100,
+                  top: 2 * constraints.maxHeight / 100,
                 ),
                 child: StreamBuilder<AccountInfo>(
                     stream: widget.database.accountStream(),
@@ -201,7 +201,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 30 * constraints.maxHeight / 100),
+              padding: EdgeInsets.only(top: 25 * constraints.maxHeight / 100),
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
@@ -278,7 +278,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           },
                         ),
                       ),
-                      SizedBox(height: 10 * constraints.maxWidth / 100),
+                      SizedBox(height: 20 * constraints.maxWidth / 100),
                     ],
                   ),
                 ),

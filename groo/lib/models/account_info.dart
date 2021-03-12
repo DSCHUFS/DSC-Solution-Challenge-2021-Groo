@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class AccountInfo {
-  AccountInfo({@required this.id, @required this.showEmail});
+  AccountInfo({@required this.id, this.showEmail});
 
   final String id;
   final bool showEmail;

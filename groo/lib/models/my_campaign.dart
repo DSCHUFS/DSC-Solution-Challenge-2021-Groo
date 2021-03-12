@@ -6,14 +6,14 @@ class MyCampaign {
     @required this.campaignId,
     @required this.name,
     @required this.isSuccess,
-    @required this.picturePath,
+    @required this.imagePath,
   });
 
   final String id;
   final String campaignId;
   final String name;
   final bool isSuccess;
-  final String picturePath;
+  final String imagePath;
 
   factory MyCampaign.fromMap(Map<dynamic, dynamic> data, String id) {
     return MyCampaign(
@@ -21,7 +21,7 @@ class MyCampaign {
       campaignId: data['campaignId'],
       name: data['name'],
       isSuccess: data['isSuccess'],
-      picturePath: data['picturePath'],
+      imagePath: data['imagePath'],
     );
   }
 
@@ -30,7 +30,7 @@ class MyCampaign {
       'campaignId': campaignId,
       'name': name,
       'isSuccess': isSuccess,
-      'picturePath': picturePath,
+      'imagePath': imagePath,
     };
   }
 }

@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groo/models/account_info.dart';
+import 'package:groo/models/my_badge.dart';
+import 'package:groo/models/my_campaign.dart';
+import 'package:groo/screens/settings_screen.dart';
 import 'package:groo/services/auth.dart';
 import 'package:groo/services/database.dart';
+import 'package:groo/widgets/list_builder.dart';
 import 'package:provider/provider.dart';
-import './settings_screen.dart';
+import 'package:firebase_image/firebase_image.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key key, @required this.database}) : super(key: key);
@@ -180,7 +184,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    "EDIT PROFILE",
+                                    "Follow",
                                     style: TextStyle(
                                       color: Colors.white60,
                                       fontSize:
@@ -227,25 +231,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       SizedBox(height: 2 * constraints.maxHeight / 100),
                       Container(
                         height: 20 * constraints.maxHeight / 100,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: <Widget>[
-                            _campaignCard(
-                                imagePath: 'assets/Dancing.jpg',
-                                constraints: constraints),
-                            _campaignCard(
-                                imagePath: 'assets/Dancing.jpg',
-                                constraints: constraints),
-                            _campaignCard(
-                                imagePath: 'assets/Dancing.jpg',
-                                constraints: constraints),
-                            _campaignCard(
-                                imagePath: 'assets/Dancing.jpg',
-                                constraints: constraints),
-                            SizedBox(
-                              width: 10 * constraints.maxWidth / 100,
-                            ),
-                          ],
+                        child: StreamBuilder<List<MyBadge>>(
+                          stream: widget.database.myBadgesStream(),
+                          builder: (context, snapshot) {
+                            return ListBuilder(
+                              snapshot: snapshot,
+                              itemBuilder: (context, myBadge) => _badge(
+                                imagePath: myBadge.imagePath,
+                                constraints: constraints,
+                              ),
+                              constraints: constraints,
+                            );
+                          },
                         ),
                       ),
                       SizedBox(height: 3 * constraints.maxHeight / 100),
@@ -265,23 +262,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       SizedBox(height: 2 * constraints.maxHeight / 100),
                       Container(
                         height: 30 * constraints.maxHeight / 100,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: <Widget>[
-                            _campaignCard(
-                                imagePath: 'assets/Dancing.jpg',
-                                constraints: constraints),
-                            _campaignCard(
-                                imagePath: 'assets/Dancing.jpg',
-                                constraints: constraints),
-                            _campaignCard(
-                                imagePath: 'assets/Dancing.jpg',
-                                constraints: constraints),
-                            _campaignCard(
-                                imagePath: 'assets/Dancing.jpg',
-                                constraints: constraints),
-                            SizedBox(width: 10 * constraints.maxWidth / 100)
-                          ],
+                        child: StreamBuilder<List<MyCampaign>>(
+                          stream: widget.database.myCampaignsStream(),
+                          builder: (context, snapshot) {
+                            return ListBuilder(
+                              snapshot: snapshot,
+                              itemBuilder: (context, myCampaign) =>
+                                  _campaignCard(
+                                name: myCampaign.name,
+                                imagePath: myCampaign.imagePath,
+                                constraints: constraints,
+                              ),
+                              constraints: constraints,
+                            );
+                          },
                         ),
                       ),
                       SizedBox(height: 10 * constraints.maxWidth / 100),
@@ -296,19 +290,58 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  // _badge(){}
-
-  _campaignCard(
-      {@required String imagePath, @required BoxConstraints constraints}) {
+  _badge({@required String imagePath, @required BoxConstraints constraints}) {
     return Padding(
       padding: const EdgeInsets.only(left: 40.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15.0),
-        child: Image.asset(
-          imagePath,
+        child: Image(
+          image: FirebaseImage(
+            imagePath,
+            maxSizeBytes: 4000 * 1000,
+          ),
           height: 20 * constraints.maxHeight / 100,
-          width: 70 * constraints.maxWidth / 100,
+          width: 40 * constraints.maxWidth / 100,
           fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  _campaignCard({
+    @required String name,
+    @required String imagePath,
+    @required BoxConstraints constraints,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 40.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15.0),
+        child: Stack(
+          fit: StackFit.passthrough,
+          children: [
+            Image(
+              image: FirebaseImage(
+                imagePath,
+                maxSizeBytes: 4000 * 1000,
+              ),
+              height: 20 * constraints.maxHeight / 100,
+              width: 70 * constraints.maxWidth / 100,
+              fit: BoxFit.cover,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 5.0,
+                horizontal: 10.0,
+              ),
+              child: Text(
+                name,
+                style: TextStyle(
+                  fontSize: 2.5 * constraints.maxHeight / 100,
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

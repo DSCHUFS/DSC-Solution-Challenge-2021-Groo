@@ -4,7 +4,10 @@ import 'package:groo/screens/counseling_detail_screen.dart';
 
 class BoxSlider extends StatelessWidget {
   final List<CounselingInfo> counselings;
-  BoxSlider({this.counselings});
+  final String keyword;
+  final int start;
+  final int end;
+  BoxSlider({this.counselings, this.keyword, this.start, this.end});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,7 +15,7 @@ class BoxSlider extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("불면증에 도움이 됐어요!"),
+          Text(keyword),
           SizedBox(
             height: 5.0,
           ),
@@ -20,7 +23,7 @@ class BoxSlider extends StatelessWidget {
             height: 120,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: makeBoxImages(context, counselings),
+              children: makeBoxImages(context, counselings, start, end),
             ),
           )
         ],
@@ -29,10 +32,10 @@ class BoxSlider extends StatelessWidget {
   }
 }
 
-List<Widget> makeBoxImages(
-    BuildContext context, List<CounselingInfo> counselings) {
+List<Widget> makeBoxImages(BuildContext context,
+    List<CounselingInfo> counselings, int start, int end) {
   List<Widget> results = [];
-  for (var i = 0; i < counselings.length; i++) {
+  for (var i = start; i < end; i++) {
     results.add(
       InkWell(
         onTap: () {
@@ -49,7 +52,7 @@ List<Widget> makeBoxImages(
           padding: EdgeInsets.only(right: 10),
           child: Align(
             alignment: Alignment.centerLeft,
-            child: Image.asset('images/' + counselings[i].profile),
+            child: Image.network(counselings[i].profile),
           ),
         ),
       ),

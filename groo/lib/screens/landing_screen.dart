@@ -7,6 +7,10 @@ import 'package:groo/services/auth.dart';
 import 'package:provider/provider.dart';
 
 class LandingScreen extends StatelessWidget {
+  const LandingScreen({Key key, @required this.databaseBuilder})
+      : super(key: key);
+  final Database Function(String) databaseBuilder;
+
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthBase>(context, listen: false);
@@ -19,7 +23,7 @@ class LandingScreen extends StatelessWidget {
             return SignInScreen();
           }
           return Provider<Database>(
-            create: (_) => FirestoreDatabase(uid: user.uid),
+            create: (_) => databaseBuilder(user.uid),
             child: MainScreen(),
           );
         }

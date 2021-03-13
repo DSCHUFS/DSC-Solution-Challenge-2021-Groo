@@ -98,7 +98,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     height: 10,
                   ),
                   buildNotificationOptionRow(
-                    title: "Show E-mail address",
+                    title: "E-mail address (private/public)",
                     isActive: accountInfo.showEmail ?? false,
                     onChanged: (bool newValue) async {
                       var newInfo =
@@ -106,8 +106,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       await widget.database.setAccountInfo(newInfo);
                     },
                   ),
-                  buildAccountOptionRow(context, "Content settings"),
-                  buildAccountOptionRow(context, "Social"),
+                  buildNotificationOptionRow(
+                    title: "My badges (private/public)",
+                    isActive: accountInfo.showEmail ?? false,
+                    onChanged: (bool newValue) async {
+                      var newInfo =
+                          AccountInfo(id: user.uid, showEmail: newValue);
+                      await widget.database.setAccountInfo(newInfo);
+                    },
+                  ),
+                  buildNotificationOptionRow(
+                    title: "My campaigns (private/public)",
+                    isActive: accountInfo.showEmail ?? false,
+                    onChanged: (bool newValue) async {
+                      var newInfo =
+                          AccountInfo(id: user.uid, showEmail: newValue);
+                      await widget.database.setAccountInfo(newInfo);
+                    },
+                  ),
                   buildAccountOptionRow(context, "Language"),
                   buildAccountOptionRow(context, "Privacy and security"),
                   SizedBox(

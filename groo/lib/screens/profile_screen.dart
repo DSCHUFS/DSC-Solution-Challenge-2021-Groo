@@ -182,9 +182,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Text(
-                                    "Follow",
+                                    "Edit Profile",
                                     style: TextStyle(
                                       color: Colors.white60,
                                       fontSize:

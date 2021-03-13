@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Are you feeling depressed?',
+                  'Heal your heart.',
                   style: const TextStyle(
                     color: Colors.green,
                     fontSize: 22.0,
@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: screenHeight * 0.01),
                 Text(
-                  'If you feel sick with any COVID-19 symptoms, please call or text us immediately for help',
+                  'If you are experiencing symptoms of depression with \'Corona Blue\', which feels psychological anxiety beyond the frustration of COVID-19, ask for help immediately. Heal your heart.',
                   style: const TextStyle(
                     color: Colors.black54,
                     fontSize: 15.0,
@@ -187,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Column(
                   children: <Widget>[
                     Image.asset(
-                      'assets/google-logo.png',
+                      'assets/profile-logo/icons8-name-100.png',
                       height: screenHeight * 0.12,
                     ),
                     SizedBox(height: screenHeight * 0.015),
@@ -204,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Column(
                   children: <Widget>[
                     Image.asset(
-                      'assets/google-logo.png',
+                      'assets/campaign-logo/icons8-leader-100.png',
                       height: screenHeight * 0.12,
                     ),
                     SizedBox(height: screenHeight * 0.015),
@@ -221,7 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Column(
                   children: <Widget>[
                     Image.asset(
-                      'assets/google-logo.png',
+                      'assets/counseling-logo/icons8-agree-100.png',
                       height: screenHeight * 0.12,
                     ),
                     SizedBox(height: screenHeight * 0.015),

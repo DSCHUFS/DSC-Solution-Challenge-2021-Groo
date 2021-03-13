@@ -66,10 +66,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     builder: (context, snapshot) {
                       final accountInfo = snapshot.data;
                       if (!snapshot.hasData) {
-                        if (snapshot.hasError) {
-                          var newInfo = AccountInfo(id: user.uid);
-                          widget.database.setAccountInfo(newInfo);
-                        }
                         return Center(child: CircularProgressIndicator());
                       }
                       return Column(
@@ -139,7 +135,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Column(
                                 children: <Widget>[
                                   Text(
-                                    "10.2K",
+                                    accountInfo.followers != null
+                                        ? accountInfo.followers.length
+                                            .toString()
+                                        : "0",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize:
@@ -159,7 +158,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Column(
                                 children: <Widget>[
                                   Text(
-                                    "543",
+                                    accountInfo.followings != null
+                                        ? accountInfo.followings.length
+                                            .toString()
+                                        : "0",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize:

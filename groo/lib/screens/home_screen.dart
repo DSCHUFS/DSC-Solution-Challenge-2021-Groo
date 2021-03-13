@@ -4,6 +4,7 @@ import 'package:groo/screens/profile_screen.dart';
 import 'package:groo/services/database.dart';
 import 'package:groo/widgets/custom_elavated_button.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -115,7 +116,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.w600,
                             color: Colors.white),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        launch("tel:");
+                      },
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all(
                           EdgeInsets.symmetric(
@@ -140,7 +143,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.w600,
                             color: Colors.white),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        launch("sms:");
+                      },
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all(
                           EdgeInsets.symmetric(

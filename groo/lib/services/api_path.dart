@@ -7,9 +7,6 @@ class APIPath {
   static String myCampaigns(String uid) => 'users/$uid/participated_campaigns';
   static String myCampaign(String uid, String myCampaignId) =>
       'users/$uid/participated_campaigns/$myCampaignId';
-  static String followers(String uid) => 'users/$uid/followers';
-  static String followings(String uid) => 'users/$uid/followings';
-  static String counseling(String uid) => 'users/$uid/counseling';
 
   static String counselors() => 'counselors';
   static String counselor(String counselorId) => 'counselors/$counselorId';

@@ -61,6 +61,18 @@ class _SignInScreenState extends State<SignInScreen> {
     }
   }
 
+  Future<void> _signInWithTwitter(BuildContext context) async {
+    try {
+      setState(() => _isLoading = true);
+      final auth = Provider.of<AuthBase>(context, listen: false);
+      await auth.signInWithTwitter();
+    } on FirebaseAuthException catch (e) {
+      _showSignInError(context, e);
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -180,7 +192,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   color: Color(0xFF00ACEE),
                   borderRadius: 10,
                   onPressed:
-                      _isLoading ? null : () => _signInAnonymously(context),
+                      _isLoading ? null : () => _signInWithTwitter(context),
                 ),
               ],
             ),

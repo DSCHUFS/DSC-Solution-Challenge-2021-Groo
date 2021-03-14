@@ -26,7 +26,11 @@ class Counseling extends State<CounselingScreen> {
     return StreamBuilder<QuerySnapshot>(
       stream: streamData,
       builder: (context, snapshot) {
-        if (!snapshot.hasData) return LinearProgressIndicator();
+        if (!snapshot.hasData)
+          return Center(
+              child: LinearProgressIndicator(
+            backgroundColor: Colors.green,
+          ));
         return _buildBody(context, snapshot.data.docs);
       },
     );
@@ -52,105 +56,6 @@ class Counseling extends State<CounselingScreen> {
           ),
           centerTitle: false,
           actions: [
-            IconButton(
-              icon: FaIcon(FontAwesomeIcons.question),
-              color: Colors.green,
-              onPressed: () {
-                return showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            width: 15,
-                          ),
-                          FaIcon(FontAwesomeIcons.infoCircle),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Column(
-                            children: [
-                              Text('Is this your',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                              Text('First Counseling?',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                          TextButton(
-                            child: Text(
-                              'ⓧ',
-                              style: TextStyle(
-                                  color: Colors.red[300], fontSize: 35.0),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      ),
-                      content: Container(
-                        height: 400.0,
-                        width: 350.0,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Row(
-                              children: [
-                                FaIcon(FontAwesomeIcons.tree),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 8.0),
-                                  child: Text(' '),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20.0,
-                            ),
-                            Row(
-                              children: [
-                                FaIcon(FontAwesomeIcons.tree),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 8.0),
-                                  child: Text(' '),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20.0,
-                            ),
-                            Row(
-                              children: [
-                                FaIcon(FontAwesomeIcons.tree),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 8.0),
-                                  child: Text(''),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20.0,
-                            ),
-                            Row(
-                              children: [
-                                FaIcon(FontAwesomeIcons.tree),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: new Text(''),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
             IconButton(
                 icon: FaIcon(FontAwesomeIcons.tree),
                 color: Colors.green,

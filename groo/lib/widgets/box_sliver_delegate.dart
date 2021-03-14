@@ -28,7 +28,7 @@ class CustomBoxSliverDelegate extends SliverPersistentHeaderDelegate {
               elevation: 0.0,
               title: Opacity(
                 opacity: hideTitleWhenExpanded ? 1.0 - percent : 1.0,
-                child: Text("진행 중인 상담이 있나요?"),
+                child: Text('Do You Want To Continue Counseling?'),
               ),
             ),
           ),

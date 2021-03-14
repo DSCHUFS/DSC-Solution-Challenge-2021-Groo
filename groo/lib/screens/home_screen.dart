@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Heal your heart.',
+                  'Heal your heart',
                   style: const TextStyle(
                     color: Colors.green,
                     fontSize: 22.0,

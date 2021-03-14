@@ -22,9 +22,6 @@ For more information check our Youtube introducing our Solution.
 [DSC HUFS Youtube](https://youtu.be/sV1MkwgMrNU)
 
 ## Installation
-//TODO
-Link : [Care Supporter Android APK](https://drive.google.com/file/d/1_O6aemoSKtZFuOccFwqTVMC0eDcvvQ2R/view?usp=sharing)
-
 
 Flutter App generate :
 
@@ -51,9 +48,9 @@ flutter run
 
 
 ## Contributors
-- [Donghyun Ahn]()
+- [Donghyun Ahn](https://github.com/devdonghyun)
 - [Yoongyo Lee](https://github.com/lykee2000)
-- [Chaewon Lee]()
+- [Chaewon Lee](https://github.com/lcw729)
 - [WonHyuk Choi](https://github.com/devluce)
 
 

@@ -21,8 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Color(0xffcaf7e3),
         elevation: 0,
         title: Image.asset(
-          'assets/text_logo.png',
-          width: 50,
+          'assets/picture_logo.png',
+          width: 45,
         ),
         centerTitle: false,
         actions: [

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groo/screens/profile_screen.dart';
+import 'package:groo/screens/tip_screen.dart';
 import 'package:groo/services/database.dart';
-import 'package:groo/widgets/custom_elavated_button.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -189,56 +189,80 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/profile-logo/icons8-name-100.png',
-                      height: screenHeight * 0.12,
-                    ),
-                    SizedBox(height: screenHeight * 0.015),
-                    Text(
-                      'Decorate\nyour profile',
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
+                GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) => TipScreen(),
+                    );
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/profile-logo/icons8-name-100.png',
+                        height: screenHeight * 0.12,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                      SizedBox(height: screenHeight * 0.015),
+                      Text(
+                        'Decorate\nyour profile',
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
-                Column(
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/campaign-logo/icons8-leader-100.png',
-                      height: screenHeight * 0.12,
-                    ),
-                    SizedBox(height: screenHeight * 0.015),
-                    Text(
-                      'Join\nCampaigns',
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
+                GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) => TipScreen(),
+                    );
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/campaign-logo/icons8-leader-100.png',
+                        height: screenHeight * 0.12,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                      SizedBox(height: screenHeight * 0.015),
+                      Text(
+                        'Join\nCampaigns',
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
-                Column(
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/counseling-logo/icons8-agree-100.png',
-                      height: screenHeight * 0.12,
-                    ),
-                    SizedBox(height: screenHeight * 0.015),
-                    Text(
-                      'Contact with\ncounselors',
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
+                GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) => TipScreen(),
+                    );
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/counseling-logo/icons8-agree-100.png',
+                        height: screenHeight * 0.12,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                      SizedBox(height: screenHeight * 0.015),
+                      Text(
+                        'Contact with\ncounselors',
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -290,7 +314,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: screenHeight * 0.01),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    launch("https://patientplatform.typeform.com/to/Yt16hq");
+                  },
                   child: Text("Go to test"),
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.green),

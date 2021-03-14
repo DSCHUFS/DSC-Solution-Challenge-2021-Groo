@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groo/models/account_info.dart';
 import 'package:groo/models/my_badge.dart';
 import 'package:groo/models/my_campaign.dart';
+import 'package:groo/screens/follow_list_screen.dart';
 import 'package:groo/screens/settings_screen.dart';
 import 'package:groo/services/auth.dart';
 import 'package:groo/services/database.dart';
@@ -132,51 +133,67 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Column(
-                                children: <Widget>[
-                                  Text(
-                                    accountInfo.followers != null
-                                        ? accountInfo.followers.length
-                                            .toString()
-                                        : "0",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize:
-                                            3 * constraints.maxHeight / 100,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "Follower",
-                                    style: TextStyle(
-                                      color: Colors.white70,
-                                      fontSize:
-                                          1.9 * constraints.maxHeight / 100,
+                              GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          FollowListScreen());
+                                },
+                                child: Column(
+                                  children: <Widget>[
+                                    Text(
+                                      accountInfo.followers != null
+                                          ? accountInfo.followers.length
+                                              .toString()
+                                          : "0",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize:
+                                              3 * constraints.maxHeight / 100,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                  ),
-                                ],
+                                    Text(
+                                      "Follower",
+                                      style: TextStyle(
+                                        color: Colors.white70,
+                                        fontSize:
+                                            1.9 * constraints.maxHeight / 100,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              Column(
-                                children: <Widget>[
-                                  Text(
-                                    accountInfo.followings != null
-                                        ? accountInfo.followings.length
-                                            .toString()
-                                        : "0",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize:
-                                            3 * constraints.maxHeight / 100,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "Following",
-                                    style: TextStyle(
-                                      color: Colors.white70,
-                                      fontSize:
-                                          1.9 * constraints.maxHeight / 100,
+                              GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          FollowListScreen());
+                                },
+                                child: Column(
+                                  children: <Widget>[
+                                    Text(
+                                      accountInfo.followings != null
+                                          ? accountInfo.followings.length
+                                              .toString()
+                                          : "0",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize:
+                                              3 * constraints.maxHeight / 100,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                  ),
-                                ],
+                                    Text(
+                                      "Following",
+                                      style: TextStyle(
+                                        color: Colors.white70,
+                                        fontSize:
+                                            1.9 * constraints.maxHeight / 100,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Container(
                                 decoration: BoxDecoration(
@@ -253,7 +270,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Participated Campains",
+                            "Joined Campains",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,

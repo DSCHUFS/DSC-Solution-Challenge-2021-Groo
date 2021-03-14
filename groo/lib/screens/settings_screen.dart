@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:groo/models/account_info.dart';
 import 'package:groo/services/auth.dart';
@@ -51,6 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthBase>(context, listen: false);
     final user = auth.currentUser;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -61,8 +63,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
           stream: widget.database.accountStream(),
           builder: (context, snapshot) {
             final accountInfo = snapshot.data;
+            bool _showEmail;
+            bool _showBadges;
+            bool _showCampaigns;
+            List<dynamic> _followers;
+            List<dynamic> _followings;
+            Future updateAccount() async {
+              await widget.database.setAccountInfo(
+                AccountInfo(
+                  id: user.uid,
+                  showEmail: _showEmail,
+                  showBadges: _showBadges,
+                  showCampaigns: _showCampaigns,
+                  followers: _followers,
+                  followings: _followings,
+                ),
+              );
+            }
+
             if (!snapshot.hasData)
               return Center(child: CircularProgressIndicator());
+            if (accountInfo != null) {
+              _showEmail = accountInfo.showEmail;
+              _showBadges = accountInfo.showBadges;
+              _showCampaigns = accountInfo.showCampaigns;
+            }
             return Container(
               padding: EdgeInsets.only(left: 16, top: 25, right: 16),
               child: ListView(
@@ -98,34 +123,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     height: 10,
                   ),
                   buildNotificationOptionRow(
-                    title: "E-mail address (private/public)",
+                    title: "Show E-mail address",
                     isActive: accountInfo.showEmail ?? false,
                     onChanged: (bool newValue) async {
-                      var newInfo =
-                          AccountInfo(id: user.uid, showEmail: newValue);
-                      await widget.database.setAccountInfo(newInfo);
+                      _showEmail = newValue;
+                      await updateAccount();
                     },
                   ),
                   buildNotificationOptionRow(
-                    title: "My badges (private/public)",
-                    isActive: accountInfo.showEmail ?? false,
+                    title: "Hide my badges",
+                    isActive: accountInfo.showBadges ?? false,
                     onChanged: (bool newValue) async {
-                      var newInfo =
-                          AccountInfo(id: user.uid, showEmail: newValue);
-                      await widget.database.setAccountInfo(newInfo);
+                      _showBadges = newValue;
+                      await updateAccount();
                     },
                   ),
                   buildNotificationOptionRow(
-                    title: "My campaigns (private/public)",
-                    isActive: accountInfo.showEmail ?? false,
+                    title: "Hide My campaigns",
+                    isActive: accountInfo.showCampaigns ?? false,
                     onChanged: (bool newValue) async {
-                      var newInfo =
-                          AccountInfo(id: user.uid, showEmail: newValue);
-                      await widget.database.setAccountInfo(newInfo);
+                      _showCampaigns = newValue;
+                      await updateAccount();
                     },
                   ),
-                  buildAccountOptionRow(context, "Language"),
-                  buildAccountOptionRow(context, "Privacy and security"),
+                  buildAccountOptionRow(
+                    context: context,
+                    title: 'Language',
+                    children: [
+                      Text('Other languages are not yet supported'),
+                    ],
+                  ),
                   SizedBox(
                     height: 40,
                   ),
@@ -219,7 +246,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  GestureDetector buildAccountOptionRow(BuildContext context, String title) {
+  GestureDetector buildAccountOptionRow(
+      {BuildContext context, String title, List<Widget> children}) {
     return GestureDetector(
       onTap: () {
         showDialog(
@@ -228,12 +256,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               return AlertDialog(
                 title: Text(title),
                 content: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("Option 1"),
-                    Text("Option 2"),
-                    Text("Option 3"),
-                  ],
+                  children: children,
                 ),
                 actions: [
                   TextButton(

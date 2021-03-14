@@ -1,11 +1,19 @@
 import 'package:flutter/foundation.dart';
 
 class AccountInfo {
-  AccountInfo(
-      {@required this.id, this.showEmail, this.followers, this.followings});
+  AccountInfo({
+    @required this.id,
+    this.showEmail,
+    this.showBadges,
+    this.showCampaigns,
+    this.followers,
+    this.followings,
+  });
 
   final String id;
   final bool showEmail;
+  final bool showBadges;
+  final bool showCampaigns;
   final List<dynamic> followers;
   final List<dynamic> followings;
 
@@ -13,6 +21,8 @@ class AccountInfo {
     return AccountInfo(
       id: id,
       showEmail: data['showEmail'],
+      showBadges: data['showBadges'],
+      showCampaigns: data['showCampaigns'],
       followers: data['followers'],
       followings: data['followings'],
     );
@@ -21,6 +31,8 @@ class AccountInfo {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'showEmail': showEmail,
+      'showBadges': showBadges,
+      'showCampaigns': showCampaigns,
       'followers': followers,
       'followings': followings,
     };

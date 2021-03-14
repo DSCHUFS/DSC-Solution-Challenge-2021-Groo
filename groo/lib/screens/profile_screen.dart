@@ -49,27 +49,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ],
       ),
-      body: LayoutBuilder(
-        builder: (context, constraints) => Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              color: Colors.transparent,
-              height: 40 * constraints.maxHeight / 100,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: 30,
-                  right: 30,
-                  top: 2 * constraints.maxHeight / 100,
-                ),
-                child: StreamBuilder<AccountInfo>(
-                    stream: widget.database.accountStream(),
-                    builder: (context, snapshot) {
-                      final accountInfo = snapshot.data;
-                      if (!snapshot.hasData) {
-                        return Center(child: CircularProgressIndicator());
-                      }
-                      return Column(
+      body: StreamBuilder<AccountInfo>(
+          stream: widget.database.accountStream(),
+          builder: (context, userSnapshot) {
+            final accountInfo = userSnapshot.data;
+            if (!userSnapshot.hasData) {
+              return Center(child: CircularProgressIndicator());
+            }
+            return LayoutBuilder(
+              builder: (context, constraints) => Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                    color: Colors.transparent,
+                    height: 40 * constraints.maxHeight / 100,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        left: 30,
+                        right: 30,
+                        top: 2 * constraints.maxHeight / 100,
+                      ),
+                      child: Column(
                         children: [
                           Row(
                             children: [
@@ -215,97 +215,131 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ],
                           ),
                         ],
-                      );
-                    }),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 25 * constraints.maxHeight / 100),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Color(0xFFCCF2F4),
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(30.0),
-                    topLeft: Radius.circular(30.0),
+                      ),
+                    ),
                   ),
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: 40.0, top: 3 * constraints.maxHeight / 100),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Badges",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 3 * constraints.maxHeight / 100),
-                          ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(top: 25 * constraints.maxHeight / 100),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFCCF2F4),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(30.0),
+                          topLeft: Radius.circular(30.0),
                         ),
                       ),
-                      SizedBox(height: 2 * constraints.maxHeight / 100),
-                      Container(
-                        height: 20 * constraints.maxHeight / 100,
-                        child: StreamBuilder<List<MyBadge>>(
-                          stream: widget.database.myBadgesStream(),
-                          builder: (context, snapshot) {
-                            return ListBuilder(
-                              snapshot: snapshot,
-                              itemBuilder: (context, myBadge) => _badge(
-                                imagePath: myBadge.imagePath,
-                                constraints: constraints,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: 40.0,
+                                  top: 3 * constraints.maxHeight / 100),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Badges",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize:
+                                              3 * constraints.maxHeight / 100),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      accountInfo.showBadges ?? false
+                                          ? "(private)"
+                                          : "",
+                                      style: TextStyle(
+                                          color: Colors.black38,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize:
+                                              2 * constraints.maxHeight / 100),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              constraints: constraints,
-                            );
-                          },
-                        ),
-                      ),
-                      SizedBox(height: 3 * constraints.maxHeight / 100),
-                      Padding(
-                        padding: EdgeInsets.only(left: 40.0, right: 30.0),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Joined Campains",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 3 * constraints.maxHeight / 100),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 2 * constraints.maxHeight / 100),
-                      Container(
-                        height: 30 * constraints.maxHeight / 100,
-                        child: StreamBuilder<List<MyCampaign>>(
-                          stream: widget.database.myCampaignsStream(),
-                          builder: (context, snapshot) {
-                            return ListBuilder(
-                              snapshot: snapshot,
-                              itemBuilder: (context, myCampaign) =>
-                                  _campaignCard(
-                                name: myCampaign.name,
-                                imagePath: myCampaign.imagePath,
-                                constraints: constraints,
+                            ),
+                            SizedBox(height: 2 * constraints.maxHeight / 100),
+                            Container(
+                              height: 20 * constraints.maxHeight / 100,
+                              child: StreamBuilder<List<MyBadge>>(
+                                stream: widget.database.myBadgesStream(),
+                                builder: (context, snapshot) {
+                                  return ListBuilder(
+                                    snapshot: snapshot,
+                                    itemBuilder: (context, myBadge) => _badge(
+                                      imagePath: myBadge.imagePath,
+                                      constraints: constraints,
+                                    ),
+                                    constraints: constraints,
+                                  );
+                                },
                               ),
-                              constraints: constraints,
-                            );
-                          },
+                            ),
+                            SizedBox(height: 3 * constraints.maxHeight / 100),
+                            Padding(
+                              padding: EdgeInsets.only(left: 40.0, right: 30.0),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Joined Campains",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize:
+                                              3 * constraints.maxHeight / 100),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      accountInfo.showCampaigns ?? false
+                                          ? "(private)"
+                                          : "",
+                                      style: TextStyle(
+                                          color: Colors.black38,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize:
+                                              2 * constraints.maxHeight / 100),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 2 * constraints.maxHeight / 100),
+                            Container(
+                              height: 30 * constraints.maxHeight / 100,
+                              child: StreamBuilder<List<MyCampaign>>(
+                                stream: widget.database.myCampaignsStream(),
+                                builder: (context, snapshot) {
+                                  return ListBuilder(
+                                    snapshot: snapshot,
+                                    itemBuilder: (context, myCampaign) =>
+                                        _campaignCard(
+                                      name: myCampaign.name,
+                                      imagePath: myCampaign.imagePath,
+                                      constraints: constraints,
+                                    ),
+                                    constraints: constraints,
+                                  );
+                                },
+                              ),
+                            ),
+                            SizedBox(height: 20 * constraints.maxWidth / 100),
+                          ],
                         ),
                       ),
-                      SizedBox(height: 20 * constraints.maxWidth / 100),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
-            ),
-          ],
-        ),
-      ),
+            );
+          }),
     );
   }
 

@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CustomBoxSliverDelegate extends SliverPersistentHeaderDelegate {
   final double expandedHeight;
   final bool hideTitleWhenExpanded;
 
+  final String _url = 'https://meet.google.com/';
+
   CustomBoxSliverDelegate({
     @required this.expandedHeight,
     this.hideTitleWhenExpanded = true,
   });
+
+  void _launchURL() async => await canLaunch(_url)
+      ? await launch(_url)
+      : throw 'Could not launch $_url';
 
   @override
   Widget build(
@@ -43,16 +50,30 @@ class CustomBoxSliverDelegate extends SliverPersistentHeaderDelegate {
                 padding: EdgeInsets.symmetric(horizontal: 30 * percent),
                 child: Center(
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 5.0,
-                          offset: Offset(0, 5),
+                    width: 400,
+                    height: 300,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _launchURL();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        onPrimary: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
                         ),
-                      ],
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Image.network(
+                                'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Google_Meet_text_logo_%282020%29.svg/988px-Google_Meet_text_logo_%282020%29.svg.png'),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

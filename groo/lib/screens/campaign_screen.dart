@@ -1,69 +1,146 @@
 import 'package:flutter/material.dart';
-import 'package:groo/widgets/IconBox.dart';
-import 'package:groo/widgets/challengeImage.dart';
-import 'campainDetail_screen.dart';
+import 'package:groo/screens/participant_screen.dart';
+import 'package:groo/widgets/iconButton.dart';
+import 'package:groo/screens/badge_screen.dart';
+import 'package:groo/screens/history_screen.dart';
 
-class CampaignScreen extends StatelessWidget {
+class CampaignScreen extends StatefulWidget {
+  @override
+  _CampaignScreenState createState() => _CampaignScreenState();
+}
+
+class _CampaignScreenState extends State<CampaignScreen> {
+  bool showImage = false;
+  final String challengeName = 'Running 20 Days';
+  int challengeDays = 8;
+  Image myImage;
+  String path = 'images/Running.jpg';
+  String levelImage;
+  int level;
+
+  @override
+  void initState() {
+    super.initState();
+    myImage = Image.asset(path);
+  }
+
+  @override
+  void didChangeDependencies() {
+    precacheImage(myImage.image, context);
+    super.didChangeDependencies();
+  }
+
+  void calculateLevel() {
+    if (challengeDays <= 7) {
+      levelImage = 'images/sprout.png';
+      level = 1;
+    } else if (challengeDays <= 14) {
+      levelImage = 'images/sprout2.png';
+      level = 2;
+    } else if (challengeDays <= 21) {
+      levelImage = 'images/pot.png';
+      level = 3;
+    } else {
+      levelImage = 'images/tulip.png';
+      level = 4;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-          child: Column(children: [
-            Container(
-              margin: EdgeInsets.only(top: 35.0),
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.all(15.0),
-              child: Text(
-                'Introduction',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.w800),
-              ),
-            ),
-            ChallengeImage(imagePath: 'assets/Dancing.jpg',),
-            Container(
-              child: Column(children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    'Would you like to dance together?',
-                    style: TextStyle(
-                      fontSize: 21.0,
-                      fontWeight: FontWeight.w600,
+    calculateLevel();
+    return MaterialApp(
+      home: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.only(top: 50),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Color(0x3F2EB402),
+                        borderRadius: BorderRadius.circular(15.0),
+                        ),
+                    margin:
+                        EdgeInsets.symmetric(vertical: 20.0, horizontal: 8.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            challengeName,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 30,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 20.0, horizontal: 8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: myImage,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 0.0, horizontal: 20.0),
-                  child: Text(
-                    '''If your answer is yes, don\'t worry and participate. Whether you\'re good at dancing or not, we\'re together. hashCode\'s get rid of the stress while dancing!''',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      CampaingButton(
+                        buttonImage: levelImage,
+                        label: 'level$level',
+                      ),
+                      CampaingButton(
+                        buttonImage: 'images/group.png',
+                        label: 'participant',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ParticipantScreen()),
+                          );
+                        },
+                      )
+                    ],
                   ),
-                ),
-                IconBox(label: '30 Days', icon: Icons.access_alarm),
-                IconBox(label: 'K-pop', icon: Icons.music_note),
-                FlatButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0)),
-                  padding: EdgeInsets.all(15.0),
-                  color: Color(0x6F2DB400),
-                  onPressed: (){
-                    setState: (){
-
-                    };
-                  },
-                  child: Text(
-                    'JOIN',
-                    style: TextStyle(),
-                  ),
-                )
-              ]),
-            )
-          ]),
-        );
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      CampaingButton(
+                        buttonImage: 'images/medal.png',
+                        label: 'badge',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => BadgeScreen()),
+                          );
+                        },
+                      ),
+                      CampaingButton(
+                        buttonImage: 'images/history.png',
+                        label: 'history',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => History()),
+                          );
+                        },
+                      )
+                    ],
+                  )
+                ]),
+          ),
+        ),
+      ),
+    );
   }
 }
+

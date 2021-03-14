@@ -227,21 +227,21 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                           child: TextBox(
                               icon: FaIcon(FontAwesomeIcons.handsHelping),
                               subTitle: 'Cheer UP!',
-                              fillOutText: widget.counseling.oneLine),
+                              fillOutText: widget.counseling.doctorInfo[0]),
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                           child: TextBox(
                               icon: FaIcon(FontAwesomeIcons.trophy),
                               subTitle: 'Education / Certification',
-                              fillOutText: widget.counseling.oneLine),
+                              fillOutText: widget.counseling.doctorInfo[1]),
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
                           child: TextBox(
                               icon: FaIcon(FontAwesomeIcons.solidStar),
                               subTitle: 'Specialties',
-                              fillOutText: widget.counseling.oneLine),
+                              fillOutText: widget.counseling.doctorInfo[2]),
                         ),
                       ],
                     ),
@@ -283,6 +283,14 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                           ),
                           type: 'Text-Chat',
                           meetLink: widget.counseling.meetLink,
+                          firstInfo:
+                              " You don't have to reveal your \nface or voice. We hope you get a \ncounseling comfortably!",
+                          secondInfo:
+                              ' Press button below and Enter to \ngoogle meet room!',
+                          thirdInfo:
+                              ' Then you and your counselor will \nget a dedicated room, which will\nbe your private and secure \nplace to communicate.',
+                          fourthInfo:
+                              ' In this room, you will write about\nyourself, the things going on \nyour life, ask questions and discuss\nthe issues that trouble you.',
                         );
                       },
                     );
@@ -305,6 +313,14 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                           ),
                           type: 'Video',
                           meetLink: widget.counseling.meetLink,
+                          firstInfo:
+                              ' Do you prefer to talk face to face? \nYou can get a counseling face to \nface! And you can also use \ntext-chat and voice too!',
+                          secondInfo:
+                              ' Press button below and Enter to \ngoogle meet room!',
+                          thirdInfo:
+                              ' Then you and your counselor will \nget a dedicated room, which will\nbe your private and secure \nplace to communicate.',
+                          fourthInfo:
+                              ' In this room, you will talk about\nyourself, the things going on \nyour life, ask questions and discuss\nthe issues that trouble you.',
                         );
                       },
                     );
@@ -327,6 +343,14 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                           ),
                           type: 'Voice',
                           meetLink: widget.counseling.meetLink,
+                          firstInfo:
+                              ' Voice sessions are a \ngreat way to conveniently speak \nwith your counselor by simply \nusing your mic on a cell phone.',
+                          secondInfo:
+                              ' Press button below and Enter to \ngoogle meet room!',
+                          thirdInfo:
+                              ' Then you and your counselor will \nget a dedicated room, which will\nbe your private and secure \nplace to communicate.',
+                          fourthInfo:
+                              ' In this room, you will talk about\nyourself, the things going on \nyour life, ask questions and discuss\nthe issues that trouble you.',
                         );
                       },
                     );

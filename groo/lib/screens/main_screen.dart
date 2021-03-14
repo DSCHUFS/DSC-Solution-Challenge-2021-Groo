@@ -1,7 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:groo/models/account_info.dart';
 import 'package:groo/screens/campaign_screen.dart';
 import 'package:groo/screens/counseling_screen.dart';
 import 'package:groo/screens/home_screen.dart';
+import 'package:groo/services/auth.dart';
+import 'package:groo/services/database.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -31,6 +37,10 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthBase>(context, listen: false);
+    final database = Provider.of<Database>(context, listen: false);
+    final user = auth.currentUser;
+    _checkCurrentUser(user, database);
     return Scaffold(
       body: PageView(
         controller: _pageController,
@@ -67,5 +77,15 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
     );
+  }
+
+  void _checkCurrentUser(User user, Database database) async {
+    final snapShot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid.toString())
+        .get();
+    if (snapShot == null || !snapShot.exists) {
+      database.setAccountInfo(AccountInfo(id: user.uid.toString()));
+    }
   }
 }

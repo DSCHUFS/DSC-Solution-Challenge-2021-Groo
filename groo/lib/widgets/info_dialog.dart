@@ -6,7 +6,18 @@ class InfoDialog extends StatelessWidget {
   final FaIcon icon;
   final String type;
   final String meetLink;
-  InfoDialog({this.icon, this.type, this.meetLink});
+  final String firstInfo;
+  final String secondInfo;
+  final String thirdInfo;
+  final String fourthInfo;
+  InfoDialog(
+      {this.icon,
+      this.type,
+      this.meetLink,
+      this.firstInfo,
+      this.secondInfo,
+      this.thirdInfo,
+      this.fourthInfo});
 
   void _launchURL() async => await canLaunch(meetLink)
       ? await launch(meetLink)
@@ -63,7 +74,7 @@ class InfoDialog extends StatelessWidget {
                 FaIcon(FontAwesomeIcons.tree),
                 Padding(
                   padding: EdgeInsets.only(left: 8.0),
-                  child: Text(' '),
+                  child: Text(firstInfo),
                 ),
               ],
             ),
@@ -75,7 +86,7 @@ class InfoDialog extends StatelessWidget {
                 FaIcon(FontAwesomeIcons.tree),
                 Padding(
                   padding: EdgeInsets.only(left: 8.0),
-                  child: Text(' '),
+                  child: Text(secondInfo),
                 ),
               ],
             ),
@@ -87,7 +98,7 @@ class InfoDialog extends StatelessWidget {
                 FaIcon(FontAwesomeIcons.tree),
                 Padding(
                   padding: EdgeInsets.only(left: 8.0),
-                  child: Text(''),
+                  child: Text(thirdInfo),
                 ),
               ],
             ),
@@ -98,10 +109,13 @@ class InfoDialog extends StatelessWidget {
               children: [
                 FaIcon(FontAwesomeIcons.tree),
                 Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: new Text(''),
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Text(fourthInfo),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 20.0,
             ),
             ElevatedButton.icon(
               onPressed: () {

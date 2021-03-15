@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:groo/models/account_info.dart';
 import 'package:groo/services/auth.dart';
+import 'package:groo/services/database.dart';
 import 'package:groo/widgets/show_alert_dialog.dart';
 import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({Key key, @required this.database}) : super(key: key);
+  final Database database;
+
+  static Future<void> show(BuildContext context, {Database database}) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => SettingsScreen(
+          database: database,
+        ),
+      ),
+    );
+  }
+
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
@@ -34,107 +49,183 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthBase>(context, listen: false);
+    final user = auth.currentUser;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 1,
         iconTheme: IconThemeData(color: Colors.black),
       ),
-      body: Container(
-        padding: EdgeInsets.only(left: 16, top: 25, right: 16),
-        child: ListView(
-          children: [
-            Text(
-              "Settings",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Row(
-              children: [
-                Icon(
-                  Icons.person,
-                  color: Colors.green,
+      body: StreamBuilder<AccountInfo>(
+          stream: widget.database.accountStream(),
+          builder: (context, snapshot) {
+            final accountInfo = snapshot.data;
+            bool _showEmail;
+            bool _showBadges;
+            bool _showCampaigns;
+            List<dynamic> _followers;
+            List<dynamic> _followings;
+            Future updateAccount() async {
+              await widget.database.setAccountInfo(
+                AccountInfo(
+                  id: user.uid,
+                  showEmail: _showEmail,
+                  showBadges: _showBadges,
+                  showCampaigns: _showCampaigns,
+                  followers: _followers,
+                  followings: _followings,
                 ),
-                SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  "Account",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Divider(
-              height: 15,
-              thickness: 2,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            buildAccountOptionRow(context, "Change password"),
-            buildAccountOptionRow(context, "Content settings"),
-            buildAccountOptionRow(context, "Social"),
-            buildAccountOptionRow(context, "Language"),
-            buildAccountOptionRow(context, "Privacy and security"),
-            SizedBox(
-              height: 40,
-            ),
-            Row(
-              children: [
-                Icon(
-                  Icons.volume_up_outlined,
-                  color: Colors.green,
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  "Notifications",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Divider(
-              height: 15,
-              thickness: 2,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            buildNotificationOptionRow("New for you", true),
-            buildNotificationOptionRow("Account activity", true),
-            buildNotificationOptionRow("Opportunity", false),
-            SizedBox(
-              height: 50,
-            ),
-            Center(
-              child: OutlinedButton(
-                style: ButtonStyle(
-                  padding: MaterialStateProperty.all(
-                      EdgeInsets.symmetric(horizontal: 40)),
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20))),
-                ),
-                onPressed: () => _confirmSignOut(context),
-                child: Text(
-                  "SIGN OUT",
-                  style: TextStyle(
-                    fontSize: 16,
-                    letterSpacing: 2.2,
-                    color: Colors.black,
+              );
+            }
+
+            if (!snapshot.hasData)
+              return Center(child: CircularProgressIndicator());
+            if (accountInfo != null) {
+              _showEmail = accountInfo.showEmail;
+              _showBadges = accountInfo.showBadges;
+              _showCampaigns = accountInfo.showCampaigns;
+              _followers = accountInfo.followers;
+              _followings = accountInfo.followings;
+            }
+            return Container(
+              padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+              child: ListView(
+                children: [
+                  Text(
+                    "Settings",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
                   ),
-                ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.person,
+                        color: Colors.green,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "Account",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    height: 15,
+                    thickness: 2,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  buildNotificationOptionRow(
+                    title: "Show E-mail address",
+                    isActive: accountInfo.showEmail ?? false,
+                    onChanged: (bool newValue) async {
+                      _showEmail = newValue;
+                      await updateAccount();
+                    },
+                  ),
+                  buildNotificationOptionRow(
+                    title: "Hide my badges",
+                    isActive: accountInfo.showBadges ?? false,
+                    onChanged: (bool newValue) async {
+                      _showBadges = newValue;
+                      await updateAccount();
+                    },
+                  ),
+                  buildNotificationOptionRow(
+                    title: "Hide My campaigns",
+                    isActive: accountInfo.showCampaigns ?? false,
+                    onChanged: (bool newValue) async {
+                      _showCampaigns = newValue;
+                      await updateAccount();
+                    },
+                  ),
+                  buildAccountOptionRow(
+                    context: context,
+                    title: 'Language',
+                    children: [
+                      Text('Other languages are not yet supported'),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.volume_up_outlined,
+                        color: Colors.green,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "Notifications",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    height: 15,
+                    thickness: 2,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  buildNotificationOptionRow(
+                    title: "New for you",
+                    isActive: true,
+                  ),
+                  buildNotificationOptionRow(
+                    title: "Account activity",
+                    isActive: true,
+                  ),
+                  buildNotificationOptionRow(
+                    title: "Opportunity",
+                    isActive: false,
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Center(
+                    child: OutlinedButton(
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(horizontal: 40)),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                      ),
+                      onPressed: () => _confirmSignOut(context),
+                      child: Text(
+                        "SIGN OUT",
+                        style: TextStyle(
+                          fontSize: 16,
+                          letterSpacing: 2.2,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                ],
               ),
-            )
-          ],
-        ),
-      ),
+            );
+          }),
     );
   }
 
-  Row buildNotificationOptionRow(String title, bool isActive) {
+  Row buildNotificationOptionRow(
+      {String title, bool isActive, void Function(bool) onChanged}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -149,18 +240,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
           scale: 0.8,
           child: Switch(
             value: isActive,
-            onChanged: (bool val) {
-              setState(() {
-                isActive = val;
-              });
-            },
+            onChanged: onChanged,
           ),
         )
       ],
     );
   }
 
-  GestureDetector buildAccountOptionRow(BuildContext context, String title) {
+  GestureDetector buildAccountOptionRow(
+      {BuildContext context, String title, List<Widget> children}) {
     return GestureDetector(
       onTap: () {
         showDialog(
@@ -169,12 +257,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               return AlertDialog(
                 title: Text(title),
                 content: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("Option 1"),
-                    Text("Option 2"),
-                    Text("Option 3"),
-                  ],
+                  children: children,
                 ),
                 actions: [
                   TextButton(

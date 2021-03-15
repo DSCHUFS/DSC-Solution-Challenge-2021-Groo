@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groo/screens/levelInfo_screen.dart';
 import 'package:groo/screens/participant_screen.dart';
 import 'package:groo/widgets/iconButton.dart';
 import 'package:groo/screens/badge_screen.dart';
@@ -60,9 +61,9 @@ class _CampaignScreenState extends State<CampaignScreen> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                        color: Color(0x3F2EB402),
-                        borderRadius: BorderRadius.circular(15.0),
-                        ),
+                      color: Color(0x3F2EB402),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
                     margin:
                         EdgeInsets.symmetric(vertical: 20.0, horizontal: 8.0),
                     child: Column(
@@ -97,6 +98,13 @@ class _CampaignScreenState extends State<CampaignScreen> {
                       CampaingButton(
                         buttonImage: levelImage,
                         label: 'level$level',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LevelInfoScreen()),
+                          );
+                        },
                       ),
                       CampaingButton(
                         buttonImage: 'images/group.png',
@@ -120,7 +128,8 @@ class _CampaignScreenState extends State<CampaignScreen> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => BadgeScreen()),
+                            MaterialPageRoute(
+                                builder: (context) => BadgeScreen()),
                           );
                         },
                       ),
@@ -143,4 +152,3 @@ class _CampaignScreenState extends State<CampaignScreen> {
     );
   }
 }
-

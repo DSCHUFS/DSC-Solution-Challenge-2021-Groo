@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groo/screens/const.dart';
 
 class CampaingButton extends StatelessWidget {
   const CampaingButton(
@@ -9,25 +10,22 @@ class CampaingButton extends StatelessWidget {
   final String label;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 1,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: FlatButton(
-            onPressed: onPressed,
-            child: Column(
-              children: [
-                Image.asset(
-                  buttonImage,
-                  width: 100.0,
-                ),
-                SizedBox(height: 10),
-                Text(label,
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Inconsolata',
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700))
+
+        return Expanded(
+          flex: 1,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: FlatButton(
+                onPressed: onPressed,
+                child: Column(
+                  children: [
+                    Image.asset(
+                      buttonImage,
+                      width: 100.0,
+                    ),
+                    SizedBox(height: 10),
+                    Text(label,
+                        style: labelTextStyle)
               ],
             )),
       ),

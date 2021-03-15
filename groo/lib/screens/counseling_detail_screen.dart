@@ -4,7 +4,6 @@ import 'package:groo/models/counseling.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:groo/widgets/info_dialog.dart';
 import 'package:groo/widgets/text_box.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class CounselingDetailScreen extends StatefulWidget {
   final CounselingInfo counseling;

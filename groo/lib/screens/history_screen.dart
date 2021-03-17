@@ -44,9 +44,11 @@ class _HistoryState extends State<History> {
     calculateLevel();
     return Scaffold(
       appBar: AppBar(
-          leading: ElevatedButton(
+          leading: TextButton(
             style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Color(0xFF2EB402))),
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              backgroundColor: MaterialStateProperty.all(Color(0xFF2EB402)),
+            ),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -60,10 +62,11 @@ class _HistoryState extends State<History> {
           ),
           backgroundColor: Color(0xFF2EB402)),
       body: SingleChildScrollView(
-              child: Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container( width: MediaQuery.of(context).size.width * 0.90,
+            Container(
+              width: MediaQuery.of(context).size.width * 0.90,
               decoration: BoxDecoration(
                 color: Color(0x2F2EB402),
                 borderRadius: BorderRadius.circular(15.0),

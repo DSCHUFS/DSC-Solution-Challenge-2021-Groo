@@ -71,6 +71,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               await widget.database.setAccountInfo(
                 AccountInfo(
                   id: user.uid,
+                  email: user.email,
+                  name: user.displayName,
+                  imagePath: user.photoURL,
                   showEmail: _showEmail,
                   showBadges: _showBadges,
                   showCampaigns: _showCampaigns,

@@ -6,9 +6,11 @@ class LevelInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leading: ElevatedButton(
+          leading: TextButton(
             style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Color(0xFF2EB402))),
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              backgroundColor: MaterialStateProperty.all(Color(0xFF2EB402)),
+            ),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -104,13 +106,10 @@ class LevelInfoScreen extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: (){
-              
-              },
+              onTap: () {},
             )
           ],
         ),
-        
       ),
     );
   }

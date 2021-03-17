@@ -39,10 +39,11 @@ class Counseling extends State<CounselingScreen> {
         snapshot.map((d) => CounselingInfo.fromSnapshot(d)).toList();
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [Color(0xFFd4fc79), Color(0xFFCCF2F4)]),
+        color: Color(0x3F2EB402),
+        // gradient: LinearGradient(
+        //     begin: Alignment.topRight,
+        //     end: Alignment.bottomLeft,
+        //     colors: [Color(0xFFd4fc79), Color(0xFFCCF2F4)]),
       ),
       child: Scaffold(
         appBar: AppBar(

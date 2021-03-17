@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groo/models/counseling.dart';
 import 'package:groo/widgets/box_slider.dart';
-import 'package:groo/widgets/box_sliver_delegate.dart';
-
-import 'profile_screen.dart';
+import 'package:groo/widgets/carousel_slider.dart';
 
 class CounselingScreen extends StatefulWidget {
   @override
@@ -63,49 +61,34 @@ class Counseling extends State<CounselingScreen> {
           ],
         ),
         backgroundColor: Colors.transparent,
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverPersistentHeader(
-              pinned: true,
-              floating: true,
-              delegate: CustomBoxSliverDelegate(
-                expandedHeight: 120,
-              ),
+        body: ListView(
+          children: [
+            Center(
+              child: CarouselImage(counselings: counselings),
             ),
-            SliverFillRemaining(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
-                  child: ListView(
-                    children: [
-                      BoxSlider(
-                        counselings: counselings,
-                        keyword: "Counselors for Corona Blue",
-                        start: 0,
-                        end: 4,
-                      ),
-                      BoxSlider(
-                        counselings: counselings,
-                        keyword: "Counselors for Career Counseling",
-                        start: 0,
-                        end: 4,
-                      ),
-                      BoxSlider(
-                        counselings: counselings,
-                        keyword: "Counselors for Anxiety and Depression",
-                        start: 0,
-                        end: 4,
-                      ),
-                      BoxSlider(
-                        counselings: counselings,
-                        keyword: "Counselors for Stress Management",
-                        start: 0,
-                        end: 4,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            BoxSlider(
+              counselings: counselings,
+              keyword: "Counselors for Corona Blue",
+              start: 0,
+              end: 4,
+            ),
+            BoxSlider(
+              counselings: counselings,
+              keyword: "Counselors for Career Counseling",
+              start: 0,
+              end: 4,
+            ),
+            BoxSlider(
+              counselings: counselings,
+              keyword: "Counselors for Anxiety and Depression",
+              start: 0,
+              end: 4,
+            ),
+            BoxSlider(
+              counselings: counselings,
+              keyword: "Counselors for Stress Management",
+              start: 0,
+              end: 4,
             ),
           ],
         ),

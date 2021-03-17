@@ -280,7 +280,7 @@ class _HomeScreenState extends State<HomeScreen> {
           horizontal: 20.0,
         ),
         padding: EdgeInsets.all(10.0),
-        height: screenHeight * 0.18,
+        height: screenHeight * 0.20,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFFcee6b4), Color(0xFF9ecca4)],
@@ -288,9 +288,12 @@ class _HomeScreenState extends State<HomeScreen> {
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Image.asset('assets/fan.png'),
+            Image.asset(
+              'assets/exam.png',
+              height: screenHeight * 0.15,
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,

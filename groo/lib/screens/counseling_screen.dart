@@ -65,7 +65,7 @@ class Counseling extends State<CounselingScreen> {
         body: ListView(
           children: [
             Center(
-              child: CarouselImage(counselings: counselings),
+              child: CarouselImage(),
             ),
             BoxSlider(
               counselings: counselings,
@@ -76,8 +76,8 @@ class Counseling extends State<CounselingScreen> {
             BoxSlider(
               counselings: counselings,
               keyword: "Counselors for Career Counseling",
-              start: 0,
-              end: 4,
+              start: 4,
+              end: 8,
             ),
             BoxSlider(
               counselings: counselings,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groo/models/counseling.dart';
+import 'package:groo/screens/const.dart';
 import 'package:groo/screens/counseling_detail_screen.dart';
 
 class BoxSlider extends StatelessWidget {
@@ -15,7 +16,7 @@ class BoxSlider extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(keyword),
+          Text(keyword, style: labelTextStyle),
           SizedBox(
             height: 5.0,
           ),

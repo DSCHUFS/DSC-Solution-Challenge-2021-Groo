@@ -85,7 +85,12 @@ class _MainScreenState extends State<MainScreen> {
         .doc(user.uid.toString())
         .get();
     if (snapShot == null || !snapShot.exists) {
-      database.setAccountInfo(AccountInfo(id: user.uid.toString()));
+      database.setAccountInfo(AccountInfo(
+        id: user.uid.toString(),
+        name: user.displayName,
+        email: user.email,
+        imagePath: user.photoURL,
+      ));
     }
   }
 }

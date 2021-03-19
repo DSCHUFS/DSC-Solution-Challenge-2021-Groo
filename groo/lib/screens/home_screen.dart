@@ -18,10 +18,10 @@ class _HomeScreenState extends State<HomeScreen> {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xffcaf7e3),
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Image.asset(
-          'assets/picture_logo.png',
+          'assets/text_logo.png',
           width: 45,
         ),
         centerTitle: false,
@@ -58,11 +58,13 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Container(
         padding: EdgeInsets.all(20.0),
         decoration: BoxDecoration(
-          color: Color(0xffcaf7e3),
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(40.0),
-            bottomRight: Radius.circular(40.0),
-          ),
+          color: Color(0x3F2EB402),
+          // borderRadius: BorderRadius.circular(15.0),
+          // borderRadius: BorderRadius.only(
+
+          //     //   bottomLeft: Radius.circular(40.0),
+          //     //   bottomRight: Radius.circular(40.0),
+          //     ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,14 +72,14 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(
-                  'Groo',
-                  style: const TextStyle(
-                    color: Colors.green,
-                    fontSize: 40.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                // Text(
+                //   'Groo',
+                //   style: const TextStyle(
+                //     color: Colors.green,
+                //     fontSize: 40.0,
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
               ],
             ),
             SizedBox(height: screenHeight * 0.015),
@@ -88,9 +90,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   'Heal your heart',
                   style: const TextStyle(
                     color: Colors.green,
-                    fontSize: 22.0,
+                    fontSize: 30.0,
                     fontWeight: FontWeight.w600,
                   ),
+                  textAlign: TextAlign.center,
                 ),
                 SizedBox(height: screenHeight * 0.01),
                 Text(
@@ -280,17 +283,17 @@ class _HomeScreenState extends State<HomeScreen> {
           horizontal: 20.0,
         ),
         padding: EdgeInsets.all(10.0),
-        height: screenHeight * 0.18,
+        height: screenHeight * 0.20,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFFcee6b4), Color(0xFF9ecca4)],
-          ),
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Image.asset('assets/fan.png'),
+            Image.asset(
+              'assets/exam.png',
+              height: screenHeight * 0.15,
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -298,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   'Do your own test!',
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                   ),
@@ -307,7 +310,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   'Follow the instructions\nto do your own test.',
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 16.0,
                   ),
                   maxLines: 2,

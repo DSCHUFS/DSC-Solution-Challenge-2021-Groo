@@ -111,11 +111,7 @@ class LevelInfoScreen extends StatelessWidget {
                   height: 100.0,
                   child: Center(
                     child: Text('Go to Attendance',
-                        style: TextStyle(
-                            fontFamily: 'Inconsolata',
-                            fontSize: 30,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w800)),
+                        style: attendTextStyle),
                   ),
                 ))
           ],

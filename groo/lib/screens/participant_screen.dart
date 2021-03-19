@@ -4,21 +4,24 @@ import 'const.dart';
 class ParticipantScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-        return Scaffold(
-          backgroundColor: Colors.green[100],
-          appBar: AppBar(
-            leading: ElevatedButton(
-              style : ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFF2EB402))),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Icon(
-                Icons.arrow_back,
-              ),
-            ),
-            title: Text(
-              'participant',
-              style: titleTextStyle,
+    return Scaffold(
+      backgroundColor: Colors.green[100],
+      appBar: AppBar(
+        leading: TextButton(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(Colors.white),
+            backgroundColor: MaterialStateProperty.all(Color(0xFF2EB402)),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back,
+          ),
+        ),
+        title: Text(
+          'participant',
+          style: titleTextStyle,
         ),
         backgroundColor: Color(0xFF2EB402),
       ),

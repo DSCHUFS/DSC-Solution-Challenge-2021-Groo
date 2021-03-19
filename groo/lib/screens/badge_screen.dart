@@ -13,46 +13,48 @@ class _BadgeScreenState extends State<BadgeScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-          home: Scaffold(
-          
-          appBar: AppBar(
-            leading: ElevatedButton(
-                style : ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFF2EB402))),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Icon(
-                  Icons.arrow_back,
-                ),
+      home: Scaffold(
+        appBar: AppBar(
+            leading: TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.white),
+                backgroundColor: MaterialStateProperty.all(Color(0xFF2EB402)),
               ),
-            title: Text("Your Badge",
-            style: titleTextStyle,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Icon(
+                Icons.arrow_back,
+              ),
             ),
-            backgroundColor: Color(0xFF2EB402)
-          ),
-          body: SingleChildScrollView(
-                    child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
-                    padding: badgePadding,
-                    child: Image.asset('images/badge.png'),
-                  ),
-                  Padding(
-                    padding: badgePadding,
-                    child: Image.asset('images/sport.png'),
-                  ),
-                  Padding(
-                    padding: badgePadding,
-                    child: Image.asset('images/dance.png'),
-                  ),
-                ],
-              ),
+            title: Text(
+              "Your Badge",
+              style: titleTextStyle,
+            ),
+            backgroundColor: Color(0xFF2EB402)),
+        body: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: badgePadding,
+                  child: Image.asset('images/badge.png'),
+                ),
+                Padding(
+                  padding: badgePadding,
+                  child: Image.asset('images/sport.png'),
+                ),
+                Padding(
+                  padding: badgePadding,
+                  child: Image.asset('images/dance.png'),
+                ),
+              ],
             ),
           ),
         ),
+      ),
     );
   }
 }

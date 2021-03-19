@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groo/models/counseling.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:groo/screens/const.dart';
 import 'package:groo/widgets/info_dialog.dart';
 import 'package:groo/widgets/text_box.dart';
 
@@ -117,7 +118,10 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                                 SizedBox(
                                   height: 15,
                                 ),
-                                Text("Like\n")
+                                Text(
+                                  "Like\n",
+                                  style: buttonTextStyle,
+                                )
                               ],
                             ),
                           ),
@@ -195,8 +199,14 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                                 ),
                                 Column(
                                   children: [
-                                    Text('Add to'),
-                                    Text('My List'),
+                                    Text(
+                                      'Add to',
+                                      style: buttonTextStyle,
+                                    ),
+                                    Text(
+                                      'My List',
+                                      style: buttonTextStyle,
+                                    ),
                                   ],
                                 )
                               ],

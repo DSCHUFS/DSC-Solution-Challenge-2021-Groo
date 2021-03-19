@@ -9,7 +9,8 @@ var labelTextStyle = TextStyle(
     color: Colors.black,
     fontWeight: FontWeight.w700);
 
-var AttendTextStyle = TextStyle(
-                                fontFamily: 'Inconsolata',
-                                fontSize: 25,
-                                fontWeight: FontWeight.w800);
+var attendTextStyle = TextStyle(
+    fontFamily: 'Inconsolata', fontSize: 25, fontWeight: FontWeight.w800);
+
+var buttonTextStyle = TextStyle(
+    fontFamily: 'Inconsolata', fontSize: 18, fontWeight: FontWeight.w700);

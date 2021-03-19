@@ -138,7 +138,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   showModalBottomSheet(
                                       context: context,
                                       builder: (BuildContext context) =>
-                                          FollowListScreen());
+                                          FollowListScreen(
+                                            database: widget.database,
+                                          ));
                                 },
                                 child: Column(
                                   children: <Widget>[
@@ -169,7 +171,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   showModalBottomSheet(
                                       context: context,
                                       builder: (BuildContext context) =>
-                                          FollowListScreen());
+                                          FollowListScreen(
+                                            database: widget.database,
+                                          ));
                                 },
                                 child: Column(
                                   children: <Widget>[

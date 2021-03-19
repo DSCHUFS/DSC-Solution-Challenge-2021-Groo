@@ -14,3 +14,6 @@ var attendTextStyle = TextStyle(
 
 var buttonTextStyle = TextStyle(
     fontFamily: 'Inconsolata', fontSize: 18, fontWeight: FontWeight.w700);
+
+  final String challengeName = 'Running 20 Days';
+  Image myImage;

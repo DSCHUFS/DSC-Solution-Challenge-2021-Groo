@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'attend_screen.dart';
 import 'const.dart';
 
 class LevelInfoScreen extends StatelessWidget {
@@ -104,13 +105,16 @@ class LevelInfoScreen extends StatelessWidget {
               ),
             ),
             GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> AttendScreen()));
+                },
                 child: Container(
                   color: Colors.brown,
                   width: double.infinity,
                   height: 100.0,
                   child: Center(
-                    child: Text('Go to Attendance', style: attendTextStyle),
+                    child: Text('Go to Attendance',
+                        style: attendTextStyle),
                   ),
                 ))
           ],

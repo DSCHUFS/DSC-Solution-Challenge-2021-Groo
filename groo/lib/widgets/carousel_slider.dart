@@ -48,7 +48,7 @@ class _CarouselImageState extends State<CarouselImage> {
                     width: MediaQuery.of(context).size.width,
                     margin: EdgeInsets.symmetric(horizontal: 10.0),
                     decoration: BoxDecoration(
-                      color: Colors.green,
+                      color: Colors.white,
                     ),
                     child: Image.network(
                       imgUrl,

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groo/screens/profile_screen.dart';
 import 'package:groo/screens/tip_screen.dart';
 import 'package:groo/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,6 +16,91 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String _timezone = 'Unknown';
+  List<String> _availableTimezones = <String>[];
+
+  Future _showNotification() async {
+    final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    final result = await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>()
+        ?.requestPermissions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
+    var androidDetails = new AndroidNotificationDetails(
+      "channelId",
+      "channelName",
+      "channelDescription",
+      importance: Importance.max,
+      priority: Priority.max,
+    );
+    var iosDetails = new IOSNotificationDetails();
+    var generalNotificationDetails =
+        new NotificationDetails(android: androidDetails, iOS: iosDetails);
+
+    if (result) {
+      await flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>()
+          ?.deleteNotificationChannelGroup('id');
+
+      await flutterLocalNotificationsPlugin.zonedSchedule(
+        0,
+        "notiTitle",
+        "notiDesc",
+        _setNotiTime(),
+        generalNotificationDetails,
+        androidAllowWhileIdle: true,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+        matchDateTimeComponents: DateTimeComponents.time,
+      );
+    }
+  }
+
+  tz.TZDateTime _setNotiTime() {
+    tz.initializeTimeZones();
+    tz.setLocalLocation(tz.getLocation(_timezone));
+
+    final now = tz.TZDateTime.now(tz.local);
+    var scheduledDate = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      20,
+      5,
+    );
+    if (scheduledDate.isBefore(now)) {
+      scheduledDate = scheduledDate.add(const Duration(days: 1));
+    }
+    print(scheduledDate);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initData();
+  }
+
+  Future<void> _initData() async {
+    try {
+      _timezone = await FlutterNativeTimezone.getLocalTimezone();
+    } catch (e) {
+      print('Could not get the local timezone');
+    }
+    try {
+      _availableTimezones = await FlutterNativeTimezone.getAvailableTimezones();
+    } catch (e) {
+      print('Could not get available timezones');
+    }
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final database = Provider.of<Database>(context, listen: false);
@@ -27,9 +116,9 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: false,
         actions: [
           IconButton(
-              icon: FaIcon(FontAwesomeIcons.tree),
+              icon: FaIcon(FontAwesomeIcons.bell),
               color: Colors.green,
-              onPressed: () {}),
+              onPressed: _showNotification),
           IconButton(
             icon: FaIcon(
               FontAwesomeIcons.user,

@@ -37,7 +37,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final didRequestSignOut = await showAlertDialog(
       context,
       title: 'Logout',
-      content: 'Are you sure that you wnat to logout?',
+      content: 'Are you sure that you want to logout?',
       cancelActionText: 'Cancel',
       defaultActionText: 'Logout',
     );

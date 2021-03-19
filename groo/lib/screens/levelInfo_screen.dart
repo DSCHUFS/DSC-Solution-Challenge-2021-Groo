@@ -55,7 +55,7 @@ class LevelInfoScreen extends StatelessWidget {
                         children: [
                           Text(
                             'level1',
-                            style: AttendTextStyle,
+                            style: attendTextStyle,
                           ),
                           SizedBox(height: 5.0),
                           Text(
@@ -66,7 +66,7 @@ class LevelInfoScreen extends StatelessWidget {
                           SizedBox(height: 30.0),
                           Text(
                             'level2',
-                            style: AttendTextStyle,
+                            style: attendTextStyle,
                           ),
                           SizedBox(height: 5.0),
                           Text(
@@ -77,7 +77,7 @@ class LevelInfoScreen extends StatelessWidget {
                           SizedBox(height: 30.0),
                           Text(
                             'level3',
-                            style: AttendTextStyle,
+                            style: attendTextStyle,
                           ),
                           SizedBox(height: 5.0),
                           Text(
@@ -88,7 +88,7 @@ class LevelInfoScreen extends StatelessWidget {
                           SizedBox(height: 30.0),
                           Text(
                             'level4',
-                            style: AttendTextStyle,
+                            style: attendTextStyle,
                           ),
                           SizedBox(height: 5.0),
                           Text(
@@ -110,8 +110,7 @@ class LevelInfoScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 100.0,
                   child: Center(
-                    child: Text('Go to Attendance',
-                        style: attendTextStyle),
+                    child: Text('Go to Attendance', style: attendTextStyle),
                   ),
                 ))
           ],

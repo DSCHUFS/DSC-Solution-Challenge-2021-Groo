@@ -4,6 +4,7 @@ import 'package:groo/screens/participant_screen.dart';
 import 'package:groo/widgets/iconButton.dart';
 import 'package:groo/screens/badge_screen.dart';
 import 'package:groo/screens/history_screen.dart';
+import 'const.dart';
 
 class CampaignScreen extends StatefulWidget {
   @override
@@ -12,9 +13,7 @@ class CampaignScreen extends StatefulWidget {
 
 class _CampaignScreenState extends State<CampaignScreen> {
   bool showImage = false;
-  final String challengeName = 'Running 20 Days';
   int challengeDays = 8;
-  Image myImage;
   String path = 'images/Running.jpg';
   String levelImage;
   int level;

@@ -7,11 +7,9 @@ import 'package:timezone/timezone.dart' as tz;
 class NotificationService {
   String _timezone = 'Unknown';
   List<String> _availableTimezones = <String>[];
-  bool isNotify = false;
 
   NotificationService() {
     _initData();
-    _loadPref();
   }
 
   Future<void> _initData() async {
@@ -25,17 +23,6 @@ class NotificationService {
     } catch (e) {
       print('Could not get available timezones');
     }
-  }
-
-  Future<void> _loadPref() async {
-    final prefs = await SharedPreferences.getInstance();
-    isNotify = (prefs.getBool('isNotify') ?? false);
-  }
-
-  Future<void> _setPref(bool value) async {
-    final prefs = await SharedPreferences.getInstance();
-    isNotify = value;
-    prefs.setBool('isNotify', value);
   }
 
   Future<void> showNotification() async {
@@ -76,15 +63,12 @@ class NotificationService {
             UILocalNotificationDateInterpretation.absoluteTime,
         matchDateTimeComponents: DateTimeComponents.time,
       );
-
-      _setPref(true);
     }
   }
 
   Future<void> cancelAllNotification() async {
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     await flutterLocalNotificationsPlugin.cancelAll();
-    _setPref(false);
   }
 
   tz.TZDateTime _setNotiTime() {

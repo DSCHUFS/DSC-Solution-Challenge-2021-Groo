@@ -3,9 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groo/screens/profile_screen.dart';
 import 'package:groo/screens/tip_screen.dart';
 import 'package:groo/services/database.dart';
-import 'package:groo/services/notification_service.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,8 +12,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final notificationService = NotificationService();
-
   @override
   Widget build(BuildContext context) {
     final database = Provider.of<Database>(context, listen: false);
@@ -30,18 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         centerTitle: false,
         actions: [
-          IconButton(
-            icon: FaIcon(FontAwesomeIcons.bell),
-            color: notificationService.isNotify ? Colors.green : Colors.blue,
-            onPressed: () {
-              setState(() {
-                print(notificationService.isNotify);
-                notificationService.isNotify
-                    ? notificationService.cancelAllNotification()
-                    : notificationService.showNotification();
-              });
-            },
-          ),
           IconButton(
             icon: FaIcon(
               FontAwesomeIcons.user,

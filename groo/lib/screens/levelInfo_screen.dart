@@ -25,16 +25,16 @@ class LevelInfoScreen extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 5.0),
-              decoration: BoxDecoration(
-                  color: Colors.green[100],
-                  borderRadius: BorderRadius.circular(15.0)),
+              // decoration: BoxDecoration(
+              //     color: Colors.green[100],
+              //     borderRadius: BorderRadius.circular(15.0)),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15.0),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 25.0),
                   child: Column(children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         LevelContainer(
                           path: 'images/sprout.png',
@@ -104,13 +104,22 @@ class LevelInfoScreen extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: (){
-              
-              },
-            )
+                onTap: () {},
+                child: Container(
+                  color: Colors.brown,
+                  width: double.infinity,
+                  height: 100.0,
+                  child: Center(
+                    child: Text('Go to Attendance',
+                        style: TextStyle(
+                            fontFamily: 'Inconsolata',
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w800)),
+                  ),
+                ))
           ],
         ),
-        
       ),
     );
   }

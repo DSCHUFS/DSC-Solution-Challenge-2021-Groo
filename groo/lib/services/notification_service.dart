@@ -25,7 +25,7 @@ class NotificationService {
     }
   }
 
-  Future<void> showNotification() async {
+  Future<void> setNotification(int hour, int minute) async {
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     final result = await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
@@ -54,9 +54,9 @@ class NotificationService {
 
       await flutterLocalNotificationsPlugin.zonedSchedule(
         0,
-        "notiTitle",
-        "notiDesc",
-        _setNotiTime(),
+        "Check your Campaign Progress!",
+        "Did you do your campaign today? Go to check and grow your plant!",
+        _setNotiTime(hour, minute),
         generalNotificationDetails,
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
@@ -71,7 +71,7 @@ class NotificationService {
     await flutterLocalNotificationsPlugin.cancelAll();
   }
 
-  tz.TZDateTime _setNotiTime() {
+  tz.TZDateTime _setNotiTime(int hour, int minute) {
     tz.initializeTimeZones();
     tz.setLocalLocation(tz.getLocation(_timezone));
 
@@ -81,8 +81,8 @@ class NotificationService {
       now.year,
       now.month,
       now.day,
-      20,
-      5,
+      hour,
+      minute,
     );
     if (scheduledDate.isBefore(now)) {
       scheduledDate = scheduledDate.add(const Duration(days: 1));

@@ -33,7 +33,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _isNotify = (prefs.getBool('isNotify') ?? false);
-      print(_isNotify);
     });
   }
 
@@ -65,6 +64,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (didRequestSignOut == true) {
       _signOut();
       Navigator.of(context).popUntil((route) => route.isFirst);
+    }
+  }
+
+  Future<Null> _selectTime(BuildContext context) async {
+    TimeOfDay selectedTime = TimeOfDay.now();
+    final TimeOfDay picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    if (picked != null) {
+      setState(() {
+        selectedTime = picked;
+        notificationService.setNotification(
+          selectedTime.hour,
+          selectedTime.minute,
+        );
+      });
+    } else {
+      setState(() {
+        _isNotify = false;
+      });
     }
   }
 
@@ -211,12 +231,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     height: 10,
                   ),
                   buildNotificationOptionRow(
-                    title: "on/off",
+                    title: "Off/On",
                     isActive: _isNotify,
                     onChanged: (bool newValue) {
                       _setPref(newValue);
                       newValue
-                          ? notificationService.showNotification()
+                          ? _selectTime(context)
                           : notificationService.cancelAllNotification();
                     },
                   ),

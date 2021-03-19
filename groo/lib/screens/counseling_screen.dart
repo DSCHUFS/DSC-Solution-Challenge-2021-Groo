@@ -82,14 +82,14 @@ class Counseling extends State<CounselingScreen> {
             BoxSlider(
               counselings: counselings,
               keyword: "Counselors for Anxiety and Depression",
-              start: 0,
-              end: 4,
+              start: 8,
+              end: 12,
             ),
             BoxSlider(
               counselings: counselings,
               keyword: "Counselors for Stress Management",
-              start: 0,
-              end: 4,
+              start: 12,
+              end: 16,
             ),
           ],
         ),

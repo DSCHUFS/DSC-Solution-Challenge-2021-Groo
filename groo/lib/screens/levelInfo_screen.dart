@@ -7,8 +7,9 @@ class LevelInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leading: ElevatedButton(
+          leading: TextButton(
             style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.white),
                 backgroundColor: MaterialStateProperty.all(Color(0xFF2EB402))),
             onPressed: () {
               Navigator.pop(context);
@@ -106,15 +107,15 @@ class LevelInfoScreen extends StatelessWidget {
             ),
             GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> AttendScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AttendScreen()));
                 },
                 child: Container(
                   color: Colors.brown,
                   width: double.infinity,
                   height: 100.0,
                   child: Center(
-                    child: Text('Go to Attendance',
-                        style: attendTextStyle),
+                    child: Text('Go to Attendance', style: attendTextStyle),
                   ),
                 ))
           ],

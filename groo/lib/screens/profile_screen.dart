@@ -272,7 +272,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Container(
                               height: 20 * constraints.maxHeight / 100,
                               child: StreamBuilder<List<MyBadge>>(
-                                stream: widget.database.myBadgesStream(),
+                                stream:
+                                    widget.database.myBadgesStream(user.uid),
                                 builder: (context, snapshot) {
                                   return ListBuilder(
                                     snapshot: snapshot,
@@ -319,7 +320,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Container(
                               height: 30 * constraints.maxHeight / 100,
                               child: StreamBuilder<List<MyCampaign>>(
-                                stream: widget.database.myCampaignsStream(),
+                                stream:
+                                    widget.database.myCampaignsStream(user.uid),
                                 builder: (context, snapshot) {
                                   return ListBuilder(
                                     snapshot: snapshot,

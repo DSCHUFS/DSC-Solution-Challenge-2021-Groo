@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:groo/models/account_info.dart';
+import 'package:groo/screens/profile_view_screen.dart';
 
 class FollowListScreen extends StatelessWidget {
   const FollowListScreen({Key key, this.database}) : super(key: key);
@@ -32,7 +33,7 @@ class FollowListScreen extends StatelessWidget {
               return Center(child: CircularProgressIndicator());
             }
             return Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(20.0),
               child: ListView.builder(
                   itemCount: accountInfo.followers.length,
                   itemBuilder: (context, index) {
@@ -50,7 +51,14 @@ class FollowListScreen extends StatelessWidget {
                             ),
                             title: Text(userSnapshot.data["name"]),
                             // subtitle: Text(),
-                            onTap: () {},
+                            onTap: () {
+                              ProfileViewScreen.show(
+                                context,
+                                database: database,
+                                stream: user.asStream(),
+                                uid: accountInfo.followers[index],
+                              );
+                            },
                           );
                         });
                   }),

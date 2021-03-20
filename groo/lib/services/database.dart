@@ -11,11 +11,11 @@ abstract class Database {
 
   Future<void> setMyBadge(MyBadge myBadge);
   Future<void> deleteMyBadge(MyBadge myBadge);
-  Stream<List<MyBadge>> myBadgesStream();
+  Stream<List<MyBadge>> myBadgesStream(String uid);
 
   Future<void> setMyCampaign(MyCampaign myCampaign);
   Future<void> deleteMyCampaign(MyCampaign myCampaign);
-  Stream<List<MyCampaign>> myCampaignsStream();
+  Stream<List<MyCampaign>> myCampaignsStream(String uid);
 }
 
 class FirestoreDatabase implements Database {
@@ -45,7 +45,7 @@ class FirestoreDatabase implements Database {
         path: APIPath.myBadge(uid, myBadge.id),
       );
   @override
-  Stream<List<MyBadge>> myBadgesStream() => _service.collectionStream(
+  Stream<List<MyBadge>> myBadgesStream(String uid) => _service.collectionStream(
         path: APIPath.myBadges(uid),
         builder: (data, documentId) => MyBadge.fromMap(data, documentId),
       );
@@ -60,7 +60,8 @@ class FirestoreDatabase implements Database {
         path: APIPath.myCampaign(uid, myCampaign.id),
       );
   @override
-  Stream<List<MyCampaign>> myCampaignsStream() => _service.collectionStream(
+  Stream<List<MyCampaign>> myCampaignsStream(String uid) =>
+      _service.collectionStream(
         path: APIPath.myCampaigns(uid),
         builder: (data, documentId) => MyCampaign.fromMap(data, documentId),
       );

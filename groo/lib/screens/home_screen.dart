@@ -192,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
-                      builder: (BuildContext context) => TipScreen(),
+                      builder: (BuildContext context) => TipScreen(tipNum: 0),
                     );
                   },
                   child: Column(
@@ -217,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
-                      builder: (BuildContext context) => TipScreen(),
+                      builder: (BuildContext context) => TipScreen(tipNum: 1),
                     );
                   },
                   child: Column(
@@ -242,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
-                      builder: (BuildContext context) => TipScreen(),
+                      builder: (BuildContext context) => TipScreen(tipNum: 2),
                     );
                   },
                   child: Column(

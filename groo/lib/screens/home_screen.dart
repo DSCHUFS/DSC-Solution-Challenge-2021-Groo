@@ -55,29 +55,10 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: EdgeInsets.all(20.0),
         decoration: BoxDecoration(
           color: Color(0x3F2EB402),
-          // borderRadius: BorderRadius.circular(15.0),
-          // borderRadius: BorderRadius.only(
-
-          //     //   bottomLeft: Radius.circular(40.0),
-          //     //   bottomRight: Radius.circular(40.0),
-          //     ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                // Text(
-                //   'Groo',
-                //   style: const TextStyle(
-                //     color: Colors.green,
-                //     fontSize: 40.0,
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
-              ],
-            ),
             SizedBox(height: screenHeight * 0.015),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

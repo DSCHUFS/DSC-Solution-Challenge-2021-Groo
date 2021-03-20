@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:groo/screens/levelInfo_screen.dart';
 import 'package:groo/screens/participant_screen.dart';
+import 'package:groo/services/database.dart';
 import 'package:groo/widgets/iconButton.dart';
 import 'package:groo/screens/badge_screen.dart';
 import 'package:groo/screens/history_screen.dart';
+import 'package:provider/provider.dart';
 import 'const.dart';
 
 class CampaignScreen extends StatefulWidget {
@@ -48,6 +50,7 @@ class _CampaignScreenState extends State<CampaignScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final database = Provider.of<Database>(context, listen: false);
     calculateLevel();
     return MaterialApp(
       home: Scaffold(
@@ -124,13 +127,10 @@ class _CampaignScreenState extends State<CampaignScreen> {
                       CampaingButton(
                         buttonImage: 'images/medal.png',
                         label: 'badge',
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => BadgeScreen()),
-                          );
-                        },
+                        onPressed: () => BadgeScreen.show(
+                          context,
+                          database: database,
+                        ),
                       ),
                       CampaingButton(
                         buttonImage: 'images/history.png',

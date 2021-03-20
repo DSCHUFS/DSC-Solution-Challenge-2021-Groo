@@ -250,10 +250,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     Text(
                                       "Badges",
                                       style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize:
-                                              3 * constraints.maxHeight / 100),
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3.5 * constraints.maxHeight / 100,
+                                        fontFamily: "Inconsolata",
+                                      ),
                                     ),
                                     SizedBox(width: 5),
                                     Text(
@@ -298,10 +300,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     Text(
                                       "Joined Campains",
                                       style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize:
-                                              3 * constraints.maxHeight / 100),
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3.5 * constraints.maxHeight / 100,
+                                        fontFamily: "Inconsolata",
+                                      ),
                                     ),
                                     SizedBox(width: 5),
                                     Text(
@@ -398,7 +402,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Text(
                 name,
                 style: TextStyle(
-                  fontSize: 2.5 * constraints.maxHeight / 100,
+                  fontSize: 3 * constraints.maxHeight / 100,
+                  fontFamily: "Inconsolata",
                 ),
               ),
             )

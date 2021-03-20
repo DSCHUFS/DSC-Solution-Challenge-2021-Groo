@@ -140,6 +140,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       builder: (BuildContext context) =>
                                           FollowListScreen(
                                             database: widget.database,
+                                            selectNum: 0,
                                           ));
                                 },
                                 child: Column(
@@ -173,6 +174,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       builder: (BuildContext context) =>
                                           FollowListScreen(
                                             database: widget.database,
+                                            selectNum: 1,
                                           ));
                                 },
                                 child: Column(

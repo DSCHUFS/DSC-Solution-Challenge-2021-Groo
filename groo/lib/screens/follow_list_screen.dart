@@ -4,8 +4,13 @@ import 'package:groo/models/account_info.dart';
 import 'package:groo/screens/profile_view_screen.dart';
 
 class FollowListScreen extends StatelessWidget {
-  const FollowListScreen({Key key, this.database}) : super(key: key);
+  const FollowListScreen({
+    Key key,
+    this.database,
+    this.selectNum,
+  }) : super(key: key);
   final database;
+  final int selectNum;
 
   Future<Map<String, dynamic>> _getUserInfo(String uid) async {
     final snapShot =
@@ -32,12 +37,16 @@ class FollowListScreen extends StatelessWidget {
             if (!snapshot.hasData) {
               return Center(child: CircularProgressIndicator());
             }
+            List<List<dynamic>> account = [
+              accountInfo.followers,
+              accountInfo.followings,
+            ];
             return Padding(
               padding: const EdgeInsets.all(20.0),
               child: ListView.builder(
-                  itemCount: accountInfo.followers.length,
+                  itemCount: account[selectNum].length,
                   itemBuilder: (context, index) {
-                    final user = _getUserInfo(accountInfo.followers[index]);
+                    final user = _getUserInfo(account[selectNum][index]);
                     return StreamBuilder<Map<String, dynamic>>(
                         stream: user.asStream(),
                         builder: (context, userSnapshot) {
@@ -56,7 +65,7 @@ class FollowListScreen extends StatelessWidget {
                                 context,
                                 database: database,
                                 stream: user.asStream(),
-                                uid: accountInfo.followers[index],
+                                uid: account[selectNum][index],
                               );
                             },
                           );

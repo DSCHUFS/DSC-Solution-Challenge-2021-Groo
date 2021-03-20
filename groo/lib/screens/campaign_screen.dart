@@ -135,12 +135,10 @@ class _CampaignScreenState extends State<CampaignScreen> {
                       CampaingButton(
                         buttonImage: 'images/history.png',
                         label: 'history',
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => History()),
-                          );
-                        },
+                        onPressed: () => HistoryScreen.show(
+                          context,
+                          database: database,
+                        ),
                       )
                     ],
                   )

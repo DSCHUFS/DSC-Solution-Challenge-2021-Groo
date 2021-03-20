@@ -8,7 +8,7 @@ class AttendScreen extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: SingleChildScrollView(
-                  child: Container(
+          child: Container(
             margin: EdgeInsets.only(top: 50),
             child: Column(
               children: [
@@ -16,172 +16,169 @@ class AttendScreen extends StatelessWidget {
                 Container(
                   height: 435.0,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            StampCircle(borderColor: Colors.transparent,image: Image.asset('assets/start-line.png')),
-                            StampCircle(
-                              borderColor: Colors.black,
-                              image: null,
-                            ),
-                            StampCircle(
-                              borderColor: Colors.black,
-                              image: null,
-                            ),
-                            StampCircle(
-                              borderColor: Colors.black,
-                              image: null,
-                            ),
-                            StampCircle(
-                              borderColor: Colors.black,
-                              image: null,
-                            ),
-
-                            StampCircle(
-                              borderColor: Colors.black,
-                              image: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 17.0),
-                  child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              StampCircle(
+                                borderColor: Colors.transparent,
+                                image: Image.asset('assets/start-line.png'),
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                            ],
+                          ),
                         ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 17.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.transparent,
+                                image: Image.asset('assets/fan.png'),
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                            ],
+                          ),
                         ),
-                        StampCircle(
-                          borderColor: Colors.transparent,
-                          image: Image.asset('assets/fan.png'),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                            ],
+                          ),
                         ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 17.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.transparent,
+                                image: Image.asset('assets/fan.png'),
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                            ],
+                          ),
                         ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.black,
+                                image: null,
+                              ),
+                              StampCircle(
+                                borderColor: Colors.transparent,
+                                image: Image.asset('assets/trophy.png'),
+                              ),
+                            ],
+                          ),
                         ),
-
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 17.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                        StampCircle(
-                          borderColor: Colors.transparent,
-                          image: Image.asset('assets/fan.png'),
-                        ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-                        StampCircle(
-                          borderColor: Colors.black,
-                          image: null,
-                        ),
-
-                        StampCircle(
-                          borderColor: Colors.transparent,
-                          image: Image.asset('assets/trophy.png'),
-                        ),
-                      ],
-                    ),
-                  ),
-                  ]
-                  ),
+                      ]),
                 ),
               ],
             ),

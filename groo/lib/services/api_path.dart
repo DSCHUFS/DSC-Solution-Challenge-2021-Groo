@@ -8,6 +8,13 @@ class APIPath {
   static String myCampaign(String uid, String myCampaignId) =>
       'users/$uid/participated_campaigns/$myCampaignId';
 
+  static String thisMonthCampaign() => 'activeCampaign/thisMonthCampaign';
+  static String nextMonthCampaign() => 'activeCampaign/nextMonthCampaign';
+  static String campaignParticipants() =>
+      'activeCampaign/thisMonthCampaign/participants';
+  static String campaignParticipant(String uid) =>
+      'activeCampaign/thisMonthCampaign/participants/$uid';
+
   static String counselors() => 'counselors';
   static String counselor(String counselorId) => 'counselors/$counselorId';
 }

@@ -111,13 +111,10 @@ class _CampaignScreenState extends State<CampaignScreen> {
                       CampaingButton(
                         buttonImage: 'images/group.png',
                         label: 'participant',
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ParticipantScreen()),
-                          );
-                        },
+                        onPressed: () => ParticipantScreen.show(
+                          context,
+                          database: database,
+                        ),
                       )
                     ],
                   ),

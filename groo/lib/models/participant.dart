@@ -1,24 +1,21 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
-class Campaign {
-  Campaign({
+class Participant {
+  Participant({
     @required this.id,
     this.name,
     this.imagePath,
-    this.description,
   });
 
   final String id;
   final String name;
   final String imagePath;
-  final String description;
 
-  factory Campaign.fromMap(Map<String, dynamic> data, String id) {
-    return Campaign(
+  factory Participant.fromMap(Map<dynamic, dynamic> data, String id) {
+    return Participant(
       id: id,
       name: data['name'],
       imagePath: data['imagePath'],
-      description: data['description'],
     );
   }
 
@@ -26,7 +23,6 @@ class Campaign {
     return <String, dynamic>{
       'name': name,
       'imagePath': imagePath,
-      'description': description,
     };
   }
 }

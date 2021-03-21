@@ -98,7 +98,7 @@ You are a really great person.""",
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(30.0),
                   child: FlatButton(
                     color: Color(0x3F2EB402),
                     padding:

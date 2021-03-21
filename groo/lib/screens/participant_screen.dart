@@ -39,7 +39,7 @@ class ParticipantScreen extends StatelessWidget {
           ),
         ),
         title: Text(
-          'participant',
+          'Participant',
           style: titleTextStyle,
         ),
         backgroundColor: Color(0xFF2EB402),

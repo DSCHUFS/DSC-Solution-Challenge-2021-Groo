@@ -159,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Using Tips',
+              'How to use',
               style: const TextStyle(
                 fontSize: 22.0,
                 fontWeight: FontWeight.w600,
@@ -234,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       SizedBox(height: screenHeight * 0.015),
                       Text(
-                        'Contact with\ncounselors',
+                        'Get \nCounseling',
                         style: const TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.w500,

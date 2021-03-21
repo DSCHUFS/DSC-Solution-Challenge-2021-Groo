@@ -36,12 +36,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final auth = Provider.of<AuthBase>(context, listen: false);
     final user = auth.currentUser;
     return Scaffold(
-      backgroundColor: Color(0xFF2DB400),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          color: Colors.black,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         actions: [
           IconButton(
             icon: FaIcon(FontAwesomeIcons.cog),
+            color: Colors.black,
             onPressed: () => SettingsScreen.show(
               context,
               database: widget.database,
@@ -93,7 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Text(
                                     user.displayName,
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                         fontSize:
                                             3 * constraints.maxHeight / 100,
                                         fontWeight: FontWeight.bold),
@@ -105,7 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     children: [
                                       Icon(
                                         Icons.email,
-                                        color: Colors.white,
+                                        color: Colors.black,
                                         size: 3 * constraints.maxHeight / 100,
                                       ),
                                       SizedBox(
@@ -116,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             ? user.email
                                             : 'private',
                                         style: TextStyle(
-                                          color: Colors.white70,
+                                          color: Colors.black,
                                           fontSize:
                                               2 * constraints.maxHeight / 100,
                                         ),
@@ -151,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               .toString()
                                           : "0",
                                       style: TextStyle(
-                                          color: Colors.white,
+                                          color: Colors.black,
                                           fontSize:
                                               3 * constraints.maxHeight / 100,
                                           fontWeight: FontWeight.bold),
@@ -159,7 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     Text(
                                       "Follower",
                                       style: TextStyle(
-                                        color: Colors.white70,
+                                        color: Colors.black,
                                         fontSize:
                                             1.9 * constraints.maxHeight / 100,
                                       ),
@@ -185,7 +194,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               .toString()
                                           : "0",
                                       style: TextStyle(
-                                          color: Colors.white,
+                                          color: Colors.black,
                                           fontSize:
                                               3 * constraints.maxHeight / 100,
                                           fontWeight: FontWeight.bold),
@@ -193,7 +202,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     Text(
                                       "Following",
                                       style: TextStyle(
-                                        color: Colors.white70,
+                                        color: Colors.black,
                                         fontSize:
                                             1.9 * constraints.maxHeight / 100,
                                       ),
@@ -203,7 +212,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               Container(
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.white60),
+                                  border: Border.all(color: Colors.black),
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
                                 child: Padding(
@@ -211,7 +220,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: Text(
                                     "Edit Profile",
                                     style: TextStyle(
-                                      color: Colors.white60,
+                                      color: Colors.black,
                                       fontSize:
                                           1.8 * constraints.maxHeight / 100,
                                     ),
@@ -230,7 +239,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                        color: Color(0xFFCCF2F4),
+                        color: Color(0x3F2EB402),
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(30.0),
                           topLeft: Radius.circular(30.0),
@@ -298,7 +307,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Row(
                                   children: [
                                     Text(
-                                      "Joined Campains",
+                                      "Campains History",
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,

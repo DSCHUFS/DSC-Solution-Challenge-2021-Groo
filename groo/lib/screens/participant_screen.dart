@@ -65,35 +65,6 @@ class ParticipantScreen extends StatelessWidget {
           );
         },
       ),
-
-      // SingleChildScrollView(
-      //   child: Column(children: [
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [UserContainer(), UserContainer(), UserContainer()],
-      //     ),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [UserContainer(), UserContainer(), UserContainer()],
-      //     ),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [UserContainer(), UserContainer(), UserContainer()],
-      //     ),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [UserContainer(), UserContainer(), UserContainer()],
-      //     ),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [UserContainer(), UserContainer(), UserContainer()],
-      //     ),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [UserContainer(), UserContainer(), UserContainer()],
-      //     ),
-      //   ]),
-      // ),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groo/widgets/campaign_container.dart';
+import 'package:groo/widgets/challenge_container.dart';
 import 'const.dart';
 
 class AttendScreen extends StatelessWidget {

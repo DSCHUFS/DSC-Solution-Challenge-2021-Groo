@@ -36,6 +36,7 @@ class TextBox extends StatelessWidget {
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 20,
+                fontFamily: 'Inconsolata',
               ),
               maxLines: 3,
             ),

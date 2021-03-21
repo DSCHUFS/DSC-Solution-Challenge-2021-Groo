@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:groo/screens/const.dart';
 
-class CampaingButton extends StatelessWidget {
-  const CampaingButton(
+class CampaignButton extends StatelessWidget {
+  const CampaignButton(
       {@required this.buttonImage, this.label, this.onPressed});
 
   final String buttonImage;
@@ -14,7 +14,7 @@ class CampaingButton extends StatelessWidget {
         return Expanded(
           flex: 1,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(8.0),
             child: FlatButton(
                 onPressed: onPressed,
                 child: Column(

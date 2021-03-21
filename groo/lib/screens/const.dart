@@ -38,4 +38,4 @@ var buttonTextStyle = TextStyle(
 );
 
 final String challengeName = 'Running 20 Days';
-Image myImage;
+final String imagePath = 'images/Running.jpg';

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:groo/models/account_info.dart';
 import 'package:groo/services/auth.dart';
 import 'package:groo/services/database.dart';
+import 'package:groo/services/notification_service.dart';
 import 'package:groo/widgets/show_alert_dialog.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key key, @required this.database}) : super(key: key);
@@ -24,6 +26,24 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  final notificationService = NotificationService();
+  bool _isNotify = false;
+
+  _loadPref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isNotify = (prefs.getBool('isNotify') ?? false);
+    });
+  }
+
+  _setPref(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isNotify = value;
+      prefs.setBool('isNotify', _isNotify);
+    });
+  }
+
   Future<void> _signOut() async {
     try {
       final auth = Provider.of<AuthBase>(context, listen: false);
@@ -37,7 +57,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final didRequestSignOut = await showAlertDialog(
       context,
       title: 'Logout',
-      content: 'Are you sure that you wnat to logout?',
+      content: 'Are you sure that you want to logout?',
       cancelActionText: 'Cancel',
       defaultActionText: 'Logout',
     );
@@ -45,6 +65,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
       _signOut();
       Navigator.of(context).popUntil((route) => route.isFirst);
     }
+  }
+
+  Future<Null> _selectTime(BuildContext context) async {
+    TimeOfDay selectedTime = TimeOfDay.now();
+    final TimeOfDay picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    if (picked != null) {
+      setState(() {
+        selectedTime = picked;
+        notificationService.setNotification(
+          selectedTime.hour,
+          selectedTime.minute,
+        );
+      });
+    } else {
+      setState(() {
+        _isNotify = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    _loadPref();
+    super.initState();
   }
 
   @override
@@ -184,16 +231,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     height: 10,
                   ),
                   buildNotificationOptionRow(
-                    title: "New for you",
-                    isActive: true,
-                  ),
-                  buildNotificationOptionRow(
-                    title: "Account activity",
-                    isActive: true,
-                  ),
-                  buildNotificationOptionRow(
-                    title: "Opportunity",
-                    isActive: false,
+                    title: "Off/On",
+                    isActive: _isNotify,
+                    onChanged: (bool newValue) {
+                      _setPref(newValue);
+                      newValue
+                          ? _selectTime(context)
+                          : notificationService.cancelAllNotification();
+                    },
                   ),
                   SizedBox(
                     height: 50,

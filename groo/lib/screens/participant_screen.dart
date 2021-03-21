@@ -1,9 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:groo/models/participant.dart';
+import 'package:groo/services/auth.dart';
+import 'package:groo/services/database.dart';
+import 'package:provider/provider.dart';
 import 'const.dart';
 
 class ParticipantScreen extends StatelessWidget {
+  const ParticipantScreen({Key key, @required this.database}) : super(key: key);
+  final Database database;
+
+  static Future<void> show(BuildContext context, {Database database}) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ParticipantScreen(
+          database: database,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthBase>(context, listen: false);
+    final user = auth.currentUser;
     return Scaffold(
       backgroundColor: Colors.green[100],
       appBar: AppBar(
@@ -25,34 +44,56 @@ class ParticipantScreen extends StatelessWidget {
         ),
         backgroundColor: Color(0xFF2EB402),
       ),
-      body: SingleChildScrollView(
-        child: Column(children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [UserContainer(), UserContainer(), UserContainer()],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [UserContainer(), UserContainer(), UserContainer()],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [UserContainer(), UserContainer(), UserContainer()],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [UserContainer(), UserContainer(), UserContainer()],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [UserContainer(), UserContainer(), UserContainer()],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [UserContainer(), UserContainer(), UserContainer()],
-          ),
-        ]),
+      body: StreamBuilder<List<Participant>>(
+        stream: database.participantsStream(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          }
+          return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              childAspectRatio: 0.5,
+              mainAxisSpacing: 1.0,
+              crossAxisSpacing: 1.0,
+            ),
+            itemCount: snapshot.data.length,
+            itemBuilder: (context, index) => UserContainer(
+              path: snapshot.data[index].imagePath,
+              userName: snapshot.data[index].name,
+            ),
+          );
+        },
       ),
+
+      // SingleChildScrollView(
+      //   child: Column(children: [
+      //     Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //       children: [UserContainer(), UserContainer(), UserContainer()],
+      //     ),
+      //     Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //       children: [UserContainer(), UserContainer(), UserContainer()],
+      //     ),
+      //     Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //       children: [UserContainer(), UserContainer(), UserContainer()],
+      //     ),
+      //     Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //       children: [UserContainer(), UserContainer(), UserContainer()],
+      //     ),
+      //     Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //       children: [UserContainer(), UserContainer(), UserContainer()],
+      //     ),
+      //     Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //       children: [UserContainer(), UserContainer(), UserContainer()],
+      //     ),
+      //   ]),
+      // ),
     );
   }
 }
@@ -63,23 +104,25 @@ class UserContainer extends StatelessWidget {
   final String path;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Container(
-          child: Column(
-            children: [
-              Image.asset('images/user.png'),
-              Text(
-                'username',
-                style: TextStyle(
-                    fontFamily: 'Inconsolata',
-                    fontSize: 22,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        child: Column(
+          children: [
+            CircleAvatar(
+              backgroundImage: NetworkImage(path),
+              radius: MediaQuery.of(context).size.width * 0.12,
+            ),
+            SizedBox(height: 5),
+            Text(
+              userName,
+              style: TextStyle(
+                  fontFamily: 'Inconsolata',
+                  fontSize: 22,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600),
+            ),
+          ],
         ),
       ),
     );

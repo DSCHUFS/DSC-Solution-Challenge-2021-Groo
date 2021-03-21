@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:groo/models/account_info.dart';
+import 'package:groo/models/campaign.dart';
 import 'package:groo/models/my_badge.dart';
 import 'package:groo/models/my_campaign.dart';
+import 'package:groo/models/participant.dart';
 import 'package:groo/services/api_path.dart';
 import 'package:groo/services/firestore_service.dart';
 
@@ -11,11 +13,21 @@ abstract class Database {
 
   Future<void> setMyBadge(MyBadge myBadge);
   Future<void> deleteMyBadge(MyBadge myBadge);
-  Stream<List<MyBadge>> myBadgesStream();
+  Stream<List<MyBadge>> myBadgesStream(String uid);
 
   Future<void> setMyCampaign(MyCampaign myCampaign);
   Future<void> deleteMyCampaign(MyCampaign myCampaign);
-  Stream<List<MyCampaign>> myCampaignsStream();
+  Stream<List<MyCampaign>> myCampaignsStream(String uid);
+
+  Stream<Campaign> thisCampaignStream();
+  Future<void> setThisCampaign(Campaign campaign);
+
+  Stream<Campaign> nextCampaignStream();
+  Future<void> setNextCampaign(Campaign campaign);
+
+  Future<void> setParticipant(Participant participant);
+  Future<void> deleteParticipant(Participant participant);
+  Stream<List<Participant>> participantsStream();
 }
 
 class FirestoreDatabase implements Database {
@@ -45,7 +57,7 @@ class FirestoreDatabase implements Database {
         path: APIPath.myBadge(uid, myBadge.id),
       );
   @override
-  Stream<List<MyBadge>> myBadgesStream() => _service.collectionStream(
+  Stream<List<MyBadge>> myBadgesStream(String uid) => _service.collectionStream(
         path: APIPath.myBadges(uid),
         builder: (data, documentId) => MyBadge.fromMap(data, documentId),
       );
@@ -60,8 +72,47 @@ class FirestoreDatabase implements Database {
         path: APIPath.myCampaign(uid, myCampaign.id),
       );
   @override
-  Stream<List<MyCampaign>> myCampaignsStream() => _service.collectionStream(
+  Stream<List<MyCampaign>> myCampaignsStream(String uid) =>
+      _service.collectionStream(
         path: APIPath.myCampaigns(uid),
         builder: (data, documentId) => MyCampaign.fromMap(data, documentId),
+      );
+
+  @override
+  Stream<Campaign> thisCampaignStream() => _service.documentStream(
+        path: APIPath.thisMonthCampaign(),
+        builder: (data, documentId) => Campaign.fromMap(data, documentId),
+      );
+  @override
+  Future<void> setThisCampaign(Campaign campaign) => _service.setData(
+        path: APIPath.thisMonthCampaign(),
+        data: campaign.toMap(),
+      );
+
+  @override
+  Stream<Campaign> nextCampaignStream() => _service.documentStream(
+        path: APIPath.nextMonthCampaign(),
+        builder: (data, documentId) => Campaign.fromMap(data, documentId),
+      );
+  @override
+  Future<void> setNextCampaign(Campaign campaign) => _service.setData(
+        path: APIPath.nextMonthCampaign(),
+        data: campaign.toMap(),
+      );
+
+  @override
+  Future<void> setParticipant(Participant participant) => _service.setData(
+        path: APIPath.campaignParticipant(participant.id),
+        data: participant.toMap(),
+      );
+  @override
+  Future<void> deleteParticipant(Participant participant) =>
+      _service.deleteData(
+        path: APIPath.campaignParticipant(participant.id),
+      );
+  @override
+  Stream<List<Participant>> participantsStream() => _service.collectionStream(
+        path: APIPath.campaignParticipants(),
+        builder: (data, documentId) => Participant.fromMap(data, documentId),
       );
 }

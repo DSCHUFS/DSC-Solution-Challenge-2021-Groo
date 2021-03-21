@@ -1,23 +1,20 @@
 import 'package:flutter/foundation.dart';
 
-class MyCampaign {
-  MyCampaign({
+class Participant {
+  Participant({
     @required this.id,
-    @required this.name,
-    @required this.challengeDays,
-    @required this.imagePath,
+    this.name,
+    this.imagePath,
   });
 
   final String id;
   final String name;
-  final int challengeDays;
   final String imagePath;
 
-  factory MyCampaign.fromMap(Map<dynamic, dynamic> data, String id) {
-    return MyCampaign(
+  factory Participant.fromMap(Map<dynamic, dynamic> data, String id) {
+    return Participant(
       id: id,
       name: data['name'],
-      challengeDays: data['challengeDays'],
       imagePath: data['imagePath'],
     );
   }
@@ -25,7 +22,6 @@ class MyCampaign {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'name': name,
-      'isSuccess': challengeDays,
       'imagePath': imagePath,
     };
   }

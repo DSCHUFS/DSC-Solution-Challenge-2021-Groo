@@ -31,15 +31,15 @@ class _CarouselImageState extends State<CarouselImage> {
             items: imgList.map((imgUrl) {
               return Builder(
                 builder: (BuildContext context) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.symmetric(horizontal: 10.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Image.network(
-                      imgUrl,
-                      fit: BoxFit.fill,
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image.network(
+                        imgUrl,
+                        fit: BoxFit.fill,
+                        width: MediaQuery.of(context).size.width,
+                      ),
                     ),
                   );
                 },

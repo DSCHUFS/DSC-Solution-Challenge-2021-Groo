@@ -27,10 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: false,
         actions: [
           IconButton(
-              icon: FaIcon(FontAwesomeIcons.tree),
-              color: Colors.green,
-              onPressed: () {}),
-          IconButton(
             icon: FaIcon(
               FontAwesomeIcons.user,
               color: Colors.green,
@@ -59,29 +55,10 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: EdgeInsets.all(20.0),
         decoration: BoxDecoration(
           color: Color(0x3F2EB402),
-          // borderRadius: BorderRadius.circular(15.0),
-          // borderRadius: BorderRadius.only(
-
-          //     //   bottomLeft: Radius.circular(40.0),
-          //     //   bottomRight: Radius.circular(40.0),
-          //     ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                // Text(
-                //   'Groo',
-                //   style: const TextStyle(
-                //     color: Colors.green,
-                //     fontSize: 40.0,
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
-              ],
-            ),
             SizedBox(height: screenHeight * 0.015),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -196,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
-                      builder: (BuildContext context) => TipScreen(),
+                      builder: (BuildContext context) => TipScreen(tipNum: 0),
                     );
                   },
                   child: Column(
@@ -221,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
-                      builder: (BuildContext context) => TipScreen(),
+                      builder: (BuildContext context) => TipScreen(tipNum: 1),
                     );
                   },
                   child: Column(
@@ -246,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
-                      builder: (BuildContext context) => TipScreen(),
+                      builder: (BuildContext context) => TipScreen(tipNum: 2),
                     );
                   },
                   child: Column(

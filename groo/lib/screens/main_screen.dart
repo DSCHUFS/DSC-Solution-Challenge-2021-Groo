@@ -67,7 +67,7 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
-            label: "Campaign",
+            label: "Challenge",
             icon: Icon(Icons.military_tech),
           ),
           BottomNavigationBarItem(

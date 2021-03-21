@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CampaignList extends StatelessWidget {
+class ChallengeList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

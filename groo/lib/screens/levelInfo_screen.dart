@@ -44,7 +44,7 @@ class LevelInfoScreen extends StatelessWidget {
                 ),
                 SizedBox(height: screenHeight * 0.05),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(7.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -54,7 +54,8 @@ class LevelInfoScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 5.0),
                       Text(
-                        'This is the first week of the challenge.\n We support your challenge.',
+                        """This is the first week of the challenge.
+We support your challenge.""",
                         textAlign: TextAlign.center,
                         style: labelTextStyle,
                       ),
@@ -65,7 +66,8 @@ class LevelInfoScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 5.0),
                       Text(
-                        'Achieve half of all challenges.\nYou will get a badge.',
+                        """Achieve half of all challenges.
+You will get a badge.""",
                         textAlign: TextAlign.center,
                         style: labelTextStyle,
                       ),
@@ -76,7 +78,8 @@ class LevelInfoScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 5.0),
                       Text(
-                        'Achieve three-quarters of the total challenge. You are a really great person.',
+                        """Achieve three-quarters of the total challenge. 
+You are a really great person.""",
                         textAlign: TextAlign.center,
                         style: labelTextStyle,
                       ),
@@ -96,17 +99,18 @@ class LevelInfoScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: RaisedButton(
-                    color: Colors.green[200],
-                    elevation: 5.0,
+                  child: FlatButton(
+                    color: Color(0x3F2EB402),
                     padding:
                         EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
-                    child: Text('Go to Attendance',
-                        style: TextStyle(
-                          fontFamily: 'Inconsolata',
-                          fontSize: 22,
-                          fontWeight: FontWeight.w800,
-                        )),
+                    child: Text(
+                      'Go to Attendance',
+                      style: TextStyle(
+                        fontFamily: 'Inconsolata',
+                        fontSize: 22,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(7.0)),
                     onPressed: () {

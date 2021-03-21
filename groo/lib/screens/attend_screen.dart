@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groo/widgets/challenge_container.dart';
+import 'package:groo/widgets/campaign_container.dart';
 import 'const.dart';
 
 class AttendScreen extends StatelessWidget {
@@ -34,8 +34,7 @@ class AttendScreen extends StatelessWidget {
               children: [
                 ChallengeContainer(challengeName: 'running 20 Days', imagePath:'images/Running.jpg'),
                 Container(
-                  margin: EdgeInsets.only(bottom: 30.0),
-                  height: 435.0,
+                  height: 430.0,
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [

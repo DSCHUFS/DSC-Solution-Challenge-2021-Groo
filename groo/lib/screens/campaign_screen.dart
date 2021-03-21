@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:groo/screens/introduction_screen.dart';
 import 'package:groo/screens/levelInfo_screen.dart';
+import 'package:groo/screens/next_challenge_screen.dart';
 import 'package:groo/screens/participant_screen.dart';
 import 'package:groo/services/database.dart';
 import 'package:groo/widgets/iconButton.dart';
@@ -54,93 +57,135 @@ class _CampaignScreenState extends State<CampaignScreen> {
     calculateLevel();
     return MaterialApp(
       home: Scaffold(
+                appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: Image.asset(
+            'assets/text_logo.png',
+            width: 45,
+          ),
+          centerTitle: false,
+          actions: [
+            Tooltip(
+              message: 'Next Month\'s Challenge Preview',
+                          child: IconButton(
+                  icon: FaIcon(FontAwesomeIcons.handPointRight),
+                  color: Colors.green,
+                  onPressed: () {
+                    showModalBottomSheet(
+                              isScrollControlled: false,
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  NextChallengeScreen(),
+                            );
+                  }),
+            ),
+          ],
+        ),
         body: SingleChildScrollView(
-          child: Container(
-            margin: EdgeInsets.only(top: 50),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Color(0x3F2EB402),
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    margin:
-                        EdgeInsets.symmetric(vertical: 20.0, horizontal: 8.0),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            challengeName,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              fontSize: 30,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: 20.0, horizontal: 8.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15.0),
-                              child: myImage,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color(0x3F2EB402),
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  margin:
+                      EdgeInsets.symmetric(vertical: 20.0, horizontal: 8.0),
+                  child: Column(
                     children: [
-                      CampaingButton(
-                        buttonImage: levelImage,
-                        label: 'level$level',
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          challengeName,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            fontSize: 30,
+                          ),
+                        ),
+                      ),
+                      RaisedButton(
+                        color: Colors.white,
+                        elevation: 5.0,
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 20.0),
+                        child: Text(
+                          'go to start',
+                          style: labelTextStyle),
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(7.0)),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LevelInfoScreen()),
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: context,
+                            builder: (BuildContext context) =>
+                                IntroductionScreen(),
                           );
                         },
                       ),
-                      CampaingButton(
-                        buttonImage: 'images/group.png',
-                        label: 'participant',
-                        onPressed: () => ParticipantScreen.show(
-                          context,
-                          database: database,
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      CampaingButton(
-                        buttonImage: 'images/medal.png',
-                        label: 'badge',
-                        onPressed: () => BadgeScreen.show(
-                          context,
-                          database: database,
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0),
+                        child: Container(
+                          margin: EdgeInsets.symmetric(
+                              vertical: 20.0, horizontal: 8.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15.0),
+                            child: myImage,
+                          ),
                         ),
                       ),
-                      CampaingButton(
-                        buttonImage: 'images/history.png',
-                        label: 'history',
-                        onPressed: () => HistoryScreen.show(
-                          context,
-                          database: database,
-                        ),
-                      )
                     ],
-                  )
-                ]),
-          ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    CampaingButton(
+                      buttonImage: levelImage,
+                      label: 'level$level',
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LevelInfoScreen()),
+                        );
+                      },
+                    ),
+                    CampaingButton(
+                      buttonImage: 'images/group.png',
+                      label: 'participant',
+                      onPressed: () => ParticipantScreen.show(
+                        context,
+                        database: database,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    CampaingButton(
+                      buttonImage: 'images/medal.png',
+                      label: 'badge',
+                      onPressed: () => BadgeScreen.show(
+                        context,
+                        database: database,
+                      ),
+                    ),
+                    CampaingButton(
+                      buttonImage: 'images/history.png',
+                      label: 'history',
+                      onPressed: () => HistoryScreen.show(
+                        context,
+                        database: database,
+                      ),
+                    )
+                  ],
+                )
+              ]),
         ),
       ),
     );

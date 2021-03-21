@@ -4,12 +4,16 @@ class Campaign {
   Campaign({
     @required this.id,
     this.name,
+    this.totalDays, // challenge Performance period
+    this.time, // challenge Execution time
     this.imagePath,
     this.description,
   });
 
   final String id;
   final String name;
+  final int totalDays;
+  final int time;
   final String imagePath;
   final String description;
 

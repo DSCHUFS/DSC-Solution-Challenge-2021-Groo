@@ -1,19 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:groo/widgets/challenge_container.dart';
 import 'const.dart';
 
 class AttendScreen extends StatelessWidget {
-  Image defaultImage = Image.asset('images/default.jpeg');
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       home: Scaffold(
+        appBar: AppBar(
+        leading: TextButton(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(Colors.white),
+            backgroundColor: MaterialStateProperty.all(Color(0xFF2EB402)),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back,
+          ),
+        ),
+        title: Text(
+          'attendance status',
+          style: titleTextStyle,
+        ),
+        backgroundColor: Color(0xFF2EB402),
+      ),
         body: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.only(top: 50),
             child: Column(
               children: [
-                ChallengeContainer(),
+                ChallengeContainer(challengeName: 'running 20 Days', imagePath:'images/Running'),
                 Container(
+                  margin: EdgeInsets.only(bottom: 30.0),
                   height: 435.0,
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -209,43 +230,3 @@ class StampCircle extends StatelessWidget {
   }
 }
 
-class ChallengeContainer extends StatelessWidget {
-  const ChallengeContainer({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Color(0x3F2EB402),
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 8.0),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              challengeName,
-              style: TextStyle(
-                fontWeight: FontWeight.w800,
-                fontSize: 30,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 8.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15.0),
-                child: myImage,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}

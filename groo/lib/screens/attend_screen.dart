@@ -32,7 +32,7 @@ class AttendScreen extends StatelessWidget {
           child: Container(
             child: Column(
               children: [
-                ChallengeContainer(challengeName: 'running 20 Days', imagePath:'images/Running'),
+                ChallengeContainer(challengeName: 'running 20 Days', imagePath:'images/Running.jpg'),
                 Container(
                   margin: EdgeInsets.only(bottom: 30.0),
                   height: 435.0,

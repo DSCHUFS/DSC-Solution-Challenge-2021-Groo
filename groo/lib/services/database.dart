@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groo/models/account_info.dart';
-import 'package:groo/models/campaign.dart';
+import 'package:groo/models/challenge.dart';
 import 'package:groo/models/my_badge.dart';
 import 'package:groo/models/my_campaign.dart';
 import 'package:groo/models/participant.dart';
@@ -19,11 +19,11 @@ abstract class Database {
   Future<void> deleteMyCampaign(MyCampaign myCampaign);
   Stream<List<MyCampaign>> myCampaignsStream(String uid);
 
-  Stream<Campaign> thisCampaignStream();
-  Future<void> setThisCampaign(Campaign campaign);
+  Stream<Challenge> thisCampaignStream();
+  Future<void> setThisCampaign(Challenge campaign);
 
-  Stream<Campaign> nextCampaignStream();
-  Future<void> setNextCampaign(Campaign campaign);
+  Stream<Challenge> nextCampaignStream();
+  Future<void> setNextCampaign(Challenge campaign);
 
   Future<void> setParticipant(Participant participant);
   Future<void> deleteParticipant(Participant participant);
@@ -79,23 +79,23 @@ class FirestoreDatabase implements Database {
       );
 
   @override
-  Stream<Campaign> thisCampaignStream() => _service.documentStream(
+  Stream<Challenge> thisCampaignStream() => _service.documentStream(
         path: APIPath.thisMonthCampaign(),
-        builder: (data, documentId) => Campaign.fromMap(data, documentId),
+        builder: (data, documentId) => Challenge.fromMap(data, documentId),
       );
   @override
-  Future<void> setThisCampaign(Campaign campaign) => _service.setData(
+  Future<void> setThisCampaign(Challenge campaign) => _service.setData(
         path: APIPath.thisMonthCampaign(),
         data: campaign.toMap(),
       );
 
   @override
-  Stream<Campaign> nextCampaignStream() => _service.documentStream(
+  Stream<Challenge> nextCampaignStream() => _service.documentStream(
         path: APIPath.nextMonthCampaign(),
-        builder: (data, documentId) => Campaign.fromMap(data, documentId),
+        builder: (data, documentId) => Challenge.fromMap(data, documentId),
       );
   @override
-  Future<void> setNextCampaign(Campaign campaign) => _service.setData(
+  Future<void> setNextCampaign(Challenge campaign) => _service.setData(
         path: APIPath.nextMonthCampaign(),
         data: campaign.toMap(),
       );

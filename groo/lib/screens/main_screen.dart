@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:groo/models/account_info.dart';
-import 'package:groo/screens/campaign_screen.dart';
+import 'package:groo/screens/challenge_screen.dart';
 import 'package:groo/screens/counseling_screen.dart';
 import 'package:groo/screens/home_screen.dart';
 import 'package:groo/services/auth.dart';
@@ -19,7 +19,7 @@ class _MainScreenState extends State<MainScreen> {
   PageController _pageController;
   List<Widget> _screen = [
     HomeScreen(),
-    CampaignScreen(),
+    ChallengeScreen(),
     CounselingScreen(),
   ];
 
@@ -67,7 +67,7 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
-            label: "Campaign",
+            label: "Challenge",
             icon: Icon(Icons.military_tech),
           ),
           BottomNavigationBarItem(

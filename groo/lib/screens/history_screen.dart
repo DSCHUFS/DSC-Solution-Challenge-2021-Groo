@@ -68,7 +68,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
             ),
           ),
           title: Text(
-            "Challenge History",
+            "Challenges History",
             style: titleTextStyle,
           ),
           backgroundColor: Color(0xFF2EB402)),

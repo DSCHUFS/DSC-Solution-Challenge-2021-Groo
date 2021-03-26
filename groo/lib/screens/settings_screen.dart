@@ -231,7 +231,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     height: 10,
                   ),
                   buildNotificationOptionRow(
-                    title: "Off/On",
+                    title: "Turn On/Off Push Notification",
                     isActive: _isNotify,
                     onChanged: (bool newValue) {
                       _setPref(newValue);

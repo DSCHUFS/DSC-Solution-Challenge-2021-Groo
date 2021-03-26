@@ -39,7 +39,7 @@ class ParticipantScreen extends StatelessWidget {
           ),
         ),
         title: Text(
-          'participant',
+          'Participant',
           style: titleTextStyle,
         ),
         backgroundColor: Color(0xFF2EB402),
@@ -65,35 +65,6 @@ class ParticipantScreen extends StatelessWidget {
           );
         },
       ),
-
-      // SingleChildScrollView(
-      //   child: Column(children: [
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [UserContainer(), UserContainer(), UserContainer()],
-      //     ),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [UserContainer(), UserContainer(), UserContainer()],
-      //     ),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [UserContainer(), UserContainer(), UserContainer()],
-      //     ),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [UserContainer(), UserContainer(), UserContainer()],
-      //     ),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [UserContainer(), UserContainer(), UserContainer()],
-      //     ),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [UserContainer(), UserContainer(), UserContainer()],
-      //     ),
-      //   ]),
-      // ),
     );
   }
 }

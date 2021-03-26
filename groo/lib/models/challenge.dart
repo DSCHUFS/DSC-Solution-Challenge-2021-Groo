@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Campaign {
-  Campaign({
+class Challenge {
+  Challenge({
     @required this.id,
     this.name,
     this.totalDays, // challenge Performance period
@@ -17,8 +17,8 @@ class Campaign {
   final String imagePath;
   final String description;
 
-  factory Campaign.fromMap(Map<String, dynamic> data, String id) {
-    return Campaign(
+  factory Challenge.fromMap(Map<String, dynamic> data, String id) {
+    return Challenge(
       id: id,
       name: data['name'],
       imagePath: data['imagePath'],

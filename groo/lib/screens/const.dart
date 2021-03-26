@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 var challengeNameTextStyle = TextStyle(
                 fontWeight: FontWeight.w800,
                 fontSize: 30,

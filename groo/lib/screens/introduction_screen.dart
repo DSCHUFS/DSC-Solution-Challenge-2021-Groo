@@ -20,7 +20,7 @@ class IntroductionScreen extends StatelessWidget {
             ),
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(5.0),
             child: Column(
               children: [
                 Row(mainAxisAlignment: MainAxisAlignment.end,children: [IconButton(icon: Icon(Icons.cancel), onPressed: (){
@@ -29,7 +29,7 @@ class IntroductionScreen extends StatelessWidget {
                 Container(
                   width: double.infinity,
                   margin: EdgeInsets.all(20.0),
-                  padding: EdgeInsets.all(15.0),
+                  padding: EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.rectangle,
@@ -37,7 +37,7 @@ class IntroductionScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text('Introduction', style: titleTextStyle),
-                      SizedBox(height: 10.0),
+                      SizedBox(height: 5.0),
                       Text(
                         subTitle,
                         style: subTitleTextStyle,

@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AccountInfo {
   AccountInfo({
-    @required this.id,
+    this.id,
     this.name,
     this.email,
     this.imagePath,
@@ -11,6 +11,8 @@ class AccountInfo {
     this.showCampaigns,
     this.followers,
     this.followings,
+    this.attendDays,
+    this.lastAttendance,
   });
 
   final String id;
@@ -22,6 +24,8 @@ class AccountInfo {
   final bool showCampaigns;
   final List<dynamic> followers;
   final List<dynamic> followings;
+  final int attendDays;
+  final Timestamp lastAttendance;
 
   factory AccountInfo.fromMap(Map<dynamic, dynamic> data, String id) {
     return AccountInfo(
@@ -34,6 +38,8 @@ class AccountInfo {
       showCampaigns: data['showCampaigns'],
       followers: data['followers'],
       followings: data['followings'],
+      attendDays: data['attendDays'],
+      lastAttendance: data['lastAttendance'],
     );
   }
 
@@ -47,6 +53,8 @@ class AccountInfo {
       'showCampaigns': showCampaigns,
       'followers': followers,
       'followings': followings,
+      'attendDays': attendDays,
+      'lastAttendance': lastAttendance,
     };
   }
 }

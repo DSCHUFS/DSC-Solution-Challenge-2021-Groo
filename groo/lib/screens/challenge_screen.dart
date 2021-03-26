@@ -12,31 +12,31 @@ import 'package:provider/provider.dart';
 import 'const.dart';
 
 class ChallengeScreen extends StatelessWidget {
-  final int challengeDays = 1;
-  final String imagePath = 'images/Running.jpg';
-  final String nextImagePath = 'images/Cooking.jpg';
-  String levelImage;
-  int level;
-
-  void calculateLevel() {
-    if (challengeDays <= 7) {
-      levelImage = 'images/sprout.png';
-      level = 1;
-    } else if (challengeDays <= 14) {
-      levelImage = 'images/sprout2.png';
-      level = 2;
-    } else if (challengeDays <= 21) {
-      levelImage = 'images/pot.png';
-      level = 3;
-    } else {
-      levelImage = 'images/tulip.png';
-      level = 4;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final database = Provider.of<Database>(context, listen: false);
+    final int challengeDays = 1;
+    final String imagePath = 'images/Running.jpg';
+    final String nextImagePath = 'images/Cooking.jpg';
+    String levelImage;
+    int level;
+
+    void calculateLevel() {
+      if (challengeDays <= 7) {
+        levelImage = 'images/sprout.png';
+        level = 1;
+      } else if (challengeDays <= 14) {
+        levelImage = 'images/sprout2.png';
+        level = 2;
+      } else if (challengeDays <= 21) {
+        levelImage = 'images/pot.png';
+        level = 3;
+      } else {
+        levelImage = 'images/tulip.png';
+        level = 4;
+      }
+    }
+
     calculateLevel();
     return Scaffold(
       appBar: AppBar(
@@ -110,8 +110,9 @@ class ChallengeScreen extends StatelessWidget {
                         showModalBottomSheet(
                           isScrollControlled: true,
                           context: context,
-                          builder: (BuildContext context) =>
-                              IntroductionScreen(),
+                          builder: (BuildContext context) => IntroductionScreen(
+                            database: database,
+                          ),
                         );
                       },
                     ),
@@ -135,13 +136,10 @@ class ChallengeScreen extends StatelessWidget {
                   ChallengeButton(
                     buttonImage: levelImage,
                     label: 'level$level',
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LevelInfoScreen()),
-                      );
-                    },
+                    onPressed: () => LevelInfoScreen.show(
+                      context,
+                      database: database,
+                    ),
                   ),
                   ChallengeButton(
                     buttonImage: 'images/group.png',

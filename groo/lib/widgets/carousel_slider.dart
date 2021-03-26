@@ -8,10 +8,10 @@ class CarouselImage extends StatefulWidget {
 class _CarouselImageState extends State<CarouselImage> {
   int _currentPage = 0;
   List imgList = [
-    'https://cdn-0.therandomvibez.com/wp-content/uploads/2020/09/Cheer-Quotes.png',
-    'https://r9t5u7b9.rocketcdn.me/wp-content/uploads/2017/04/cheer-up-quotes-unique.png',
-    'https://i.pinimg.com/originals/08/57/7c/08577c822fd6b40a16f47365b332b8aa.jpg',
-    'https://www.segerios.com/wp-content/uploads/2019/03/Superior-Cheer-Up-Quotes-600x595.jpg'
+    'https://cdn.pixabay.com/photo/2018/05/16/09/12/dreams-3405257_1280.jpg',
+    'https://cdn.pixabay.com/photo/2018/08/08/12/51/art-3592111__480.jpg',
+    'https://cdn.pixabay.com/photo/2020/09/30/14/55/notebook-5616034__480.jpg',
+    'https://cdn.pixabay.com/photo/2018/07/20/10/58/motivational-quote-3550403__480.jpg'
   ];
 
   @override

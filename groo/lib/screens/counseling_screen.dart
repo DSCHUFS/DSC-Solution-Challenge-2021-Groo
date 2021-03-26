@@ -26,9 +26,10 @@ class Counseling extends State<CounselingScreen> {
       builder: (context, snapshot) {
         if (!snapshot.hasData)
           return Center(
-              child: LinearProgressIndicator(
-            backgroundColor: Colors.green,
-          ));
+            child: LinearProgressIndicator(
+              backgroundColor: Colors.green,
+            ),
+          );
         return _buildBody(context, snapshot.data.docs);
       },
     );
@@ -40,10 +41,6 @@ class Counseling extends State<CounselingScreen> {
     return Container(
       decoration: BoxDecoration(
         color: Color(0x3F2EB402),
-        // gradient: LinearGradient(
-        //     begin: Alignment.topRight,
-        //     end: Alignment.bottomLeft,
-        //     colors: [Color(0xFFd4fc79), Color(0xFFCCF2F4)]),
       ),
       child: Scaffold(
         appBar: AppBar(

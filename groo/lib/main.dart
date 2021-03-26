@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
     return Provider<AuthBase>(
       create: (context) => Auth(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Groo',
         theme: ThemeData(
           primaryColor: Color(0xFF2DB400),

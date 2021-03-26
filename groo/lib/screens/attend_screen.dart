@@ -16,10 +16,11 @@ class AttendScreen extends StatefulWidget {
 class _AttendScreenState extends State<AttendScreen> {
   MyStamp myStamp;
   final int todayIndex = 0;
-  final int challengeDays = 30;
-  List<bool> attendList = List.filled(30, false);
+  final int challengeDays = 20;
+  List<bool> attendList = List.filled(20, false);
+  List<bool> attendList2 = List.generate(20, (index) {});
   List<Icon> iconList = List.filled(
-      30,
+      20,
       Icon(
         FontAwesomeIcons.mehBlank,
         size: 55,
@@ -31,16 +32,21 @@ class _AttendScreenState extends State<AttendScreen> {
       if (index == todayIndex) {
         attendList[todayIndex] = true;
         setState(() {
-          iconList[index] = Icon(FontAwesomeIcons.laughBeam, size: 55, color: Colors.green[500],);
+          iconList[index] = Icon(
+            FontAwesomeIcons.laughBeam,
+            size: 55,
+            color: Colors.green[500],
+          );
         });
       }
     };
   }
 
-  Future<List> attendStatus(List LastAttendList) async {
-    myStamp = MyStamp(attendance: LastAttendList);
-    return LastAttendList;
-  }
+  // Future<List> attendStatus(List LastAttendList) async {
+  //   myStamp = MyStamp(attendance: LastAttendList);
+  //   return LastAttendList;
+  // }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

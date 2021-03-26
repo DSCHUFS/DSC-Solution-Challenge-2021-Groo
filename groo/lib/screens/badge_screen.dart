@@ -32,55 +32,53 @@ class _BadgeScreenState extends State<BadgeScreen> {
     final user = auth.currentUser;
     final badgePadding = EdgeInsets.all(70.0);
 
-    return MaterialApp(
-      theme: ThemeData.dark(),
-      home: Scaffold(
-        appBar: AppBar(
-            leading: TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all(Colors.white),
-                backgroundColor: MaterialStateProperty.all(Color(0xFF2EB402)),
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Icon(
-                Icons.arrow_back,
-              ),
+    return Scaffold(
+      backgroundColor: Color(0x40CCCCCC),
+      appBar: AppBar(
+          leading: TextButton(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              backgroundColor: MaterialStateProperty.all(Color(0xFF2EB402)),
             ),
-            title: Text(
-              "Your Badge",
-              style: titleTextStyle,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.arrow_back,
             ),
-            backgroundColor: Color(0xFF2EB402)),
-        body: SingleChildScrollView(
-          child: Container(
-            child: StreamBuilder<List<MyBadge>>(
-                stream: widget.database.myBadgesStream(user.uid),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  List<Padding> items = snapshot.data
-                      .map(
-                        (e) => Padding(
-                          padding: badgePadding,
-                          child: Image(
-                            image: FirebaseImage(
-                              e.imagePath,
-                              maxSizeBytes: 4000 * 1000,
-                            ),
+          ),
+          title: Text(
+            "Your Badge",
+            style: titleTextStyle,
+          ),
+          backgroundColor: Color(0xFF2EB402)),
+      body: SingleChildScrollView(
+        child: Container(
+          child: StreamBuilder<List<MyBadge>>(
+              stream: widget.database.myBadgesStream(user.uid),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                List<Padding> items = snapshot.data
+                    .map(
+                      (e) => Padding(
+                        padding: badgePadding,
+                        child: Image(
+                          image: FirebaseImage(
+                            e.imagePath,
+                            maxSizeBytes: 4000 * 1000,
                           ),
                         ),
-                      )
-                      .toList();
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: items,
-                  );
-                }),
-          ),
+                      ),
+                    )
+                    .toList();
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: items,
+                );
+              }),
         ),
       ),
     );

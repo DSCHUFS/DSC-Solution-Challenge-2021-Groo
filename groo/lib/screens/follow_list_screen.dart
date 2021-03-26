@@ -44,7 +44,9 @@ class FollowListScreen extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(20.0),
               child: ListView.builder(
-                  itemCount: account[selectNum].length,
+                  itemCount: account[selectNum] != null
+                      ? account[selectNum].length
+                      : 0,
                   itemBuilder: (context, index) {
                     final user = _getUserInfo(account[selectNum][index]);
                     return StreamBuilder<Map<String, dynamic>>(

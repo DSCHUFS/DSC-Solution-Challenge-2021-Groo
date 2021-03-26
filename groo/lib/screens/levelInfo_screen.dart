@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:groo/services/database.dart';
 import 'attend_screen.dart';
 import 'const.dart';
 
 class LevelInfoScreen extends StatelessWidget {
+  const LevelInfoScreen({Key key, @required this.database}) : super(key: key);
+  final Database database;
+
+  static Future<void> show(BuildContext context, {Database database}) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LevelInfoScreen(
+          database: database,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -99,27 +113,26 @@ You are a really great person.""",
                 ),
                 Padding(
                   padding: const EdgeInsets.all(30.0),
-                  child: FlatButton(
-                    color: Color(0x3F2EB402),
-                    padding:
-                        EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
+                  child: TextButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Color(0x3F2EB402)),
+                      padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+                          vertical: 20.0, horizontal: 15.0)),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(7.0))),
+                    ),
                     child: Text(
                       'Go to Attendance',
                       style: TextStyle(
                         fontFamily: 'Inconsolata',
                         fontSize: 22,
                         fontWeight: FontWeight.w800,
+                        color: Colors.black,
                       ),
                     ),
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(7.0)),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AttendScreen(),
-                          ));
-                    },
+                    onPressed: () =>
+                        AttendScreen.show(context, database: database),
                   ),
                 ),
               ]),

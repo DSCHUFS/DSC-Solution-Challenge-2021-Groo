@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:groo/models/account_info.dart';
 import 'package:groo/services/auth.dart';
@@ -114,6 +115,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             bool _showCampaigns;
             List<dynamic> _followers;
             List<dynamic> _followings;
+            int _attendDays;
+            Timestamp _lastAttendance;
             Future updateAccount() async {
               await widget.database.setAccountInfo(
                 AccountInfo(
@@ -126,6 +129,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   showCampaigns: _showCampaigns,
                   followers: _followers,
                   followings: _followings,
+                  attendDays: _attendDays,
+                  lastAttendance: _lastAttendance,
                 ),
               );
             }
@@ -138,6 +143,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               _showCampaigns = accountInfo.showCampaigns;
               _followers = accountInfo.followers;
               _followings = accountInfo.followings;
+              _attendDays = accountInfo.attendDays;
+              _lastAttendance = accountInfo.lastAttendance;
             }
             return Container(
               padding: EdgeInsets.only(left: 16, top: 25, right: 16),

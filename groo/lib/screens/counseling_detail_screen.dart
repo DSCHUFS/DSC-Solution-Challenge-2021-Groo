@@ -281,7 +281,8 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                   ),
                   backgroundColor: Colors.white,
                   label: 'Text-Chat Counseling',
-                  labelStyle: TextStyle(fontSize: 18.0),
+                  labelStyle:
+                      TextStyle(fontSize: 18.0, fontFamily: 'Inconsolata'),
                   onTap: () {
                     return showDialog(
                       context: context,
@@ -311,7 +312,8 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                   ),
                   backgroundColor: Colors.white,
                   label: 'Video Counseling',
-                  labelStyle: TextStyle(fontSize: 18.0),
+                  labelStyle:
+                      TextStyle(fontSize: 18.0, fontFamily: 'Inconsolata'),
                   onTap: () {
                     return showDialog(
                       context: context,
@@ -341,7 +343,8 @@ class _CounselingDetailScreenState extends State<CounselingDetailScreen> {
                   ),
                   backgroundColor: Colors.white,
                   label: 'Voice Counseling',
-                  labelStyle: TextStyle(fontSize: 18.0),
+                  labelStyle:
+                      TextStyle(fontSize: 18.0, fontFamily: 'Inconsolata'),
                   onTap: () {
                     return showDialog(
                       context: context,

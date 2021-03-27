@@ -64,7 +64,7 @@ class _AttendScreenState extends State<AttendScreen> {
             final accountInfo = snapshot.data;
             bool _showEmail;
             bool _showBadges;
-            bool _showCampaigns;
+            bool _showChallenges;
             List<dynamic> _followers;
             List<dynamic> _followings;
             Future updateAttendance(
@@ -77,7 +77,7 @@ class _AttendScreenState extends State<AttendScreen> {
                   imagePath: user.photoURL,
                   showEmail: _showEmail,
                   showBadges: _showBadges,
-                  showCampaigns: _showCampaigns,
+                  showChallenges: _showChallenges,
                   followers: _followers,
                   followings: _followings,
                   attendDays: attendDays,

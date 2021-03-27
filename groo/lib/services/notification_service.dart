@@ -1,6 +1,5 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -54,8 +53,8 @@ class NotificationService {
 
       await flutterLocalNotificationsPlugin.zonedSchedule(
         0,
-        "Check your Campaign Progress!",
-        "Did you do your campaign today? Go to check and grow your plant!",
+        "Check your Challenge Progress!",
+        "Did you do your challenge today? Go to check and grow your plant!",
         _setNotiTime(hour, minute),
         generalNotificationDetails,
         androidAllowWhileIdle: true,

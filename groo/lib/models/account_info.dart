@@ -8,7 +8,7 @@ class AccountInfo {
     this.imagePath,
     this.showEmail,
     this.showBadges,
-    this.showCampaigns,
+    this.showChallenges,
     this.followers,
     this.followings,
     this.attendDays,
@@ -21,7 +21,7 @@ class AccountInfo {
   final String imagePath;
   final bool showEmail;
   final bool showBadges;
-  final bool showCampaigns;
+  final bool showChallenges;
   final List<dynamic> followers;
   final List<dynamic> followings;
   final int attendDays;
@@ -35,7 +35,7 @@ class AccountInfo {
       imagePath: data['imagePath'],
       showEmail: data['showEmail'],
       showBadges: data['showBadges'],
-      showCampaigns: data['showCampaigns'],
+      showChallenges: data['showChallenges'],
       followers: data['followers'],
       followings: data['followings'],
       attendDays: data['attendDays'],
@@ -50,7 +50,7 @@ class AccountInfo {
       'imagePath': imagePath,
       'showEmail': showEmail,
       'showBadges': showBadges,
-      'showCampaigns': showCampaigns,
+      'showChallenges': showChallenges,
       'followers': followers,
       'followings': followings,
       'attendDays': attendDays,

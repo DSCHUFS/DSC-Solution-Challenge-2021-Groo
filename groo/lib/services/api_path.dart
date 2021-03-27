@@ -1,19 +1,22 @@
+import 'package:groo/models/my_challenge.dart';
+
 class APIPath {
   static String accountInfo(String uid) => 'users/$uid';
 
   static String myBadges(String uid) => 'users/$uid/my_badges';
   static String myBadge(String uid, String myBadgeId) =>
       'users/$uid/my_badges/$myBadgeId';
-  static String myCampaigns(String uid) => 'users/$uid/participated_campaigns';
-  static String myCampaign(String uid, String myCampaignId) =>
-      'users/$uid/participated_campaigns/$myCampaignId';
+  static String myChallenges(String uid) =>
+      'users/$uid/participated_challenges';
+  static String myChallenge(String uid, String myChallengeId) =>
+      'users/$uid/participated_challenges/$myChallengeId';
 
-  static String thisMonthCampaign() => 'activeCampaign/thisMonthCampaign';
-  static String nextMonthCampaign() => 'activeCampaign/nextMonthCampaign';
-  static String campaignParticipants() =>
-      'activeCampaign/thisMonthCampaign/participants';
-  static String campaignParticipant(String uid) =>
-      'activeCampaign/thisMonthCampaign/participants/$uid';
+  static String thisMonthChallenge() => 'activeChallenge/thisMonthChallenge';
+  static String nextMonthChallenge() => 'activeChallenge/nextMonthChallenge';
+  static String challengeParticipants() =>
+      'activeChallenge/thisMonthChallenge/participants';
+  static String challengeParticipant(String uid) =>
+      'activeChallenge/thisMonthChallenge/participants/$uid';
 
   static String counselors() => 'counselors';
   static String counselor(String counselorId) => 'counselors/$counselorId';

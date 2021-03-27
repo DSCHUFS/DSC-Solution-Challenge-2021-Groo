@@ -1,11 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_image/firebase_image.dart';
 import 'package:flutter/material.dart';
 import 'package:groo/models/my_badge.dart';
-import 'package:groo/models/my_campaign.dart';
+import 'package:groo/models/my_challenge.dart';
 import 'package:groo/services/database.dart';
 import 'package:groo/widgets/list_builder.dart';
-import 'package:provider/provider.dart';
 
 class ProfileViewScreen extends StatefulWidget {
   const ProfileViewScreen(
@@ -264,7 +262,7 @@ class _ProfileViewScreenState extends State<ProfileViewScreen> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Joined Campains",
+                                "Joined Challenges",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
@@ -275,22 +273,22 @@ class _ProfileViewScreenState extends State<ProfileViewScreen> {
                           SizedBox(height: 2 * constraints.maxHeight / 100),
                           Container(
                             height: 30 * constraints.maxHeight / 100,
-                            child: StreamBuilder<List<MyCampaign>>(
-                              stream:
-                                  widget.database.myCampaignsStream(widget.uid),
+                            child: StreamBuilder<List<MyChallenge>>(
+                              stream: widget.database
+                                  .myChallengesStream(widget.uid),
                               builder: (context, snapshot) {
                                 if (!snapshot.hasData) {
                                   return Center(
                                       child: CircularProgressIndicator());
                                 }
-                                return accountInfo["showCampaigns"]
+                                return accountInfo["showChallenges"]
                                     ? _privateContent()
                                     : ListBuilder(
                                         snapshot: snapshot,
-                                        itemBuilder: (context, myCampaign) =>
-                                            _campaignCard(
-                                          name: myCampaign.name,
-                                          imagePath: myCampaign.imagePath,
+                                        itemBuilder: (context, myChallenge) =>
+                                            _challengeCard(
+                                          name: myChallenge.name,
+                                          imagePath: myChallenge.imagePath,
                                           constraints: constraints,
                                         ),
                                         constraints: constraints,
@@ -330,7 +328,7 @@ class _ProfileViewScreenState extends State<ProfileViewScreen> {
     );
   }
 
-  _campaignCard({
+  _challengeCard({
     @required String name,
     @required String imagePath,
     @required BoxConstraints constraints,

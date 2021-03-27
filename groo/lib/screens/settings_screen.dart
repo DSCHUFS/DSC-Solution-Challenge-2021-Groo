@@ -112,7 +112,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             final accountInfo = snapshot.data;
             bool _showEmail;
             bool _showBadges;
-            bool _showCampaigns;
+            bool _showChallenges;
             List<dynamic> _followers;
             List<dynamic> _followings;
             int _attendDays;
@@ -126,7 +126,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   imagePath: user.photoURL,
                   showEmail: _showEmail,
                   showBadges: _showBadges,
-                  showCampaigns: _showCampaigns,
+                  showChallenges: _showChallenges,
                   followers: _followers,
                   followings: _followings,
                   attendDays: _attendDays,
@@ -140,7 +140,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             if (accountInfo != null) {
               _showEmail = accountInfo.showEmail;
               _showBadges = accountInfo.showBadges;
-              _showCampaigns = accountInfo.showCampaigns;
+              _showChallenges = accountInfo.showChallenges;
               _followers = accountInfo.followers;
               _followings = accountInfo.followings;
               _attendDays = accountInfo.attendDays;
@@ -197,10 +197,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
                   buildNotificationOptionRow(
-                    title: "Hide My campaigns",
-                    isActive: accountInfo.showCampaigns ?? false,
+                    title: "Hide My challenges",
+                    isActive: accountInfo.showChallenges ?? false,
                     onChanged: (bool newValue) async {
-                      _showCampaigns = newValue;
+                      _showChallenges = newValue;
                       await updateAccount();
                     },
                   ),

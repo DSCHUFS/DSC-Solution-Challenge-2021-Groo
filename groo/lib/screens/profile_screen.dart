@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groo/models/account_info.dart';
 import 'package:groo/models/my_badge.dart';
-import 'package:groo/models/my_campaign.dart';
+import 'package:groo/models/my_challenge.dart';
 import 'package:groo/screens/follow_list_screen.dart';
 import 'package:groo/screens/settings_screen.dart';
 import 'package:groo/services/auth.dart';
@@ -307,7 +307,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Row(
                                   children: [
                                     Text(
-                                      "Campains History",
+                                      "Challenges History",
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -318,7 +318,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ),
                                     SizedBox(width: 5),
                                     Text(
-                                      accountInfo.showCampaigns ?? false
+                                      accountInfo.showChallenges ?? false
                                           ? "(private)"
                                           : "",
                                       style: TextStyle(
@@ -334,16 +334,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             SizedBox(height: 2 * constraints.maxHeight / 100),
                             Container(
                               height: 30 * constraints.maxHeight / 100,
-                              child: StreamBuilder<List<MyCampaign>>(
-                                stream:
-                                    widget.database.myCampaignsStream(user.uid),
+                              child: StreamBuilder<List<MyChallenge>>(
+                                stream: widget.database
+                                    .myChallengesStream(user.uid),
                                 builder: (context, snapshot) {
                                   return ListBuilder(
                                     snapshot: snapshot,
-                                    itemBuilder: (context, myCampaign) =>
-                                        _campaignCard(
-                                      name: myCampaign.name,
-                                      imagePath: myCampaign.imagePath,
+                                    itemBuilder: (context, myChallenge) =>
+                                        _challengeCard(
+                                      name: myChallenge.name,
+                                      imagePath: myChallenge.imagePath,
                                       constraints: constraints,
                                     ),
                                     constraints: constraints,
@@ -382,7 +382,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  _campaignCard({
+  _challengeCard({
     @required String name,
     @required String imagePath,
     @required BoxConstraints constraints,

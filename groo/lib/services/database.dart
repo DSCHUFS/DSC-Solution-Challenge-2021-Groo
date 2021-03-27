@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:groo/models/account_info.dart';
 import 'package:groo/models/challenge.dart';
 import 'package:groo/models/my_badge.dart';
-import 'package:groo/models/my_campaign.dart';
+import 'package:groo/models/my_challenge.dart';
 import 'package:groo/models/participant.dart';
 import 'package:groo/services/api_path.dart';
 import 'package:groo/services/firestore_service.dart';
@@ -15,15 +15,15 @@ abstract class Database {
   Future<void> deleteMyBadge(MyBadge myBadge);
   Stream<List<MyBadge>> myBadgesStream(String uid);
 
-  Future<void> setMyCampaign(MyCampaign myCampaign);
-  Future<void> deleteMyCampaign(MyCampaign myCampaign);
-  Stream<List<MyCampaign>> myCampaignsStream(String uid);
+  Future<void> setMyChallenge(MyChallenge myChallenge);
+  Future<void> deleteMyChallenge(MyChallenge myChallenge);
+  Stream<List<MyChallenge>> myChallengesStream(String uid);
 
-  Stream<Challenge> thisCampaignStream();
-  Future<void> setThisCampaign(Challenge campaign);
+  Stream<Challenge> thisChallengeStream();
+  Future<void> setThisChallenge(Challenge challenge);
 
-  Stream<Challenge> nextCampaignStream();
-  Future<void> setNextCampaign(Challenge campaign);
+  Stream<Challenge> nextChallengeStream();
+  Future<void> setNextChallenge(Challenge challenge);
 
   Future<void> setParticipant(Participant participant);
   Future<void> deleteParticipant(Participant participant);
@@ -63,56 +63,57 @@ class FirestoreDatabase implements Database {
       );
 
   @override
-  Future<void> setMyCampaign(MyCampaign myCampaign) => _service.setData(
-        path: APIPath.myCampaign(uid, myCampaign.id),
-        data: myCampaign.toMap(),
+  Future<void> setMyChallenge(MyChallenge myChallenge) => _service.setData(
+        path: APIPath.myChallenge(uid, myChallenge.id),
+        data: myChallenge.toMap(),
       );
   @override
-  Future<void> deleteMyCampaign(MyCampaign myCampaign) => _service.deleteData(
-        path: APIPath.myCampaign(uid, myCampaign.id),
+  Future<void> deleteMyChallenge(MyChallenge myChallenge) =>
+      _service.deleteData(
+        path: APIPath.myChallenge(uid, myChallenge.id),
       );
   @override
-  Stream<List<MyCampaign>> myCampaignsStream(String uid) =>
+  Stream<List<MyChallenge>> myChallengesStream(String uid) =>
       _service.collectionStream(
-        path: APIPath.myCampaigns(uid),
-        builder: (data, documentId) => MyCampaign.fromMap(data, documentId),
+        path: APIPath.myChallenges(uid),
+        builder: (data, documentId) => MyChallenge.fromMap(data, documentId),
       );
 
   @override
-  Stream<Challenge> thisCampaignStream() => _service.documentStream(
-        path: APIPath.thisMonthCampaign(),
+  Stream<Challenge> thisChallengeStream() => _service.documentStream(
+        path: APIPath.thisMonthChallenge(),
         builder: (data, documentId) => Challenge.fromMap(data, documentId),
       );
   @override
-  Future<void> setThisCampaign(Challenge campaign) => _service.setData(
-        path: APIPath.thisMonthCampaign(),
-        data: campaign.toMap(),
+  Future<void> setThisChallenge(Challenge challenge) => _service.setData(
+        path: APIPath.thisMonthChallenge(),
+        data: challenge.toMap(),
       );
 
   @override
-  Stream<Challenge> nextCampaignStream() => _service.documentStream(
-        path: APIPath.nextMonthCampaign(),
+  Stream<Challenge> nextChallengeStream() => _service.documentStream(
+        path: APIPath.nextMonthChallenge(),
         builder: (data, documentId) => Challenge.fromMap(data, documentId),
       );
   @override
-  Future<void> setNextCampaign(Challenge campaign) => _service.setData(
-        path: APIPath.nextMonthCampaign(),
-        data: campaign.toMap(),
+  Future<void> setNextChallenge(Challenge challenge) => _service.setData(
+        path: APIPath.nextMonthChallenge(),
+        data: challenge.toMap(),
       );
 
   @override
   Future<void> setParticipant(Participant participant) => _service.setData(
-        path: APIPath.campaignParticipant(participant.id),
+        path: APIPath.challengeParticipant(participant.id),
         data: participant.toMap(),
       );
   @override
   Future<void> deleteParticipant(Participant participant) =>
       _service.deleteData(
-        path: APIPath.campaignParticipant(participant.id),
+        path: APIPath.challengeParticipant(participant.id),
       );
   @override
   Stream<List<Participant>> participantsStream() => _service.collectionStream(
-        path: APIPath.campaignParticipants(),
+        path: APIPath.challengeParticipants(),
         builder: (data, documentId) => Participant.fromMap(data, documentId),
       );
 }

@@ -1,6 +1,6 @@
 import 'package:firebase_image/firebase_image.dart';
 import 'package:flutter/material.dart';
-import 'package:groo/models/my_campaign.dart';
+import 'package:groo/models/my_challenge.dart';
 import 'package:groo/services/auth.dart';
 import 'package:groo/services/database.dart';
 import 'package:provider/provider.dart';
@@ -73,13 +73,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
           ),
           backgroundColor: Color(0xFF2EB402)),
       body: SingleChildScrollView(
-        child: StreamBuilder<List<MyCampaign>>(
-            stream: widget.database.myCampaignsStream(user.uid),
+        child: StreamBuilder<List<MyChallenge>>(
+            stream: widget.database.myChallengesStream(user.uid),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return Center(child: CircularProgressIndicator());
               }
-              List<MyCampaign> items = snapshot.data;
+              List<MyChallenge> items = snapshot.data;
               if (items.isEmpty) {
                 return _emptyContent(
                   title: 'Nothing here',

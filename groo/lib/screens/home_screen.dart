@@ -204,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: <Widget>[
                       Image.asset(
-                        'assets/campaign-logo/icons8-leader-100.png',
+                        'assets/challenge-logo/icons8-leader-100.png',
                         height: screenHeight * 0.12,
                       ),
                       SizedBox(height: screenHeight * 0.015),

@@ -11,7 +11,7 @@ class TipScreen extends StatelessWidget {
       Text(
         """Click the Person icon in the upper right corner of the homepage.
 
-Get a badge through the campaign and fill in your own profile! 
+Get a badge through the challenge and fill in your own profile! 
 You can check the badges that you received and the challenge that you participated in.""",
         style: TextStyle(
           fontSize: 21,

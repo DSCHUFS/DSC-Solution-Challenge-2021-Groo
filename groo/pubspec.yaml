@@ -62,7 +62,7 @@ flutter:
   assets:
     - assets/
     - assets/profile-logo/
-    - assets/campaign-logo/
+    - assets/challenge-logo/
     - assets/counseling-logo/
     - images/
 

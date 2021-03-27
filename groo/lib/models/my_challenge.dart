@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
-class MyCampaign {
-  MyCampaign({
+class MyChallenge {
+  MyChallenge({
     @required this.id,
     @required this.name,
     @required this.challengeDays,
@@ -13,8 +13,8 @@ class MyCampaign {
   final int challengeDays;
   final String imagePath;
 
-  factory MyCampaign.fromMap(Map<dynamic, dynamic> data, String id) {
-    return MyCampaign(
+  factory MyChallenge.fromMap(Map<dynamic, dynamic> data, String id) {
+    return MyChallenge(
       id: id,
       name: data['name'],
       challengeDays: data['challengeDays'],

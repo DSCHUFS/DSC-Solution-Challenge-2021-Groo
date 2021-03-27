@@ -90,42 +90,46 @@ class _ProfileViewScreenState extends State<ProfileViewScreen> {
                             SizedBox(
                               width: 5 * constraints.maxWidth / 100,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  accountInfo["name"] ?? "",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 3 * constraints.maxHeight / 100,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: constraints.maxHeight / 100,
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.email,
-                                      color: Colors.white,
-                                      size: 3 * constraints.maxHeight / 100,
-                                    ),
-                                    SizedBox(
-                                      width: 2 * constraints.maxWidth / 100,
-                                    ),
-                                    Text(
-                                      accountInfo["showEmail"] ?? false
-                                          ? accountInfo["email"] ?? ""
-                                          : 'private',
-                                      style: TextStyle(
-                                        color: Colors.white70,
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    accountInfo["name"] ?? "",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        color: Colors.white,
                                         fontSize:
-                                            2 * constraints.maxHeight / 100,
+                                            3 * constraints.maxHeight / 100,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: constraints.maxHeight / 100,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.email,
+                                        color: Colors.white,
+                                        size: 3 * constraints.maxHeight / 100,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                      SizedBox(
+                                        width: 2 * constraints.maxWidth / 100,
+                                      ),
+                                      Text(
+                                        accountInfo["showEmail"] ?? false
+                                            ? accountInfo["email"] ?? ""
+                                            : 'private',
+                                        style: TextStyle(
+                                          color: Colors.white70,
+                                          fontSize:
+                                              2 * constraints.maxHeight / 100,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -242,7 +246,7 @@ class _ProfileViewScreenState extends State<ProfileViewScreen> {
                                   return Center(
                                       child: CircularProgressIndicator());
                                 }
-                                return accountInfo["showBadges"]
+                                return accountInfo["showBadges"] ?? false
                                     ? _privateContent()
                                     : ListBuilder(
                                         snapshot: snapshot,
@@ -281,7 +285,7 @@ class _ProfileViewScreenState extends State<ProfileViewScreen> {
                                   return Center(
                                       child: CircularProgressIndicator());
                                 }
-                                return accountInfo["showChallenges"]
+                                return accountInfo["showChallenges"] ?? false
                                     ? _privateContent()
                                     : ListBuilder(
                                         snapshot: snapshot,

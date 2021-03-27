@@ -96,43 +96,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               SizedBox(
                                 width: 5 * constraints.maxWidth / 100,
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    user.displayName,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize:
-                                            3 * constraints.maxHeight / 100,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    height: constraints.maxHeight / 100,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.email,
-                                        color: Colors.black,
-                                        size: 3 * constraints.maxHeight / 100,
-                                      ),
-                                      SizedBox(
-                                        width: 2 * constraints.maxWidth / 100,
-                                      ),
-                                      Text(
-                                        accountInfo.showEmail ?? false
-                                            ? user.email
-                                            : 'private',
-                                        style: TextStyle(
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      user.displayName,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
                                           color: Colors.black,
                                           fontSize:
-                                              2 * constraints.maxHeight / 100,
+                                              3 * constraints.maxHeight / 100,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: constraints.maxHeight / 100,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.email,
+                                          color: Colors.black,
+                                          size: 3 * constraints.maxHeight / 100,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        SizedBox(
+                                          width: 2 * constraints.maxWidth / 100,
+                                        ),
+                                        Text(
+                                          accountInfo.showEmail ?? false
+                                              ? user.email
+                                              : 'private',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize:
+                                                2 * constraints.maxHeight / 100,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),

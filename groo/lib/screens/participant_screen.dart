@@ -53,9 +53,7 @@ class ParticipantScreen extends StatelessWidget {
           return GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              childAspectRatio: 0.5,
-              mainAxisSpacing: 1.0,
-              crossAxisSpacing: 1.0,
+              childAspectRatio: 0.8,
             ),
             itemCount: snapshot.data.length,
             itemBuilder: (context, index) => UserContainer(

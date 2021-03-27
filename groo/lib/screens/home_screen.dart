@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: screenHeight * 0.01),
                 Text(
-                  'If you are experiencing symptoms of depression with \'Corona Blue\', which feels psychological anxiety beyond the frustration of COVID-19, ask for help immediately. Heal your heart.',
+                  'If you are experiencing symptoms of depression with \'Corona Blue\', which feels psychological anxiety beyond the frustration of COVID-19, ask someone for help immediately. Heal your heart.',
                   style: const TextStyle(
                     color: Colors.black54,
                     fontSize: 15.0,
@@ -209,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       SizedBox(height: screenHeight * 0.015),
                       Text(
-                        'Join\nCampaigns',
+                        'Join\nChallenges',
                         style: const TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.w500,
@@ -276,7 +276,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Do your own test!',
+                  'Self Depression test',
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 18.0,
@@ -285,19 +285,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: screenHeight * 0.01),
                 Text(
-                  'Follow the instructions\nto do your own test.',
+                  'These self tests ask some\nimportant questions that\ncan help you.',
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16.0,
                   ),
-                  maxLines: 2,
                 ),
                 SizedBox(height: screenHeight * 0.01),
                 ElevatedButton(
                   onPressed: () {
                     launch("https://patientplatform.typeform.com/to/Yt16hq");
                   },
-                  child: Text("Go to test"),
+                  child: Text("Take the test"),
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.green),
                   ),

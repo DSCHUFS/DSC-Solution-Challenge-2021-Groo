@@ -6,23 +6,24 @@ class TipScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> _title = ["Profile", "Challenge", "Counseling"];
     List<Widget> _tipText = [
       Text(
         """Click the Person icon in the upper right corner of the homepage.
 
 Get a badge through the campaign and fill in your own profile! 
-You can check the badges that you received and the campaigns that you participated in.""",
+You can check the badges that you received and the challenge that you participated in.""",
         style: TextStyle(
           fontSize: 21,
           fontFamily: "Inconsolata",
         ),
       ),
       Text(
-        """Go to the campaign page! Please check the campaign going on this month and press the Start button. 
+        """Go to the challenge page! Please check the challenge going on this month and press the Start button. 
 
-Check to see what level I've reached at the moment. Check out who is participating in this campaign. 
+Check to see what level you've reached at the moment. Check out who is participating in this challenge. 
 You can check the badges you have achieved by collecting them. 
-You can look back on the campaign you participated in.""",
+You can look back on the challenge you participated in.""",
         style: TextStyle(
           fontSize: 21,
           fontFamily: "Inconsolata",
@@ -45,29 +46,60 @@ You can use different ways at different times as you wish, based on your needs a
       color: Color(0xFF737373),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xFFe7f0fd), Color(0xFFaccbee)]),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(30.0),
+          padding: EdgeInsets.all(5.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                "Tip",
-                style: TextStyle(
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Inconsolata",
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                      icon: Icon(Icons.cancel),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      })
+                ],
+              ),
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(15.0)),
+                child: Text(
+                  "${_title[tipNum]} Tip",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Inconsolata",
+                  ),
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 5,
               ),
-              _tipText[tipNum],
+              Container(
+                margin: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(15.0),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(15.0)),
+                child: _tipText[tipNum],
+              ),
             ],
           ),
         ),

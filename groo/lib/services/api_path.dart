@@ -1,5 +1,3 @@
-import 'package:groo/models/my_challenge.dart';
-
 class APIPath {
   static String accountInfo(String uid) => 'users/$uid';
 

@@ -128,16 +128,23 @@ class IntroductionScreen extends StatelessWidget {
                         margin: EdgeInsets.all(10.0),
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
-                          child: RaisedButton(
-                            color: Colors.white,
-                            elevation: 3.0,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 15.0, horizontal: 35.0),
-                            child: Text('JOIN', style: labelTextStyle),
-                            shape: new RoundedRectangleBorder(
-                              side: BorderSide(color: Colors.red, width: 5.0),
-                              borderRadius: new BorderRadius.circular(7.0),
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.white),
+                              elevation: MaterialStateProperty.all(3.0),
+                              padding: MaterialStateProperty.all(
+                                  EdgeInsets.symmetric(
+                                      vertical: 15.0, horizontal: 35.0)),
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        color: Colors.red, width: 5.0),
+                                    borderRadius:
+                                        new BorderRadius.circular(7.0)),
+                              ),
                             ),
+                            child: Text('JOIN', style: labelTextStyle),
                             onPressed: () =>
                                 AttendScreen.show(context, database: database),
                           ),

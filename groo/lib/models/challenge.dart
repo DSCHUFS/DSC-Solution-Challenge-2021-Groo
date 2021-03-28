@@ -9,6 +9,7 @@ class Challenge {
     this.time, // challenge Execution time
     this.imagePath,
     this.description,
+    this.badge,
   });
 
   final String id;
@@ -18,6 +19,7 @@ class Challenge {
   final int time;
   final String imagePath;
   final String description;
+  final String badge;
 
   factory Challenge.fromMap(Map<String, dynamic> data, String id) {
     return Challenge(
@@ -28,6 +30,7 @@ class Challenge {
       time: data['time'],
       imagePath: data['imagePath'],
       description: data['description'],
+      badge: data['badge'],
     );
   }
 
@@ -39,6 +42,7 @@ class Challenge {
       'time': time,
       'imagePath': imagePath,
       'description': description,
+      'badge': badge,
     };
   }
 }

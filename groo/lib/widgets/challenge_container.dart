@@ -1,11 +1,9 @@
+import 'package:firebase_image/firebase_image.dart';
 import 'package:flutter/material.dart';
 import 'package:groo/screens/const.dart';
 
-
 class ChallengeContainer extends StatelessWidget {
-  const ChallengeContainer({
-    this.challengeName, this.imagePath
-  });
+  const ChallengeContainer({this.challengeName, this.imagePath});
   final String challengeName;
   final String imagePath;
   @override
@@ -31,7 +29,11 @@ class ChallengeContainer extends StatelessWidget {
               margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15.0),
-                child: Image.asset(imagePath),
+                child: Image(
+                    image: FirebaseImage(
+                  imagePath,
+                  maxSizeBytes: 5000 * 1000,
+                )),
               ),
             ),
           ),

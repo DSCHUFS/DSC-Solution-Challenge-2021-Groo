@@ -107,6 +107,13 @@ class _AttendScreenState extends State<AttendScreen> {
                   if (!snapshot.hasData) {
                     return Center(child: CircularProgressIndicator());
                   }
+                  if (accountInfo != null) {
+                    _showEmail = accountInfo.showEmail;
+                    _showBadges = accountInfo.showBadges;
+                    _showChallenges = accountInfo.showChallenges;
+                    _followers = accountInfo.followers;
+                    _followings = accountInfo.followings;
+                  }
                   attendance = accountInfo.attendDays ?? 0;
                   Timestamp lastAttend =
                       accountInfo.lastAttendance ?? Timestamp(0, 0);

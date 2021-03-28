@@ -21,6 +21,8 @@ class Challenge {
     return Challenge(
       id: id,
       name: data['name'],
+      totalDays: data['totalDays'],
+      time: data['time'],
       imagePath: data['imagePath'],
       description: data['description'],
     );
@@ -29,6 +31,8 @@ class Challenge {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'name': name,
+      'totalDays': totalDays,
+      'time': time,
       'imagePath': imagePath,
       'description': description,
     };

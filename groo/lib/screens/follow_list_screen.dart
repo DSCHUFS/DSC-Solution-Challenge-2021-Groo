@@ -60,7 +60,10 @@ class FollowListScreen extends StatelessWidget {
                               backgroundImage:
                                   NetworkImage(userSnapshot.data["imagePath"]),
                             ),
-                            title: Text(userSnapshot.data["name"]),
+                            title: Text(
+                              userSnapshot.data["name"],
+                              overflow: TextOverflow.ellipsis,
+                            ),
                             // subtitle: Text(),
                             onTap: () {
                               ProfileViewScreen.show(

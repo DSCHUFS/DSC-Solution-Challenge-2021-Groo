@@ -25,7 +25,6 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
-  List<int> challengeDays = [20, 1, 29];
   int challengeNumber = 0;
   int currentLevel;
   String levelImage;

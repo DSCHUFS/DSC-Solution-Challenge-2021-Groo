@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:groo/models/participant.dart';
+import 'package:groo/screens/profile_view_screen.dart';
 import 'package:groo/services/auth.dart';
 import 'package:groo/services/database.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +19,12 @@ class ParticipantScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<Map<String, dynamic>> _getUserInfo(String uid) async {
+    final snapShot =
+        await FirebaseFirestore.instance.collection('users').doc(uid).get();
+    return snapShot.data();
   }
 
   @override
@@ -56,9 +64,20 @@ class ParticipantScreen extends StatelessWidget {
               childAspectRatio: 0.8,
             ),
             itemCount: snapshot.data.length,
-            itemBuilder: (context, index) => UserContainer(
-              path: snapshot.data[index].imagePath,
-              userName: snapshot.data[index].name,
+            itemBuilder: (context, index) => GestureDetector(
+              onTap: () {
+                final selectedUser = _getUserInfo(snapshot.data[index].id);
+                ProfileViewScreen.show(
+                  context,
+                  database: database,
+                  stream: selectedUser.asStream(),
+                  uid: snapshot.data[index].id,
+                );
+              },
+              child: UserContainer(
+                path: snapshot.data[index].imagePath,
+                userName: snapshot.data[index].name,
+              ),
             ),
           );
         },

@@ -19,7 +19,7 @@ class ChallengeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final database = Provider.of<Database>(context, listen: false);
     final String nextImagePath = 'images/Cooking.jpg';
-    int attendDays = 1;
+    int attendDays = 0;
     String levelImage;
     int level;
 
@@ -157,7 +157,7 @@ class ChallengeScreen extends StatelessWidget {
                         if (!snapshot.hasData) {
                           return Center(child: CircularProgressIndicator());
                         }
-                        attendDays = snapshot.data.attendDays;
+                        attendDays = snapshot.data.attendDays ?? 0;
                         calculateLevel();
                         return ChallengeButton(
                           buttonImage: levelImage,

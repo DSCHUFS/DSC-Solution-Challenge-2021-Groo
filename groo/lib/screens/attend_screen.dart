@@ -144,7 +144,7 @@ class _AttendScreenState extends State<AttendScreen> {
                               context: context,
                               builder: (_) => NetworkGiffyDialog(
                                 title: Text(
-                                  "Conglaturation!",
+                                  "Congratulation!",
                                   style: TextStyle(
                                     fontSize: 30.0,
                                     fontWeight: FontWeight.bold,

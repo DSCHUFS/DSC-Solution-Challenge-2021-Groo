@@ -1,8 +1,12 @@
+import 'package:firebase_image/firebase_image.dart';
 import 'package:flutter/material.dart';
+import 'package:groo/models/challenge.dart';
+import 'package:groo/services/database.dart';
 
 class NextChallengeScreen extends StatelessWidget {
-  NextChallengeScreen({@required this.imagePath});
-  final String imagePath;
+  NextChallengeScreen({@required this.database});
+  final Database database;
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -39,12 +43,24 @@ class NextChallengeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                child: Container(
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Image.asset(imagePath,
-                          width: screenWidth * 0.9)),
-                ),
+                child: StreamBuilder<Challenge>(
+                    stream: database.nextChallengeStream(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      return Container(
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15.0),
+                            child: Image(
+                              image: FirebaseImage(
+                                snapshot.data.imagePath,
+                                maxSizeBytes: 5000 * 1000,
+                              ),
+                              width: screenWidth * 0.9,
+                            )),
+                      );
+                    }),
               ),
             ],
           ),

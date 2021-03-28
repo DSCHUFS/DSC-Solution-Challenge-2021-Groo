@@ -60,7 +60,7 @@ class ChallengeScreen extends StatelessWidget {
                     isScrollControlled: false,
                     context: context,
                     builder: (BuildContext context) => NextChallengeScreen(
-                      imagePath: nextImagePath,
+                      database: database,
                     ),
                   );
                 }),
@@ -183,7 +183,7 @@ class ChallengeScreen extends StatelessWidget {
                 children: [
                   ChallengeButton(
                     buttonImage: 'images/medal.png',
-                    label: 'badge',
+                    label: 'badges',
                     onPressed: () => BadgeScreen.show(
                       context,
                       database: database,

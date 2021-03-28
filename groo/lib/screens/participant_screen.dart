@@ -85,6 +85,7 @@ class UserContainer extends StatelessWidget {
             SizedBox(height: 5),
             Text(
               userName,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                   fontFamily: 'Inconsolata',
                   fontSize: 22,

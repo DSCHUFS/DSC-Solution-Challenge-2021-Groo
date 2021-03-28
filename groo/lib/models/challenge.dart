@@ -4,6 +4,7 @@ class Challenge {
   Challenge({
     @required this.id,
     this.name,
+    this.subTitle,
     this.totalDays, // challenge Performance period
     this.time, // challenge Execution time
     this.imagePath,
@@ -12,6 +13,7 @@ class Challenge {
 
   final String id;
   final String name;
+  final String subTitle;
   final int totalDays;
   final int time;
   final String imagePath;
@@ -21,6 +23,7 @@ class Challenge {
     return Challenge(
       id: id,
       name: data['name'],
+      subTitle: data['subTitle'],
       totalDays: data['totalDays'],
       time: data['time'],
       imagePath: data['imagePath'],
@@ -31,6 +34,7 @@ class Challenge {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'name': name,
+      'subTitle': subTitle,
       'totalDays': totalDays,
       'time': time,
       'imagePath': imagePath,

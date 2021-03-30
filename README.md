@@ -6,6 +6,7 @@
 🌳 Groo(그루) - Slowly growing strong like the characteristics of a "Tree".
 
 A Service App that provides challenges and counseling services to relieve depression caused by Corona Blue.
+
 코로나 블루 극복을 위한 챌린지 참여 및 우울증 완화를 위한 상담 매칭 어플
 
 

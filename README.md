@@ -3,11 +3,13 @@
 ![Flutter](https://img.shields.io/badge/Dart-Flutter-blue?logo=Flutter)
 ![Firebase](https://img.shields.io/badge/with-Firebase-FFCC00?logo=Firebase)
 
-🌳 Groo(그루) - Slowly growing strong like the characteristics of a "Tree".
+🌳 Groo(그루) - Growing up slowly and strong like the characteristics of a "Tree".
 
-A Service App that provides challenges and counseling services to relieve depression caused by Corona Blue.
+![image](https://user-images.githubusercontent.com/56063805/113023088-41e1d680-91c0-11eb-93ca-81b05fa156a4.png)
 
-코로나 블루 극복을 위한 챌린지 참여 및 우울증 완화를 위한 상담 매칭 어플
+> A Service App that provides challenges and counseling services to relieve depression caused by Corona Blue.
+
+> 코로나 블루 극복을 위한 챌린지 참여 및 우울증 완화를 위한 상담 매칭 어플
 
 ## Explanation
 
@@ -52,6 +54,13 @@ flutter pub get
 
 ```bash
 flutter run
+```
+
+6. You can use the demo account
+> _This account will be deleted after the contest._
+```
+ID : dschufs3@gmail.com
+PW : solution2021!
 ```
 
 # Technical Stacks

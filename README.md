@@ -372,6 +372,18 @@ PW : solution2021!
 
 # DB
 
+| ![image](https://user-images.githubusercontent.com/56063805/113111837-8bbfd080-9243-11eb-950d-d5258292d752.png) |
+|:--:|
+| Activated Challenges Firestore Database |
+
+| ![image](https://user-images.githubusercontent.com/56063805/113111849-8d899400-9243-11eb-8356-a5dd03d5b49c.png) |
+|:--:|
+| User Info Firestore Database |
+
+| ![image](https://user-images.githubusercontent.com/56063805/113111867-8febee00-9243-11eb-87bf-640d804b28c0.png) |
+|:--:|
+| Counselor Info Firestore Database |
+
 # Screenshots
 <img src="https://user-images.githubusercontent.com/56063805/113026205-c97d1480-91c3-11eb-9fa5-e204af31c01e.png" width="30%"><img src="https://user-images.githubusercontent.com/56063805/113026233-cf72f580-91c3-11eb-8a68-cf4125fbf1cd.png" width="30%"><img src="https://user-images.githubusercontent.com/56063805/113026241-d26de600-91c3-11eb-8a5a-4fb089876baf.png" width="30%">
 <img src="https://user-images.githubusercontent.com/56063805/113027625-465cbe00-91c5-11eb-8e5e-fca524f6bc2d.png" width="30%"><img src="https://user-images.githubusercontent.com/56063805/113026305-e285c580-91c3-11eb-94d1-a7eaf466b4f2.png" width="30%"><img src="https://user-images.githubusercontent.com/56063805/113026269-d8fc5d80-91c3-11eb-8c50-a174e906b00c.png" width="30%">
@@ -379,12 +391,6 @@ PW : solution2021!
 <img src="https://user-images.githubusercontent.com/56063805/113027159-bdde1d80-91c4-11eb-9436-9f0e7575ab4c.png" width="30%"><img src="https://user-images.githubusercontent.com/56063805/113026256-d6016d00-91c3-11eb-98ff-b21a92a246ba.png" width="30%"><img src="https://user-images.githubusercontent.com/56063805/113027192-c59dc200-91c4-11eb-9242-fb91893cf4c3.png" width="30%">
 <img src="https://user-images.githubusercontent.com/56063805/113027177-c20a3b00-91c4-11eb-895b-9806261ee171.png" width="30%"><img src="https://user-images.githubusercontent.com/56063805/113027146-b9196980-91c4-11eb-9c44-f87d3f7ee33e.png" width="30%"><img src="https://user-images.githubusercontent.com/56063805/113026353-f16c7800-91c3-11eb-9517-b48977f7f695.png" width="30%">
 <img src="https://user-images.githubusercontent.com/56063805/113026344-ef0a1e00-91c3-11eb-8f9b-10eca08b145c.png" width="30%"><img src="https://user-images.githubusercontent.com/56063805/113026333-eca7c400-91c3-11eb-92d7-7a777af22d73.png" width="30%"><img src="https://user-images.githubusercontent.com/56063805/113026324-e7e31000-91c3-11eb-866b-ebeb49c667aa.png" width="30%">
-
-
-
-
-
-
 
 # Contributors
 

@@ -19,8 +19,7 @@ By using Flutter App and Firebase, You can cultivate a more energetic life throu
 
 For more information check our Youtube introducing our Solution.
 
-//TODO
-[DSC HUFS Youtube](https://youtu.be/sV1MkwgMrNU)
+[DSC HUFS Youtube](https://www.youtube.com/watch?v=DkNMnDeRDtA)
 
 # Getting Started
 

@@ -55,13 +55,6 @@ flutter pub get
 flutter run
 ```
 
-6. You can use the demo account
-> _This account will be deleted after the contest._
-```
-ID : dschufs3@gmail.com
-PW : solution2021!
-```
-
 # Technical Stacks
 
 ## Firebase - Firestore
